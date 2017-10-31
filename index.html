@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="./css/custom-styles.css">
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
+</head>
+<body>
+  <div>
+
+    <nav  class="navbar navbar-default top-navbar" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="index.jsp"><strong><i class="icon fa fa-plane"></i>学生管理系统</strong></a>
+      </div>
+    </nav>
+    <nav class="navbar-default navbar-side" role="navigation">
+      <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+          <li>
+            <a id="homeButton" href="javascript:void(0)" onclick="jumpHomeP()"><i class="fa fa-dashboard"></i>首页(home page)</a>
+          </li>
+          <li>
+            <a id="fixButton" href="javascript:void(0)" onclick="jumpFixP();"><i class="fa fa-desktop"></i>定位（fix position for students in the class）</a>
+          </li>
+		  <li>
+            <a id="rollButton" href="javascript:void(0)" onclick="jumpRollC()"><i class="fa fa-desktop"></i>点名（hava a roll call of pupils）</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+    <div id="page-wrapper">
+      <div class="header">
+        <h1 class="page-header">
+                                    学生管理系统 <small>欢迎           老师</small>
+        </h1>
+		<ol class="breadcrumb">
+          <li><a href="#">首页</a></li>
+          <li class="active">教师欢迎页</li>
+        </ol>
+      </div>
+      <div id="page-inner">
+      </div>
+    </div>
+
+
+    <div id="page-fixP">
+      <div class="header">
+        <h1 class="page-header">
+                                    定位 <small>为班级里的学生定位</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="index.jsp">首页</a></li>
+          <li class="active">定位</li>
+        </ol>
+      </div>
+      <div class="header">
+        <form class="form-inline panel panel-heading">
+          <div class="form-group">
+            <label for="exampleInputName2">X</label>
+            <input type="text" class="form-control" id="x" >
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail2">Y</label>
+            <input type="text" class="form-control" id="y" >
+          </div>
+          <button type="button" class="btn btn-default" onclick="jumpC1();fixPositionF()">定位</button>
+          <button type="button" class="btn btn-default" onclick="jumpC2();track()">轨迹</button>
+        </form>
+      </div>
+      <div id="page-inner">
+        <div class="row">
+		  <div class="col-md-12">
+          <!-- Advanced Tables -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                                                        校园地图
+              </div>
+              <div class="panel-body">
+                <div id="wrapper" class="table-responsive">
+                  <div class="relative center-block">
+                    <canvas id="canvas" width="900" height="600" class="canvasBackground">dsss</canvas>
+                    <canvas id="myCanvas1" width="900" height="600" class="fixPosition center-block">dsss</canvas>
+                    <canvas id="myCanvas2" width="900" height="600" class="fixPosition center-block">dsss</canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer><p>Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="">奥新智能</a></p>
+        </footer>
+      </div>
+    </div>
+
+
+    <div id="page-rollC">
+      <div class="header">
+        <h1 class="page-header">
+                                  点名<small>学生点名</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a  href="index.jsp">首页</a></li>
+          <li class="active">点名</li>
+        </ol>
+      </div>
+      <div id="page-inner">
+        <div class="row">
+          <div class="col-md-12">
+          <!-- Advanced Tables -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                                                        教室平面图
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <div class="relative center-block">
+                    <div class="rollCall center-block"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="foot">
+        <!-- Links -->
+        <div class="row">
+          <div class="col-md-4">
+            <ul>
+              <li><a ><i class="fa fa-dashboard"></i>Home</a></li>
+              <li><a ><i class="fa fa-dashboard"></i>Careers</a></li>
+              <li><a ><i class="fa fa-dashboard"></i>Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul >
+              <li><a ><i class="fa fa-dashboard"></i>Privacy Policy</a></li>
+              <li><a ><i class="fa fa-dashboard"></i>Terms &amp; Conditions</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h3 >Flinkhub</h3>
+            <p >Flinkhub, an AI-driven sales platform, helps B2B SaaS companies in selling their products to companies which have the highest probability of buying their product.
+            </p>
+            <div >
+            <a ></a>
+            <a ></a>
+            </div>
+          </div>
+        </div>
+        <!-- End Links -->
+
+        <!-- Copyright -->
+        <div >
+          <div class="row">
+            <div >
+              <a >
+                <img >
+              </a>
+            </div>
+            <div>
+              <p >© 2017 Flinkhub Inc. All Rights Reserved.</p>
+            </div>
+          </div>
+        </div>
+            <!-- End Copyright -->
+        </footer>
+    </div>
+
+
+  </div>
+  <script src="./js/index.js"></script>
+  <script src="./js/main.js"></script>
+  <script>
+    /*function myScroll() {
+	  var myscroll = new IScroll("#wrapper", {
+		    scrollbars: true ,
+		    scrollbars: "custom"
+		});
+    };
+    */
+  </script>
+</body>
+</html>
