@@ -70,8 +70,10 @@
             <label for="exampleInputEmail2">Y</label>
             <input type="text" class="form-control" id="y" >
           </div>
-          <button type="button" class="btn btn-default" onclick="jumpC1();fixPositionF()">定位</button>
-          <button type="button" class="btn btn-default" onclick="jumpC2();track()">轨迹</button>
+          <button type="button" class="btn btn-default" onclick="jumpC1();fixPositionF()">实时定位</button>
+          <button type="button" class="btn btn-default" onclick="jumpC2();track()">实时轨迹</button>
+          <button type="button" class="btn btn-default" onclick="zoomC1();init()">定位缩放</button>
+          <button type="button" class="btn btn-default" onclick="zoomC2();init()">轨迹缩放</button>
         </form>
       </div>
       <div id="page-inner">
@@ -84,8 +86,11 @@
               </div>
               <div class="panel-body">
                 <div id="wrapper" class="table-responsive">
-                  <div class="relative center-block">
-                    <canvas id="canvas" width="900" height="600" class="canvasBackground">dsss</canvas>
+                  <div id="canvas" class="relative center-block">
+                    <canvas id="canvas0" width="900" height="600" class="canvasBackground0">dsss</canvas>
+                    <canvas id="canvas1" width="900" height="600" class="canvasBackground1">dsss</canvas>
+                    <canvas id="canvas2" width="900" height="600" class="canvasBackground2">dsss</canvas>
+                    <canvas id="myCanvas0" width="900" height="600" class="fixPosition center-block">dsss</canvas>
                     <canvas id="myCanvas1" width="900" height="600" class="fixPosition center-block">dsss</canvas>
                     <canvas id="myCanvas2" width="900" height="600" class="fixPosition center-block">dsss</canvas>
                   </div>
