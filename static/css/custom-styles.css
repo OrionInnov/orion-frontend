@@ -742,13 +742,31 @@ font-size: 19px;
   height: 600px;
 }
 .canvasBackground {  
-  z-index: 100;
+  z-index: 300;
   position: absolute;
+  display: block;
 }
+.canvasBackground0 {  
+  z-index: 150;
+  position: absolute;
+  display: block;
+}
+.canvasBackground1 {
+  z-index: 200;
+  position: absolute;
+  display: block;
+}
+.canvasBackground2 {  
+  z-index: 300;
+  position: absolute;
+  display: block;
+}
+
 .fixPosition {
   width: 900px;
   height: 600px;
-  position: absolute;  
+  position: absolute;
+  z-index: 400;
 }
 .rollCall {
   background-image: url("../../img/classroom.jpg");
