@@ -1,70 +1,130 @@
-var canvas,context;
-var img,//图片对象
-    imgIsLoaded,//图片是否加载完成;
-    imgX=0,
-    imgY=0,
-    imgScale=1;
+//
+//
+//
+var canvas = document.getElementById("canvas");
+var canvas2, context2, canvas1, context1, canvas0, context0;
+var img1,//图片对象
+  imgIsLoaded,//图片是否加载完成;
+  imgX = 0,
+  imgY = 0,
+  imgScale = 1;
+function init() {
+  imgX = 0;
+  imgY = 0;
+  imgScale = 1;
+  img0.src = dataURL0;
+  img1.src = dataURL1;
+  img2.src = dataURL2;
+  drawImage0();
+  drawImage1();
+  drawImage2();
+}
 
-(function int(){
-    canvas=document.getElementById('canvas');
-    context=canvas.getContext('2d');
-    loadImg();
+(function int() {
+  canvas0 = document.getElementById("canvas0");
+  context0 = canvas0.getContext("2d");
+  loadImg0();
+})();
+(function int() {
+  canvas1 = document.getElementById("canvas1");
+  context1 = canvas1.getContext("2d");
+  loadImg1();
+})();
+(function int() {
+  canvas2 = document.getElementById("canvas2");
+  context2 = canvas2.getContext("2d");
+  loadImg2();
 })();
 
-function loadImg(){
-    img=new Image();
-    img.onload=function(){
-        imgIsLoaded=true;
-        drawImage();
-    }
-    img.src="./img/position.jpg";
+function loadImg0() {
+  img0 = new Image();
+  img0.onload = function() {
+    imgIsLoaded = true;
+    drawImage0();
+  }
+  img0.src = dataURL0;
+}
+function loadImg1() {
+  img1 = new Image();
+  img1.onload = function() {
+    imgIsLoaded = true;
+    drawImage1();
+  }
+  img1.src = dataURL1;
+}
+function loadImg2() {
+  img2 = new Image();
+  img2.onload = function() {
+    imgIsLoaded = true;
+    drawImage2();
+  }
+  img2.src = dataURL2;
 }
 
-function drawImage(){
-    context.clearRect(0,0,canvas.width,canvas.height);
-    context.drawImage(img,0,0,img.width,img.height,imgX,imgY,img.width*imgScale,img.height*imgScale);
+
+function drawImage0() {
+  context0.clearRect(0, 0, canvas.offsetWidth, canvas.offsetWidth);
+  context0.drawImage(img0, 0, 0, img0.width, img0.height, imgX, imgY, img0.width*imgScale, img0.height*imgScale);
+}
+function drawImage1() {
+  context1.clearRect(0, 0, canvas.offsetWidth, canvas.offsetWidth);
+  context1.drawImage(img1, 0, 0, img1.width, img1.height, imgX, imgY, img1.width*imgScale, img1.height*imgScale);
+}
+function drawImage2() {
+  context2.clearRect(0, 0, canvas.offsetWidth, canvas.offsetWidth);
+  context2.drawImage(img2, 0, 0, img2.width, img2.height, imgX, imgY, img2.width*imgScale, img2.height*imgScale);
 }
 
-canvas.onmousedown=function(event){	
-	document.documentElement.style.overflow = "scroll";
-	var pos=windowToCanvas(canvas,event.clientX,event.clientY);
-    canvas.onmousemove=function(event){
-        canvas.style.cursor="move";
-        var pos1=windowToCanvas(canvas,event.clientX,event.clientY);
-        var x=pos1.x-pos.x;
-        var y=pos1.y-pos.y;
-        pos=pos1;
-        imgX+=x;
-        imgY+=y;
-        drawImage();
-    }
-    canvas.onmouseup=function(){
-        canvas.onmousemove=null;
-        canvas.onmouseup=null;
-        canvas.style.cursor="default";
-    }
+canvas.onmousedown = function(event) {
+  document.documentElement.style.overflow = "scroll";
+  var pos = windowToCanvas(canvas, event.clientX, event.clientY);
+  canvas.onmousemove = function(event) {
+    canvas.style.cursor = "move";
+    var pos0 = windowToCanvas(canvas, event.clientX, event.clientY);
+    var x = pos0.x - pos.x;
+    var y = pos0.y - pos.y;
+    pos = pos0;
+    imgX += x;
+    imgY += y;
+    img0.src = dataURL0;
+    img1.src = dataURL1;
+    img2.src = dataURL2;
+    drawImage0();
+    drawImage1();
+    drawImage2();
+  }
+  canvas.onmouseup = function() {
+    canvas.onmousemove = null;
+    canvas.onmouseup = null;
+    canvas.style.cursor = "default";
+  }
+  //document.write(dataURL0);
 }
-canvas.onmousewheel=canvas.onwheel=function(event){	
-	document.documentElement.style.overflow = "hidden";
-	var pos=windowToCanvas(canvas,event.clientX,event.clientY);
-    event.wheelDelta=event.wheelDelta?event.wheelDelta:(event.deltaY*(-40));
-    if(event.wheelDelta>0){
-        imgScale*=2;
-        imgX=imgX*2-pos.x;
-        imgY=imgY*2-pos.y;
-    }else{
-        imgScale/=2;
-        imgX=imgX*0.5+pos.x*0.5;
-        imgY=imgY*0.5+pos.y*0.5;
-    }
-    drawImage();
+canvas.onmousewheel = canvas.onwheel = function(event) {
+  document.documentElement.style.overflow = "hidden";
+  var pos = windowToCanvas(canvas, event.clientX, event.clientY);
+  event.wheelDelta = event.wheelDelta?event.wheelDelta:(event.deltaY*(-40));
+  if(event.wheelDelta > 0) {
+    imgScale *= 1.25;
+    imgX = imgX * 1.25 - pos.x * 0.25;
+    imgY = imgY * 1.25 - pos.y * 0.25;
+  }else {
+    imgScale /= 1.25;
+    imgX = imgX * 0.8 + pos.x * 0.2;
+    imgY = imgY * 0.8 + pos.y * 0.2;
+  }
+  img0.src = dataURL0;
+  img1.src = dataURL1;
+  img2.src = dataURL2;
+  drawImage0();
+  drawImage1();
+  drawImage2();
 }
 
-function windowToCanvas(canvas,x,y){
-    var bbox = canvas.getBoundingClientRect();
-    return {
-        x:x - bbox.left - (bbox.width - canvas.width) / 2,
-        y:y - bbox.top - (bbox.height - canvas.height) / 2
-    };
+function windowToCanvas(canvas,x,y) {
+  var bbox = canvas.getBoundingClientRect();
+  return {
+    x:x - bbox.left - (bbox.width - canvas.offsetWidth) / 2,
+    y:y - bbox.top - (bbox.height - canvas.offsetHeight) / 2
+  };
 }
-
