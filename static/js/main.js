@@ -106,13 +106,13 @@ canvas.onmousewheel=canvas.onwheel=function(event){
 	var pos=windowToCanvas(canvas,event.clientX,event.clientY);
     event.wheelDelta=event.wheelDelta?event.wheelDelta:(event.deltaY*(-40));
     if(event.wheelDelta>0){
-        imgScale*=2;
-        imgX=imgX*2-pos.x;
-        imgY=imgY*2-pos.y;
+        imgScale*=1.25;
+        imgX=imgX*1.25-pos.x*0.25;
+        imgY=imgY*1.25-pos.y*0.25;
     }else{
-        imgScale/=2;
-        imgX=imgX*0.5+pos.x*0.5;
-        imgY=imgY*0.5+pos.y*0.5;
+        imgScale/=1.25;
+        imgX=imgX*0.8+pos.x*0.2;
+        imgY=imgY*0.8+pos.y*0.2;
     }
     img0.src = dataURL0;
     img1.src = dataURL1;

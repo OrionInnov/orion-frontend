@@ -87,7 +87,7 @@ myBackground.src = "./img/position.jpg"
 var c0 = $("#myCanvas0");
 var ctx0 = c0.get(0).getContext("2d");
 myBackground.onload = function() {
-  ctx0.drawImage(myBackground, 0, 0, 900, 600);
+  ctx0.drawImage(myBackground, 0, 0, 1260, 840);
   dataURL0 = c0.get(0).toDataURL();
 };
 dataURL0 = c0.get(0).toDataURL();

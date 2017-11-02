@@ -2,7 +2,7 @@
 
 
 /*----------------------------------------------
-    COMMON  STYLES    
+    COMMON  STYLES
 ------------------------------------------------*/
 body {
     font-family: 'Open Sans', sans-serif;
@@ -57,7 +57,7 @@ h4 {
     padding-top:10px;
 }
 .square-btn-adjust {
-    border: 0px solid transparent; 
+    border: 0px solid transparent;
    -webkit-border-radius: 0px;
 -moz-border-radius: 0px;
 border-radius: 0px;
@@ -69,7 +69,7 @@ p {
     padding-top:20px;
 }
 .navbar-side {
-    z-index: 0; 
+    z-index: 0;
 }
 .copyrights{
 	text-indent:-9999px;
@@ -112,7 +112,7 @@ position: fixed;
 }
 #page-rollC {
   position: relative;
-  top: 55px;  
+  top: 55px;
 }
 .top-navbar .nav > li > a:hover, .top-navbar .nav > li > a:focus {text-decoration: none;background-color: #4D4D4D;color: #fff;}
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {background-color: #656565;border-color: #F36A5A;color: #fff !important;}
@@ -162,10 +162,10 @@ border-radius: 0;
 .closed i{color:#F09B22;
 }
 /*----------------------------------------------
-   DASHBOARD STYLES    
+   DASHBOARD STYLES
 ------------------------------------------------*/
 .page-header {margin: 0;border-bottom: 1px solid transparent;text-align: left;background-color: rgb(237, 237, 237);padding: 32px 22px 32px 0;color: #323232;}
-.panel-left{  
+.panel-left{
 width: 100px;
 height: 100px;background: #0866C6;/* border: 2px solid #4590DA; */
 /* border-radius: 100%; */
@@ -176,13 +176,13 @@ margin: 12px;}
 font-size: 3em;color: rgb(240, 155, 34);
 padding: 29px 0;
 margin-bottom:30px;}
-.panel-right{  
+.panel-right{
 height: 124px;
 background: transparent;
 margin-bottom: 0;color: #AFAFAF;
 
 float: left;text-align: left;padding-left: 20px;font-size: 16px;text-shadow: none;font-weight: normal;text-align: center;}
-.panel-right h3{  
+.panel-right h3{
 font-size: 40px;
 padding: 18px 10px 13px 0;color: #5D5D5D;}
 .panel-right strong{
@@ -327,13 +327,13 @@ color:#fff;
   .brown {
 background-color: #F5B252;
 color:#fff;
-} 
+}
  .back-footer-red {
 background-color: #ff8040;
 color:#fff;
 border-top: 0px solid #fff;
 }
- 
+
  .icon-box-right {
 display: block;
 float: right;
@@ -421,7 +421,7 @@ line-height: 30px;
 #easypiechart-orange .percent { color: #ffb53e;}
 #easypiechart-red .percent { color: #ef4040;}
 
-	 
+
  .chat-panel .panel-body {
 height: 450px;
 overflow-y: scroll;
@@ -450,7 +450,7 @@ footer p{
 font-size: 14px;
 }
 /*----------------------------------------------
-    MENU STYLES    
+    MENU STYLES
 ------------------------------------------------*/
 div#sideNav:hover {
     color: #F09B22;
@@ -504,7 +504,7 @@ overflow: hidden;
 background-color: #f5f5f5;
 border-radius: 0px;
 }
-.dropdown-tasks > li > a { 
+.dropdown-tasks > li > a {
 padding: 0px 15px;
 }
 .dropdown-tasks p {
@@ -564,14 +564,14 @@ padding-top: 4px;
 ul.nav.nav-second-level.collapse.in {background: #131212;}
 .sidebar-collapse .nav > li > a:hover,
 .sidebar-collapse .nav > li > a:focus {
-	 
+
 outline:0;
-	 
+
 background: #575757;
-	 
+
 color: #ff8040;
 }
- 
+
 .navbar-side {
 	border:none;
 	background: #3E3E3E;
@@ -627,7 +627,7 @@ ul.dropdown-menu.dropdown-messages li a div {
   padding: 2px 0;
 }
 /*----------------------------------------------
-    UI ELEMENTS STYLES     
+    UI ELEMENTS STYLES
 ------------------------------------------------*/
 .btn-circle {
 width: 50px;
@@ -642,9 +642,9 @@ line-height: 1.428571429;
 }
 
 /*----------------------------------------------
-    MEDIA QUERIES     
+    MEDIA QUERIES
 ------------------------------------------------*/
- 
+
  @media(min-width:769px) {
      #page-wrapper{
                margin: 0 0 0 260px;
@@ -660,23 +660,23 @@ line-height: 1.428571429;
                margin: 0 0 0 260px;
                padding: 0;
                min-height: 1200px;
-    }        
-	
-	
+    }
+
+
     .navbar-side {
         width: 260px;
         z-index: 1;
     }
 
    .navbar {
- border-radius: 0px; 
+ border-radius: 0px;
 }
-   
+
 }
  @media(max-width:768px) {
 	#sideNav{
 	display:none;
-} 
+}
  #page-wrapper {
 position: relative;
 top: 93px;
@@ -711,7 +711,7 @@ top: 93px;
 .top-navbar .navbar-brand{
 	width:100%;
 	position:relative;
-	
+
  }
  }
  @media(max-width:480px) {
@@ -729,7 +729,7 @@ font-size: 19px;
 }
 .panel-left {
   width: 85px;
-  height: 85px; 
+  height: 85px;
   border-radius: 100%;
   overflow: hidden;
   margin: 14px;
@@ -738,15 +738,15 @@ font-size: 19px;
 
 .relative {
   position: relative;
-  width: 900px;
-  height: 600px;
+  width: 1260px;
+  height: 840px;
 }
-.canvasBackground {  
+.canvasBackground {
   z-index: 300;
   position: absolute;
   display: block;
 }
-.canvasBackground0 {  
+.canvasBackground0 {
   z-index: 150;
   position: absolute;
   display: block;
@@ -756,15 +756,15 @@ font-size: 19px;
   position: absolute;
   display: block;
 }
-.canvasBackground2 {  
+.canvasBackground2 {
   z-index: 300;
   position: absolute;
   display: block;
 }
 
 .fixPosition {
-  width: 900px;
-  height: 600px;
+  width: 1260px;
+  height: 840px;
   position: absolute;
   z-index: 400;
 }
@@ -784,7 +784,7 @@ font-size: 19px;
 .foot {
   background-color: #FFFFFF;
   overflow: hidden;
-  
+
 }
 footer a {
   color: #8d898c;
@@ -801,5 +801,3 @@ footer a:hover {
 ul li{
   list-style-type:none;
 }
-
-
