@@ -2,7 +2,7 @@
  *
  *
  *
- *
+ * 
  */
 //Page switch.
 
@@ -13,7 +13,7 @@ var homeB = $("#homeButton");
 var fixB = $("#fixButton");
 var rollB = $("#rollButton");
 homeB.addClass("active-menu");
-home.css("display", "block");
+home.css("display", "block");      
 fixP.css("display", "none");
 rollC.css("display", "none");
 function jumpHomeP() {
@@ -57,12 +57,14 @@ function jumpC1() {
   c0.css("display", "block");
   c1.css("display", "block");
   c2.css("display", "none");
+  document.documentElement.style.overflow = "scroll";
   //document.write(dataURL0);
 };
-function jumpC2() {
+function jumpC2() {    
   c0.css("display", "block");
   c1.css("display", "none");
   c2.css("display", "block");
+  document.documentElement.style.overflow = "scroll";
   //document.write(dataURL1);
 };
 function zoomC1() {
@@ -72,6 +74,7 @@ function zoomC1() {
   ca0.css("display", "block");
   ca1.css("display", "block");
   ca2.css("display", "none");
+  document.documentElement.style.overflow = "scroll";
 };
 function zoomC2() {
   c0.css("display", "none");
@@ -80,13 +83,14 @@ function zoomC2() {
   ca0.css("display", "block");
   ca1.css("display", "none");
   ca2.css("display", "block");
+  document.documentElement.style.overflow = "scroll";
 };
 //Fix position.
 var myBackground = new Image();
 myBackground.src = "./img/position.jpg"
 var c0 = $("#myCanvas0");
 var ctx0 = c0.get(0).getContext("2d");
-myBackground.onload = function() {
+myBackground.onload = function() {     
   ctx0.drawImage(myBackground, 0, 0, 1260, 840);
   dataURL0 = c0.get(0).toDataURL();
 };
@@ -104,16 +108,16 @@ function fixPositionF(){
   	var c1 = $("#myCanvas1");
     var ctx = c1.get(0).getContext("2d");
   	ctx.globalCompositeOperation = "copy";
-  	myImage.onload = function() {
-  	  ctx.drawImage(myImage, x, y, 25, 25);
+  	myImage.onload = function() {     
+  	  ctx.drawImage(myImage, x, y, 25, 25); 	  
   	};
   function canvasClear() {
   	ctx.clearRect(x, y, 25, 25);
   };
   //var clear = setTimeout(canvasClear, 1500);
   dataURL1 = c1.get(0).toDataURL();
-  };
-  var overwrite1 = setInterval(fixPosition, 10);
+  };  
+  var overwrite1 = setInterval(fixPosition, 10);  
 };
 //Track.
 function track() {

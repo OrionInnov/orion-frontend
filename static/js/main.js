@@ -60,7 +60,9 @@ function loadImg2() {
   }
   img2.src = dataURL2;
 }
-
+function scroll() {
+  document.documentElement.style.overflow = "scroll";
+}
 
 function drawImage0() {
   context0.clearRect(0, 0, canvas.offsetWidth, canvas.offsetWidth);
@@ -76,7 +78,7 @@ function drawImage2() {
 }
 
 canvas.onmousedown = function(event) {
-  document.documentElement.style.overflow = "scroll";
+  scroll();
   var pos = windowToCanvas(canvas, event.clientX, event.clientY);
   canvas.onmousemove = function(event) {
     canvas.style.cursor = "move";
@@ -85,8 +87,7 @@ canvas.onmousedown = function(event) {
     var y = pos0.y - pos.y;
     pos = pos0;
     imgX += x;
-    imgY += y;
-    img0.src = dataURL0;
+    imgY += y;    
     img1.src = dataURL1;
     img2.src = dataURL2;
     drawImage0();
@@ -106,14 +107,21 @@ canvas.onmousewheel = canvas.onwheel = function(event) {
   event.wheelDelta = event.wheelDelta?event.wheelDelta:(event.deltaY*(-40));
   if(event.wheelDelta > 0) {
     imgScale *= 1.25;
+    if(imgScale > 11) {
+      imgScale = Math.pow(1.25, 10);
+      return;
+    }
     imgX = imgX * 1.25 - pos.x * 0.25;
     imgY = imgY * 1.25 - pos.y * 0.25;
   }else {
     imgScale /= 1.25;
+    if(imgScale < 0.4) {
+      imgScale = Math.pow(1.25, -4);
+      return;
+    }
     imgX = imgX * 0.8 + pos.x * 0.2;
     imgY = imgY * 0.8 + pos.y * 0.2;
   }
-  img0.src = dataURL0;
   img1.src = dataURL1;
   img2.src = dataURL2;
   drawImage0();
