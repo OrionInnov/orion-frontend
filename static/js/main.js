@@ -8,6 +8,7 @@ var img1,//图片对象
   imgX = 0,
   imgY = 0,
   imgScale = 1;
+
 function init() {
   imgX = 0;
   imgY = 0;
@@ -18,6 +19,14 @@ function init() {
   drawImage0();
   drawImage1();
   drawImage2();
+}
+
+function windowToCanvas(canvas,x,y) {
+  var bbox = canvas.getBoundingClientRect();
+  return {
+    x:x - bbox.left - (bbox.width - canvas.offsetWidth) / 2,
+	y:y - bbox.top - (bbox.height - canvas.offsetHeight) / 2
+  };
 }
 
 (function int() {
@@ -41,7 +50,7 @@ function loadImg0() {
   img0.onload = function() {
     imgIsLoaded = true;
     drawImage0();
-  }
+  };
   img0.src = dataURL0;
 }
 function loadImg1() {
@@ -49,7 +58,7 @@ function loadImg1() {
   img1.onload = function() {
     imgIsLoaded = true;
     drawImage1();
-  }
+  };
   img1.src = dataURL1;
 }
 function loadImg2() {
@@ -57,9 +66,10 @@ function loadImg2() {
   img2.onload = function() {
     imgIsLoaded = true;
     drawImage2();
-  }
+  };
   img2.src = dataURL2;
 }
+
 function scroll() {
   document.documentElement.style.overflow = "scroll";
 }
@@ -87,20 +97,21 @@ canvas.onmousedown = function(event) {
     var y = pos0.y - pos.y;
     pos = pos0;
     imgX += x;
-    imgY += y;    
+    imgY += y;
     img1.src = dataURL1;
     img2.src = dataURL2;
     drawImage0();
     drawImage1();
     drawImage2();
-  }
+  };
   canvas.onmouseup = function() {
     canvas.onmousemove = null;
     canvas.onmouseup = null;
     canvas.style.cursor = "default";
-  }
+  };
   //document.write(dataURL0);
-}
+};
+
 canvas.onmousewheel = canvas.onwheel = function(event) {
   document.documentElement.style.overflow = "hidden";
   var pos = windowToCanvas(canvas, event.clientX, event.clientY);
@@ -110,7 +121,7 @@ canvas.onmousewheel = canvas.onwheel = function(event) {
     if(imgScale > 11) {
       imgScale = Math.pow(1.25, 10);
       return;
-    }
+    };
     imgX = imgX * 1.25 - pos.x * 0.25;
     imgY = imgY * 1.25 - pos.y * 0.25;
   }else {
@@ -118,21 +129,13 @@ canvas.onmousewheel = canvas.onwheel = function(event) {
     if(imgScale < 0.4) {
       imgScale = Math.pow(1.25, -4);
       return;
-    }
+    };
     imgX = imgX * 0.8 + pos.x * 0.2;
     imgY = imgY * 0.8 + pos.y * 0.2;
-  }
+  };
   img1.src = dataURL1;
   img2.src = dataURL2;
   drawImage0();
   drawImage1();
   drawImage2();
-}
-
-function windowToCanvas(canvas,x,y) {
-  var bbox = canvas.getBoundingClientRect();
-  return {
-    x:x - bbox.left - (bbox.width - canvas.offsetWidth) / 2,
-    y:y - bbox.top - (bbox.height - canvas.offsetHeight) / 2
-  };
-}
+};
