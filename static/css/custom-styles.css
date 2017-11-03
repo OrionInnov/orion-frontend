@@ -85,7 +85,7 @@ border-radius:0px;
 .top-navbar{
 position: fixed;
   width: 100%;
-  z-index: 300;
+  z-index: 500;
     -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
@@ -742,7 +742,7 @@ font-size: 19px;
   height: 840px;
 }
 .canvasBackground {
-  z-index: 300;
+  z-index: 350;
   position: absolute;
   display: block;
 }
@@ -769,7 +769,7 @@ font-size: 19px;
   z-index: 400;
 }
 .rollCall {
-  background-image: url("../../img/classroom.jpg");
+  background-image: url("../img/classroom.jpg");
   background-size: 900px 600px;
   width: 900px;
   height: 600px;
