@@ -186,8 +186,8 @@ function fixPositionF(){
     myImage.src = "./img/locationMarker.png"
     var c1 = $("#myCanvas1");
     var ctx = c1.get(0).getContext("2d");
-  	//ctx.globalCompositeOperation = "copy";
-  	myImage.onload = function() {
+    //ctx.globalCompositeOperation = "copy";
+    myImage.onload = function() {
       ctx.drawImage(myImage, x1, y1, 25, 25);
       ctx.drawImage(myImage, x2, y2, 25, 25);
       ctx.drawImage(myImage, x3, y3, 25, 25);
@@ -198,7 +198,7 @@ function fixPositionF(){
       ctx.drawImage(myImage, x8, y8, 25, 25);
       ctx.drawImage(myImage, x9, y9, 25, 25);
       ctx.drawImage(myImage, x10, y10, 25, 25);
-  	};
+    };
     function canvasClear() {
   	  ctx.clearRect(0, 0, 1260, 840);
     }
