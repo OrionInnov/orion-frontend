@@ -162,29 +162,29 @@ dataURL2 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcYAAAFUCAYAAAC+zJxhAA
 function fixPositionF(){
   function fixPosition() {
     getPosition();
-  	x1 = positionX1 - 12.5;
-  	y1 = positionY1 - 12.5;
+    x1 = positionX1 - 12.5;
+    y1 = positionY1 - 12.5;
     x2 = positionX2 - 12.5;
-  	y2 = positionY2 - 12.5;
+    y2 = positionY2 - 12.5;
     x3 = positionX3 - 12.5;
-  	y3 = positionY3 - 12.5;
+    y3 = positionY3 - 12.5;
     x4 = positionX4 - 12.5;
-  	y4 = positionY4 - 12.5;
+    y4 = positionY4 - 12.5;
     x5 = positionX5 - 12.5;
-  	y5 = positionY5 - 12.5;
+    y5 = positionY5 - 12.5;
     x6 = positionX6 - 12.5;
-  	y6 = positionY6 - 12.5;
+    y6 = positionY6 - 12.5;
     x7 = positionX7 - 12.5;
-  	y7 = positionY7 - 12.5;
+    y7 = positionY7 - 12.5;
     x8 = positionX8 - 12.5;
-  	y8 = positionY8 - 12.5;
+    y8 = positionY8 - 12.5;
     x9 = positionX9 - 12.5;
-  	y9 = positionY9 - 12.5;
+    y9 = positionY9 - 12.5;
     x10 = positionX10 - 12.5;
-  	y10 = positionY10 - 12.5;
-  	var myImage = new Image();
-  	myImage.src = "./img/locationMarker.png"
-  	var c1 = $("#myCanvas1");
+    y10 = positionY10 - 12.5;
+    var myImage = new Image();
+    myImage.src = "./img/locationMarker.png"
+    var c1 = $("#myCanvas1");
     var ctx = c1.get(0).getContext("2d");
   	//ctx.globalCompositeOperation = "copy";
   	myImage.onload = function() {
@@ -233,17 +233,17 @@ function track() {
   function point2() {
     getPosition();
     c = positionX1;
-  	d = positionY1;
-  	ctx.beginPath();
-  	ctx.moveTo(a, b);
-  	ctx.lineTo(c, d);
-  	ctx.closePath();
-  	ctx.stroke();
+    d = positionY1;
+    ctx.beginPath();
+    ctx.moveTo(a, b);
+    ctx.lineTo(c, d);
+    ctx.closePath();
+    ctx.stroke();
   }
   function delay() {
-  	var p1 = setTimeout(point1, 500);
-  	var p2 = setTimeout(point2, 500);
-  	dataURL2 = c2.get(0).toDataURL();
+    var p1 = setTimeout(point1, 500);
+    var p2 = setTimeout(point2, 500);
+    dataURL2 = c2.get(0).toDataURL();
   }
   overwrite2 = setInterval(delay, 1000);
 }
