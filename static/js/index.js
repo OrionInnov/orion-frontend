@@ -200,7 +200,7 @@ function fixPositionF(){
       ctx.drawImage(myImage, x10, y10, 25, 25);
     };
     function canvasClear() {
-  	  ctx.clearRect(0, 0, 1260, 840);
+      ctx.clearRect(0, 0, 1260, 840);
     }
   var clear = setTimeout(canvasClear, 1000);
   dataURL1 = c1.get(0).toDataURL();
