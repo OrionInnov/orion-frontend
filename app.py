@@ -72,12 +72,13 @@ def load_positions():
 @app.route("/_positions")
 def debug_positions():
     pos_data = DEBUG_TAG_POS + np.random.random((DEBUG_NUM_TAGS, 2))
-    pos_repr = [np.array2string(pos) for pos in pos_data]
-    return "\n".join(pos_repr)
+    pos_repr = np.array(40 * pos_data, dtype=np.int32).tolist()
+    response = json.dumps(pos_repr)
+    return response
 
 
 def init_backend():
-    
+
     # create temporary directory for backend
     tempdir = tempfile.mkdtemp()
 
