@@ -92,60 +92,34 @@ function zoomC2() {
   scroll();
 }
 
+var positionX = new Array();
+var positionY = new Array();
+positionX[49] = 0;
+positionY[49] = 0;
+
 function getPosition() {
   $.ajax ({
     type: "GET",
     url: "http://localhost:8000/_positions",
+    //url: "http://192.168.100.6:8000/_positions",
     dataType:"json",
     //async: false,
     success: function(result){
-      positionX1 = result[0][0];
-      positionY1 = result[0][1];
-      positionX2 = result[1][0];
-      positionY2 = result[1][1];
-      positionX3 = result[2][0];
-      positionY3 = result[2][1];
-      positionX4 = result[3][0];
-      positionY4 = result[3][1];
-      positionX5 = result[4][0];
-      positionY5 = result[4][1];
-      positionX6 = result[5][0];
-      positionY6 = result[5][1];
-      positionX7 = result[6][0];
-      positionY7 = result[6][1];
-      positionX8 = result[7][0];
-      positionY8 = result[7][1];
-      positionX9 = result[8][0];
-      positionY9 = result[8][1];
-      positionX10 = result[9][0];
-      positionY10 = result[9][1];
-      positionX1 = parseFloat(positionX1);
-      positionY1 = parseFloat(positionY1);
-      positionX2 = parseFloat(positionX2);
-      positionY2 = parseFloat(positionY2);
-      positionX3 = parseFloat(positionX3);
-      positionY3 = parseFloat(positionY3);
-      positionX4 = parseFloat(positionX4);
-      positionY4 = parseFloat(positionY4);
-      positionX5 = parseFloat(positionX5);
-      positionY5 = parseFloat(positionY5);
-      positionX6 = parseFloat(positionX6);
-      positionY6 = parseFloat(positionY6);
-      positionX7 = parseFloat(positionX7);
-      positionY7 = parseFloat(positionY7);
-      positionX8 = parseFloat(positionX8);
-      positionY8 = parseFloat(positionY8);
-      positionX9 = parseFloat(positionX9);
-      positionY9 = parseFloat(positionY9);
-      positionX10 = parseFloat(positionX10);
-      positionY10 = parseFloat(positionY10);
+      var i, j;
+      for (i = 0; i < 10; i++) {
+        positionX[i] = result[i][0];
+        positionY[i] = result[i][1];
+      };
+      for (j = 0; j < 10; j++) {
+        positionX[j] = parseFloat(positionX[j]);
+        positionY[j] = parseFloat(positionY[j]);
+      };
     },
     error: function(result) {
-      console.log("fuck");
+      //console.log("fuck");
     }
   });
-};
-var positionX1, positionY1;
+}
 
 //Fix position.
 var myBackground = new Image();
@@ -162,47 +136,36 @@ dataURL2 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcYAAAFUCAYAAAC+zJxhAA
 function fixPositionF(){
   function fixPosition() {
     getPosition();
-    x1 = positionX1 - 12.5;
-    y1 = positionY1 - 12.5;
-    x2 = positionX2 - 12.5;
-    y2 = positionY2 - 12.5;
-    x3 = positionX3 - 12.5;
-    y3 = positionY3 - 12.5;
-    x4 = positionX4 - 12.5;
-    y4 = positionY4 - 12.5;
-    x5 = positionX5 - 12.5;
-    y5 = positionY5 - 12.5;
-    x6 = positionX6 - 12.5;
-    y6 = positionY6 - 12.5;
-    x7 = positionX7 - 12.5;
-    y7 = positionY7 - 12.5;
-    x8 = positionX8 - 12.5;
-    y8 = positionY8 - 12.5;
-    x9 = positionX9 - 12.5;
-    y9 = positionY9 - 12.5;
-    x10 = positionX10 - 12.5;
-    y10 = positionY10 - 12.5;
+    var x, y, k;
+    x = new Array();
+    y = new Array();
+    x[49] = 0;
+    y[49] = 0;
+    for (k = 0; k < 10; k++) {
+      x[k] = positionX[k] - 12.5;
+      y[k] = positionY[k] - 12.5;
+    };
     var myImage = new Image();
     myImage.src = "./img/locationMarker.png"
     var c1 = $("#myCanvas1");
     var ctx = c1.get(0).getContext("2d");
     //ctx.globalCompositeOperation = "copy";
     myImage.onload = function() {
-      ctx.drawImage(myImage, x1, y1, 25, 25);
-      ctx.drawImage(myImage, x2, y2, 25, 25);
-      ctx.drawImage(myImage, x3, y3, 25, 25);
-      ctx.drawImage(myImage, x4, y4, 25, 25);
-      ctx.drawImage(myImage, x5, y5, 25, 25);
-      ctx.drawImage(myImage, x6, y6, 25, 25);
-      ctx.drawImage(myImage, x7, y7, 25, 25);
-      ctx.drawImage(myImage, x8, y8, 25, 25);
-      ctx.drawImage(myImage, x9, y9, 25, 25);
-      ctx.drawImage(myImage, x10, y10, 25, 25);
+      ctx.drawImage(myImage, x[0], y[0], 25, 25);
+      ctx.drawImage(myImage, x[1], y[1], 25, 25);
+      ctx.drawImage(myImage, x[2], y[2], 25, 25);
+      ctx.drawImage(myImage, x[3], y[3], 25, 25);
+      ctx.drawImage(myImage, x[4], y[4], 25, 25);
+      ctx.drawImage(myImage, x[5], y[5], 25, 25);
+      ctx.drawImage(myImage, x[6], y[6], 25, 25);
+      ctx.drawImage(myImage, x[7], y[7], 25, 25);
+      ctx.drawImage(myImage, x[8], y[9], 25, 25);
+      ctx.drawImage(myImage, x[9], y[9], 25, 25);
     };
     function canvasClear() {
       ctx.clearRect(0, 0, 1260, 840);
     }
-  var clear = setTimeout(canvasClear, 1000);
+  var clear = setTimeout(canvasClear, 980);
   dataURL1 = c1.get(0).toDataURL();
   }
   overwrite1 = setInterval(fixPosition, 1000);
@@ -212,18 +175,18 @@ function fixPositionF(){
 function track() {
   getPosition();
   var a,b,c,d;
-  a = positionX1;
-  b = positionY1;
-  c = positionX1;
-  d = positionY1;
+  a = positionX[0];
+  b = positionY[0];
+  c = positionX[0];
+  d = positionY[0];
   c2 = $("#myCanvas2");
   var ctx = c2.get(0).getContext("2d");
   ctx.lineWidth = 5;
   ctx.strokeStyle = "#F00";
   function point1() {
     getPosition();
-    a = positionX1;
-    b = positionY1;
+    a = positionX[0];
+    b = positionY[0];
     ctx.beginPath();
     ctx.moveTo(c, d);
     ctx.lineTo(a, b);
@@ -232,8 +195,8 @@ function track() {
   }
   function point2() {
     getPosition();
-    c = positionX1;
-    d = positionY1;
+    c = positionX[0];
+    d = positionY[0];
     ctx.beginPath();
     ctx.moveTo(a, b);
     ctx.lineTo(c, d);
