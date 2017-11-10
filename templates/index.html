@@ -71,8 +71,12 @@
             <label for="exampleInputEmail2">Y</label>
             <input type="text" class="form-control" id="y" >
           </div>
-          <button type="button" class="btn btn-default" onclick="jumpC1();fixPositionF()">开始定位</button>
-          <button id="pauseB" type="button" class="btn btn-default">暂停</button>
+          <button type="button" class="btn btn-default" onclick="jumpC1();fixPositionF()">
+            <span class="glyphicon glyphicon-play">开始定位</span>
+          </button>
+          <button id="pauseB" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-pause">暂停</span>
+          </button>
           <button type="button" class="btn btn-default" onclick="jumpC2();track()">显示轨迹</button>
           <button type="button" class="btn btn-default" onclick="zoomC1();init()">定位缩放</button>
           <button type="button" class="btn btn-default" onclick="zoomC2();init()">轨迹缩放</button>

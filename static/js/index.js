@@ -225,9 +225,9 @@ function fixPositionF(){
       for (i = 0; i < 10; i++) {
         ctx.drawImage(myImage, x[i], y[i], 25, 25);
       };
-    };
-    dataURL1 = c1.get(0).toDataURL();
+    };    
     function canvasClear() {
+      dataURL1 = c1.get(0).toDataURL();
       ctx.clearRect(0, 0, 1260, 840);
     }
     if (pauseStatus == true) {
