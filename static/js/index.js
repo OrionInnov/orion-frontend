@@ -206,7 +206,7 @@ function fixPositionF() {
   var ctx = c1.get(0).getContext("2d");
   ctx.clearRect(0, 0, 1260, 840);
   function fixPosition() {
-    var x, y, k, i, j;
+    var x, y, k, i;
     var positions = getPosition();
     //console.log(numTags);
     x = new Array();
