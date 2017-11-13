@@ -28,9 +28,9 @@
           <li>
             <a id="fixButton" href="javascript:void(0)" onclick="jumpFixP();"><i class="fa fa-desktop"></i>定位（fix position for students in the class）</a>
           </li>
-		  <li>
+		  <!--<li>
             <a id="rollButton" href="javascript:void(0)" onclick="jumpRollC()"><i class="fa fa-desktop"></i>点名（hava a roll call of pupils）</a>
-          </li>
+          </li>-->
         </ul>
       </div>
     </nav>
@@ -63,23 +63,30 @@
       </div>
       <div class="header">
         <form class="form-inline panel panel-heading">
-          <div class="form-group">
-            <label for="exampleInputName2">X</label>
-            <input type="text" class="form-control" id="x" >
+          <!--<div class="form-group">
+            <label for="exampleInputName2">班级</label>
+            <input type="text" class="form-control" id="" >
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail2">Y</label>
-            <input type="text" class="form-control" id="y" >
+            <label for="exampleInputEmail2">姓名</label>
+            <input type="text" class="form-control" id="" >
           </div>
+         -->
           <button type="button" class="btn btn-default" onclick="jumpC1();fixPositionF()">
             <span class="glyphicon glyphicon-play">开始定位</span>
           </button>
           <button id="pauseB" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-pause">暂停</span>
           </button>
-          <button type="button" class="btn btn-default" onclick="jumpC2();track()">显示轨迹</button>
-          <button type="button" class="btn btn-default" onclick="zoomC1();init()">定位缩放</button>
-          <button type="button" class="btn btn-default" onclick="zoomC2();init()">轨迹缩放</button>
+          <button type="button" class="btn btn-default" onclick="jumpC2();track()">
+            <span class="glyphicon glyphicon-circle-arrow-right">显示轨迹</span>
+          </button>
+          <button type="button" class="btn btn-default" onclick="zoomC1();init()">
+            <span class="glyphicon glyphicon-resize-full">定位缩放</span>
+          </button>
+          <button type="button" class="btn btn-default" onclick="zoomC2();init()">
+            <span class="glyphicon glyphicon-resize-full">轨迹缩放</span>
+          </button>
         </form>
       </div>
       <div id="page-inner">
@@ -106,7 +113,7 @@
             </div>
           </div>
         </div>
-        <footer><p>Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="">奥新智能</a></p>
+        <footer><p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="">奥新智能</a></p>
         </footer>
       </div>
     </div>
