@@ -122,9 +122,9 @@ canvasZoom.onmousewheel = canvasZoom.onwheel = function(event) {
   document.documentElement.style.overflow = "hidden";
   var pos = windowToCanvas(canvasZoom, event.clientX, event.clientY);
   event.wheelDelta = event.wheelDelta?event.wheelDelta:(event.deltaY*(-40));
-  if(event.wheelDelta > 0) {
+  if (event.wheelDelta > 0) {
     imgScale *= 1.25;
-    if(imgScale > 11) {
+    if (imgScale > 11) {
       imgScale = Math.pow(1.25, 10);
       return;
     };
@@ -132,7 +132,7 @@ canvasZoom.onmousewheel = canvasZoom.onwheel = function(event) {
     imgY = imgY * 1.25 - pos.y * 0.25;
   }else {
     imgScale /= 1.25;
-    if(imgScale < 0.4) {
+    if (imgScale < 0.4) {
       imgScale = Math.pow(1.25, -4);
       return;
     };
