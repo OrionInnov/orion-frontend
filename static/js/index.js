@@ -142,6 +142,39 @@ function zoomC2() {
   scroll();
 }
 
+var numTags;//These Global variables is to request date only once.
+function getTagName() {
+  $.ajax ({
+    type: "GET",
+    url: "http://localhost:8000/_config",
+    //url: "http://192.168.100.6:8000/_config",
+    dataType:"json",
+    //async: false,
+    success: function(result) {
+      positions = result;
+      var num = result.num_tags;
+      var i, j, k;
+      for (i = 0; i < num; i++) {
+        $("#select").append(function() {
+          return "<a id='tag" + i + "'>" + result.tag_names[i] + "</a><br/>";
+        });
+      };
+      for (j = 0; j < num; j++) {
+        (function() {
+          var p = j;
+          $("#tag" + j).on ("click", function() {
+            numTags = p;
+          });
+        })();
+      }
+    },
+    error: function(result) {
+      //console.log("fuck");
+    }
+  });
+}
+getTagName();
+
 function getPosition() {
   var positions, i, j;
   $.ajax ({
@@ -150,9 +183,9 @@ function getPosition() {
     //url: "http://192.168.100.6:8000/_positions",
     dataType:"json",
     async: false,
-    success: function(result){
+    success: function(result) {
       positions = result;
-      for (i = 0; i < numTags; i++) {
+      for (i = 0; i < eval(positions).length; i++) {
         for (j = 0; j < 2; j++) {
           positions[i][j] = parseFloat(positions[i][j]);
         };
@@ -164,25 +197,25 @@ function getPosition() {
   });
   return positions;
 }
-var numTags;//This Global variables is to request date only once.
+
 function getNum_tags() {
+  var num;
   $.ajax ({
     type: "GET",
     url: "http://localhost:8000/_config",
     //url: "http://192.168.100.6:8000/_positions",
     dataType:"json",
     async: false,
-    success: function(result){
-      numTags = result.num_tags;
+    success: function(result) {
+      num = result.num_tags;
       //console.log(numTags);
     },
     error: function(result) {
       //console.log("fuck");
     }
   });
-  //console.log(numTags);
+  return num;
 }
-getNum_tags();
 
 //Fix position.
 var dataURL0;
@@ -204,16 +237,35 @@ function fixPositionF() {
   var pauseStatus = true;
   var c1 = $("#myCanvas1");
   var ctx = c1.get(0).getContext("2d");
+  var list = new Array;
+  var n;
+  var num = getNum_tags();
+  var selectNum = -1;
+  $("#radio").on ("click", function() {
+    selectNum = -2;
+    list = [];
+    numTags = -1;
+  });
+  $("#multiple").on ("click", function() {
+    selectNum = 0;
+    list = [];
+  });
+  for (n = 0; n < num; n++) {
+    (function() {
+      $("#tag" + n).on ("click", function() {
+        list.push(numTags);
+      });
+    })();
+  };
   ctx.clearRect(0, 0, 1260, 840);
   function fixPosition() {
     var x, y, k, i;
     var positions = getPosition();
-    //console.log(numTags);
     x = new Array();
     y = new Array();
     x[49] = 0;
     y[49] = 0;
-    for (k = 0; k < numTags; k++) {
+    for (k = 0; k < num; k++) {
       x[k] = positions[k][0] - 12.5;
       y[k] = positions[k][1] - 12.5;
     };
@@ -221,9 +273,22 @@ function fixPositionF() {
     myImage.src = "./img/locationMarker.png";
     //ctx.globalCompositeOperation = "copy";
     myImage.onload = function() {
-      var i;
-      for (i = 0; i < 10; i++) {
+      var i, j;
+      i = numTags;
+      j = selectNum;
+      if (j == -1) {
+        for (i = 0; i < num; i++) {
+          ctx.drawImage(myImage, x[i], y[i], 25, 25);
+        };
+      } else if (j == -2) {
         ctx.drawImage(myImage, x[i], y[i], 25, 25);
+        console.log(numTags);
+      } else {
+        for (i = 0; i < list.length; i++) {
+          console.log(list.length);
+          var k = list[i];
+          ctx.drawImage(myImage, x[k], y[k], 25, 25);
+        };
       };
     };
     function canvasClear() {
@@ -244,20 +309,27 @@ function fixPositionF() {
 
 //Track.
 function track() {
-  var positions = getPosition()
+  selectNum = -1;
+  var positions = getPosition();
   var a,b,c,d;
-  a = positions[0][0];
-  b = positions[0][1];
+  var num = getNum_tags();
+  var i = numTags;
+  if (i == undefined || i > 9){
+    return;
+  };
+  a = positions[i][0];
+  b = positions[i][1];
   c = a
   d = b
   c2 = $("#myCanvas2");
   var ctx = c2.get(0).getContext("2d");
   ctx.lineWidth = 5;
   ctx.strokeStyle = "#F00";
+
   function point1() {
     var positions1 = getPosition()
-    a = positions1[0][0];
-    b = positions1[0][1];
+    a = positions1[i][0];
+    b = positions1[i][1];
     ctx.beginPath();
     ctx.moveTo(c, d);
     ctx.lineTo(a, b);
@@ -266,8 +338,8 @@ function track() {
   }
   function point2() {
     var positions2 = getPosition()
-    c = positions2[0][0];
-    d = positions2[0][1];
+    c = positions2[i][0];
+    d = positions2[i][1];
     ctx.beginPath();
     ctx.moveTo(a, b);
     ctx.lineTo(c, d);
@@ -275,10 +347,12 @@ function track() {
     ctx.stroke();
   }
   function delay() {
+    i = numTags;
     var p1 = setTimeout(point1, 0);
     var p2 = setTimeout(point2, 1500);
     dataURL2 = c2.get(0).toDataURL();
   }
+  ctx.clearRect(0, 0, 1260, 840);
   overwrite2 = setInterval(delay, 3000);
 }
 
