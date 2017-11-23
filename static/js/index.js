@@ -359,5 +359,5 @@ function stopOverwrite1() {
   clearInterval(overwrite1);
 }
 function stopOverwrite2() {
-  clearTimeout(overwrite2);
+  clearInterval(overwrite2);
 }
