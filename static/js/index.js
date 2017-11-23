@@ -282,10 +282,8 @@ function fixPositionF() {
         };
       } else if (j == -2) {
         ctx.drawImage(myImage, x[i], y[i], 25, 25);
-        console.log(numTags);
       } else {
         for (i = 0; i < list.length; i++) {
-          console.log(list.length);
           var k = list[i];
           ctx.drawImage(myImage, x[k], y[k], 25, 25);
         };
@@ -309,23 +307,20 @@ function fixPositionF() {
 
 //Track.
 function track() {
-  selectNum = -1;
-  var positions = getPosition();
   var a,b,c,d;
   var num = getNum_tags();
   var i = numTags;
-  if (i == undefined || i > 9){
+  if (i == undefined || i >= num) {
     return;
   };
-  a = positions[i][0];
-  b = positions[i][1];
-  c = a
-  d = b
+  var positions = getPosition();
+  c = positions[i][0];
+  d = positions[i][1];
   c2 = $("#myCanvas2");
   var ctx = c2.get(0).getContext("2d");
   ctx.lineWidth = 5;
   ctx.strokeStyle = "#F00";
-
+  ctx.clearRect(0, 0, 1260, 840);
   function point1() {
     var positions1 = getPosition()
     a = positions1[i][0];
@@ -346,14 +341,17 @@ function track() {
     ctx.closePath();
     ctx.stroke();
   }
+
   function delay() {
-    i = numTags;
     var p1 = setTimeout(point1, 0);
-    var p2 = setTimeout(point2, 1500);
+    var p2 = setTimeout(point2, 1000);
+    $("#trackB").click (function() {
+      clearTimeout(p1);
+      clearTimeout(p2);
+    });
     dataURL2 = c2.get(0).toDataURL();
   }
-  ctx.clearRect(0, 0, 1260, 840);
-  overwrite2 = setInterval(delay, 3000);
+  overwrite2 = setInterval(delay, 2000);
 }
 
 //stop cycle
@@ -361,5 +359,5 @@ function stopOverwrite1() {
   clearInterval(overwrite1);
 }
 function stopOverwrite2() {
-  clearInterval(overwrite2);
+  clearTimeout(overwrite2);
 }
