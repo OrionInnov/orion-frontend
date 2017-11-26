@@ -641,6 +641,13 @@ font-size: 12px;
 line-height: 1.428571429;
 }
 
+.languageB {
+  width: 150px;
+  top: 20px;
+  position: fixed;
+  right: 0px;
+  z-index: 600;
+}
 /*----------------------------------------------
     MEDIA QUERIES
 ------------------------------------------------*/
@@ -670,6 +677,9 @@ line-height: 1.428571429;
 
    .navbar {
  border-radius: 0px;
+}
+.languageB {
+
 }
 
 }
@@ -712,6 +722,9 @@ top: 93px;
 	width:100%;
 	position:relative;
 
+ }
+ .languageB {
+   position: absolute;
  }
  }
  @media(max-width:480px) {
