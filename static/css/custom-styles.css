@@ -804,9 +804,6 @@ ul li{
 .selecta {
   cursor: pointer;
 }
-.relativeB {
-  position: relative;
-}
 #selectA {
   padding-right: 15px;
   right: 0px;top: 0px;
