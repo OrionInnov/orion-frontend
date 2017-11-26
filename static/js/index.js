@@ -156,7 +156,7 @@ function getTagName() {
       var i, j, k;
       for (i = 0; i < num; i++) {
         $("#select").append(function() {
-          return "<a id='tag" + i + "'>" + result.tag_names[i] + "</a><br/>";
+          return "<a id='tag" + i + "' class='selecta'>" + result.tag_names[i] + "</a><br/>";
         });
       };
       for (j = 0; j < num; j++) {
@@ -361,3 +361,40 @@ function stopOverwrite1() {
 function stopOverwrite2() {
   clearInterval(overwrite2);
 }
+
+window.onscroll = function() {
+  var topScroll = document.documentElement.scrollTop||document.body.scrollTop;
+  var select = $("#selectA");
+  if (topScroll > 247) {
+    select.css("position", "fixed");
+    select.css("zIndex", "500px");
+    if ($(window).width() >= 759) {
+      select.css("top", "60px");
+      select.css("right", "15px");
+    } else {
+      select.css("position", "static");
+      if (topScroll > 447) {
+        select.css("position", "fixed");
+        select.css("top", "0px")
+        select.css("right", "30px")
+      };
+    };
+  } else {
+    select.css("top", "0px")
+    select.css("right", "0px")
+    select.css("position", "static");
+  }
+};
+
+function adjust() {
+  var map1 = $("#map1");
+  var select = $("#selectA");
+  var w = $("#page-inner1").actual("width");
+  var ws = $("#selectA").actual("width");
+  w = w - ws - 45;
+  map1.width(w);
+}
+window.onload = function() {
+  adjust();
+  window.onresize = adjust;
+};

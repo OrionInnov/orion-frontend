@@ -801,3 +801,20 @@ footer a:hover {
 ul li{
   list-style-type:none;
 }
+.selecta {
+  cursor: pointer;
+}
+.relativeB {
+  position: relative;
+}
+#selectA {
+  padding-right: 15px;
+  right: 0px;top: 0px;
+  z-index: 500;
+  width: 100px;
+  float: right;
+}
+#map1 {
+  float: left;
+  padding-left: 15px
+}

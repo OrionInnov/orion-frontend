@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="./css/custom-styles.css">
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.actual/1.0.19/jquery.actual.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
 </head>
@@ -89,19 +90,10 @@
           </button>
         </form>
       </div>
-      <div id="select" class="btn-group-vertical" style="position: fixed;right: 0px;top: 300px;z-index: 500;" role="group" aria-label="...">
-        <form class="form-inline">
-          <button id="radio" type="button" class="btn btn-default">
-            <span class="">单选</span>
-          </button>
-          <button id="multiple" type="button" class="btn btn-default">
-            <span class="">多选</span>
-          </button>
-        </form>
-      </div>
+
       <div id="page-inner">
-        <div class="row">
-		  <div class="col-md-12">
+        <div id="page-inner1" class="row">
+		      <div id="map1">
           <!-- Advanced Tables -->
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -118,6 +110,22 @@
                     <canvas id="myCanvas1" width="1260" height="840" class="fixPosition center-block">dsss</canvas>
                     <canvas id="myCanvas2" width="1260" height="840" class="fixPosition center-block">dsss</canvas>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="selectA">
+            <div class="panel">
+              <div class="panel-body">
+                <div id="select">
+                  <form class="form-inline">
+                    <button id="radio" type="button" class="btn btn-default">
+                      <span class="">单选</span>
+                    </button>
+                    <button id="multiple" type="button" class="btn btn-default">
+                      <span class="">多选</span>
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
