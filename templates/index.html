@@ -26,10 +26,10 @@
       <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
           <li>
-            <a id="homeButton" href="javascript:void(0)" onclick="jumpHomeP()"><i class="fa fa-dashboard"></i>首页(home page)</a>
+            <a id="homeButton" href="javascript:void(0)"><i class="fa fa-dashboard"></i>首页(home page)</a>
           </li>
           <li>
-            <a id="fixButton" href="javascript:void(0)" onclick="jumpFixP();"><i class="fa fa-desktop"></i>定位（fix position for students in the class）</a>
+            <a id="fixButton" href="javascript:void(0)"><i class="fa fa-desktop"></i>定位（fix position for students in the class）</a>
           </li>
 		  <!--<li>
             <a id="rollButton" href="javascript:void(0)" onclick="jumpRollC()"><i class="fa fa-desktop"></i>点名（hava a roll call of pupils）</a>
@@ -75,19 +75,19 @@
             <input type="text" class="form-control" id="" >
           </div>
          -->
-          <button type="button" class="btn btn-default" onclick="jumpC1();fixPositionF()">
+          <button id="positionsB" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-play">开始定位</span>
           </button>
           <button id="pauseB" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-pause">暂停</span>
           </button>
-          <button id="trackB" type="button" class="btn btn-default" onclick="jumpC2();track()">
+          <button id="trackB" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-circle-arrow-right">显示轨迹</span>
           </button>
-          <button type="button" class="btn btn-default" onclick="zoomC1();init()">
+          <button id="zoomB1" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-resize-full">定位缩放</span>
           </button>
-          <button type="button" class="btn btn-default" onclick="zoomC2();init()">
+          <button id="zoomB2" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-resize-full">轨迹缩放</span>
           </button>
         </form>

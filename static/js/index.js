@@ -148,18 +148,17 @@ function getTagName() {
     type: "GET",
     url: "http://localhost:8000/_config",
     //url: "http://192.168.100.6:8000/_config",
-    dataType:"json",
+    dataType: "json",
     //async: false,
     success: function(result) {
       positions = result;
       var num = result.num_tags;
-      var i, j, k;
-      for (i = 0; i < num; i++) {
+      for (var i = 0; i < num; i++) {
         $("#select").append(function() {
           return "<a id='tag" + i + "' class='selecta'>" + result.tag_names[i] + "</a><br/>";
         });
       };
-      for (j = 0; j < num; j++) {
+      for (var j = 0; j < num; j++) {
         (function() {
           var p = j;
           $("#tag" + j).on ("click", function() {
@@ -176,17 +175,17 @@ function getTagName() {
 getTagName();
 
 function getPosition() {
-  var positions, i, j;
+  var positions;
   $.ajax ({
     type: "GET",
     url: "http://localhost:8000/_positions",
     //url: "http://192.168.100.6:8000/_positions",
-    dataType:"json",
+    dataType: "json",
     async: false,
     success: function(result) {
       positions = result;
-      for (i = 0; i < eval(positions).length; i++) {
-        for (j = 0; j < 2; j++) {
+      for (var i = 0; i < eval(positions).length; i++) {
+        for (var j = 0; j < 2; j++) {
           positions[i][j] = parseFloat(positions[i][j]);
         };
       };
@@ -204,7 +203,7 @@ function getNum_tags() {
     type: "GET",
     url: "http://localhost:8000/_config",
     //url: "http://192.168.100.6:8000/_positions",
-    dataType:"json",
+    dataType: "json",
     async: false,
     success: function(result) {
       num = result.num_tags;
@@ -238,7 +237,6 @@ function fixPositionF() {
   var c1 = $("#myCanvas1");
   var ctx = c1.get(0).getContext("2d");
   var list = new Array;
-  var n;
   var num = getNum_tags();
   var selectNum = -1;
   $("#radio").on ("click", function() {
@@ -250,7 +248,7 @@ function fixPositionF() {
     selectNum = 0;
     list = [];
   });
-  for (n = 0; n < num; n++) {
+  for (var n = 0; n < num; n++) {
     (function() {
       $("#tag" + n).on ("click", function() {
         list.push(numTags);
@@ -259,13 +257,13 @@ function fixPositionF() {
   };
   ctx.clearRect(0, 0, 1260, 840);
   function fixPosition() {
-    var x, y, k, i;
+    var x, y;
     var positions = getPosition();
     x = new Array();
     y = new Array();
     x[49] = 0;
     y[49] = 0;
-    for (k = 0; k < num; k++) {
+    for (var k = 0; k < num; k++) {
       x[k] = positions[k][0] - 12.5;
       y[k] = positions[k][1] - 12.5;
     };
@@ -284,8 +282,8 @@ function fixPositionF() {
         ctx.drawImage(myImage, x[i], y[i], 25, 25);
       } else {
         for (i = 0; i < list.length; i++) {
-          var k = list[i];
-          ctx.drawImage(myImage, x[k], y[k], 25, 25);
+          var t = list[i];
+          ctx.drawImage(myImage, x[t], y[t], 25, 25);
         };
       };
     };
@@ -398,3 +396,29 @@ window.onload = function() {
   adjust();
   window.onresize = adjust;
 };
+
+//Binding events.
+(function() {
+  $("#homeButton").click (function() {
+    jumpHomeP();
+  });
+  $("#fixButton").click (function() {
+    jumpFixP();
+  });
+  $("#positionsB").click (function() {
+    jumpC1();
+    fixPositionF();
+  });
+  $("#trackB").click (function() {
+    jumpC2();
+    track();
+  });
+  $("#zoomB1").click (function() {
+    zoomC1();
+    init();
+  });
+  $("#zoomB2").click (function() {
+    zoomC2();
+    init();
+  });
+})();
