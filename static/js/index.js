@@ -142,7 +142,6 @@ function zoomC2() {
   scroll();
 }
 
-var numTags;//These Global variables is to request date only once.
 function getTagName() {
   $.ajax ({
     type: "GET",
@@ -155,17 +154,9 @@ function getTagName() {
       var num = result.num_tags;
       for (var i = 0; i < num; i++) {
         $("#select").append(function() {
-          return "<a id='tag" + i + "' class='selecta'>" + result.tag_names[i] + "</a><br/>";
+          return "<input id='tag" + i + "' type='checkbox' class='selecta'>" + result.tag_names[i] + "<br/>";
         });
       };
-      for (var j = 0; j < num; j++) {
-        (function() {
-          var p = j;
-          $("#tag" + j).on ("click", function() {
-            numTags = p;
-          });
-        })();
-      }
     },
     error: function(result) {
       //console.log("fuck");
@@ -207,7 +198,6 @@ function getNum_tags() {
     async: false,
     success: function(result) {
       num = result.num_tags;
-      //console.log(numTags);
     },
     error: function(result) {
       //console.log("fuck");
@@ -236,25 +226,7 @@ function fixPositionF() {
   var pauseStatus = true;
   var c1 = $("#myCanvas1");
   var ctx = c1.get(0).getContext("2d");
-  var list = new Array;
   var num = getNum_tags();
-  var selectNum = -1;
-  $("#radio").on ("click", function() {
-    selectNum = -2;
-    list = [];
-    numTags = -1;
-  });
-  $("#multiple").on ("click", function() {
-    selectNum = 0;
-    list = [];
-  });
-  for (var n = 0; n < num; n++) {
-    (function() {
-      $("#tag" + n).on ("click", function() {
-        list.push(numTags);
-      });
-    })();
-  };
   ctx.clearRect(0, 0, 1260, 840);
   function fixPosition() {
     var x, y;
@@ -271,20 +243,14 @@ function fixPositionF() {
     myImage.src = "./img/locationMarker.png";
     //ctx.globalCompositeOperation = "copy";
     myImage.onload = function() {
-      var i, j;
-      i = numTags;
-      j = selectNum;
-      if (j == -1) {
-        for (i = 0; i < num; i++) {
-          ctx.drawImage(myImage, x[i], y[i], 25, 25);
-        };
-      } else if (j == -2) {
-        ctx.drawImage(myImage, x[i], y[i], 25, 25);
-      } else {
-        for (i = 0; i < list.length; i++) {
-          var t = list[i];
-          ctx.drawImage(myImage, x[t], y[t], 25, 25);
-        };
+      for (var i = 0; i < num; i++) {
+        (function() {
+          if ($("#tag" + i).get(0).checked == true) {
+            ctx.drawImage(myImage, x[i], y[i], 25, 25);
+          } else if ($("#tag" + i) == false) {
+            return false;
+          };
+        })();
       };
     };
     function canvasClear() {
@@ -306,38 +272,59 @@ function fixPositionF() {
 //Track.
 function track() {
   var a,b,c,d;
+  a = [];
+  b = [];
+  c = [];
+  d = [];
   var num = getNum_tags();
-  var i = numTags;
-  if (i == undefined || i >= num) {
-    return;
-  };
   var positions = getPosition();
-  c = positions[i][0];
-  d = positions[i][1];
   c2 = $("#myCanvas2");
+  for (var j = 0; j < num; j++) {
+    c[j] = positions[j][0];
+    d[j] = positions[j][1];
+  };
   var ctx = c2.get(0).getContext("2d");
   ctx.lineWidth = 5;
   ctx.strokeStyle = "#F00";
   ctx.clearRect(0, 0, 1260, 840);
+  $("#multiple").on ("click", function() {
+    ctx.clearRect(0, 0, 1260, 840);
+  });
   function point1() {
     var positions1 = getPosition()
-    a = positions1[i][0];
-    b = positions1[i][1];
-    ctx.beginPath();
-    ctx.moveTo(c, d);
-    ctx.lineTo(a, b);
-    ctx.closePath();
-    ctx.stroke();
+    for (var i = 0; i < num; i++) {
+      (function() {
+        if ($("#tag" + i).get(0).checked == true) {
+          a[i] = positions1[i][0];
+          b[i] = positions1[i][1];
+          ctx.beginPath();
+          ctx.moveTo(c[i], d[i]);
+          ctx.lineTo(a[i], b[i]);
+          ctx.closePath();
+          ctx.stroke();
+        } else if ($("#tag" + i) == false) {
+          return false;
+        };
+      })();
+    };
   }
   function point2() {
     var positions2 = getPosition()
-    c = positions2[i][0];
-    d = positions2[i][1];
-    ctx.beginPath();
-    ctx.moveTo(a, b);
-    ctx.lineTo(c, d);
-    ctx.closePath();
-    ctx.stroke();
+    for (var i = 0; i < num; i++) {
+      (function() {
+        if ($("#tag" + i).get(0).checked == true) {
+          c[i] = positions2[i][0];
+          d[i] = positions2[i][1];
+          ctx.beginPath();
+          ctx.moveTo(a[i], b[i]);
+          ctx.lineTo(c[i], d[i]);
+          ctx.closePath();
+          ctx.stroke();
+        } else if ($("#tag" + i) == false) {
+          return false;
+        };
+      })();
+    };
   }
 
   function delay() {
@@ -420,5 +407,16 @@ window.onload = function() {
   $("#zoomB2").click (function() {
     zoomC2();
     init();
+  });
+  var num = getNum_tags();
+  $("#radio").on ("click", function() {
+    for (var i = 0; i < num; i++) {
+      $("#tag" + i).get(0).checked = true;
+    };
+  });
+  $("#multiple").on ("click", function() {
+    for (var i = 0; i < num; i++) {
+      $("#tag" + i).get(0).checked = false;
+    };
   });
 })();
