@@ -71,6 +71,14 @@ def debug_config():
     return json.dumps(config)
 
 
+@app.route("/set_config", methods=["POST"])
+def set_config():
+    data = request.get_data()
+    json.dumps(data)
+    print(data)
+    return json.dumps({"status": "OK"})
+
+
 @app.route("/positions")
 def load_positions():
     raise NotImplementedError()
@@ -118,4 +126,4 @@ def init_backend():
 
 if __name__ == "__main__":
 
-    app.run("0.0.0.0", 8000)
+    app.run("0.0.0.0", 8000, debug=True)

@@ -834,8 +834,12 @@ ul li{
   padding-right: 15px;
   right: 0px;top: 0px;
   z-index: 500;
-  width: 100px;
+  width: 120px;
   float: right;
+}
+.overf {
+  height: 300px;
+  overflow:auto;
 }
 #map1 {
   float: left;

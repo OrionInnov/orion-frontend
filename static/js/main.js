@@ -25,7 +25,7 @@ function windowToCanvas(canvasZoom,x,y) {
   var bbox = canvasZoom.getBoundingClientRect();
   return {
     x:x - bbox.left - (bbox.width - canvasZoom.offsetWidth) / 2,
-	y:y - bbox.top - (bbox.height - canvasZoom.offsetHeight) / 2
+	  y:y - bbox.top - (bbox.height - canvasZoom.offsetHeight) / 2
   };
 }
 
@@ -122,22 +122,35 @@ canvasZoom.onmousewheel = canvasZoom.onwheel = function(event) {
   document.documentElement.style.overflow = "hidden";
   var pos = windowToCanvas(canvasZoom, event.clientX, event.clientY);
   event.wheelDelta = event.wheelDelta?event.wheelDelta:(event.deltaY*(-40));
+  var imgScale0 = imgScale;
+  var zoomNum = 100;
   if (event.wheelDelta > 0) {
-    imgScale *= 1.25;
-    if (imgScale > 11) {
-      imgScale = Math.pow(1.25, 10);
+    imgScale += 0.2;
+    if (imgScale > 10.1) {
+      imgScale = 10;
+      zoomNum = Math.round(imgScale * 100);
+      $("#zoomN").html(zoomNum + "%");
       return;
+    } else {
+      zoomNum = Math.round(imgScale * 100);
+      $("#zoomN").html(zoomNum + "%");
     };
-    imgX = imgX * 1.25 - pos.x * 0.25;
-    imgY = imgY * 1.25 - pos.y * 0.25;
+    imgX = imgX * imgScale / imgScale0 - pos.x * (imgScale / imgScale0 - 1);
+    imgY = imgY * imgScale / imgScale0 - pos.y * (imgScale / imgScale0 - 1);
   }else {
-    imgScale /= 1.25;
-    if (imgScale < 0.4) {
-      imgScale = Math.pow(1.25, -4);
+    imgScale -= 0.2;
+    $("#zoomN").html(imgScale);
+    if (imgScale < 0.3) {
+      imgScale = 0.4;
+      zoomNum = Math.round(imgScale * 100);
+      $("#zoomN").html(zoomNum + "%");
       return;
+    } else {
+      zoomNum = Math.round(imgScale * 100);
+      $("#zoomN").html(zoomNum + "%");
     };
-    imgX = imgX * 0.8 + pos.x * 0.2;
-    imgY = imgY * 0.8 + pos.y * 0.2;
+    imgX = imgX * imgScale / imgScale0 - pos.x * (imgScale / imgScale0 - 1);
+    imgY = imgY * imgScale / imgScale0 - pos.y * (imgScale / imgScale0 - 1);
   };
   img1.src = dataURL1;
   img2.src = dataURL2;

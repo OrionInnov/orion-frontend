@@ -17,6 +17,7 @@ function pageDefine() {
   home.css("display", "block");
   fixP.css("display", "none");
   rollC.css("display", "none");
+  $("#zoomN").css("display", "none");
   return [home, fixP, rollC, homeB, fixB, rollB];
 }
 pageDefine();
@@ -91,6 +92,7 @@ function jumpC1() {
   c0.css("display", "block");
   c1.css("display", "block");
   c2.css("display", "none");
+  $("#zoomN").css("display", "none");
   scroll();
   stopOverwrite1();
   stopOverwrite2();
@@ -104,6 +106,7 @@ function jumpC2() {
   c0.css("display", "block");
   c1.css("display", "none");
   c2.css("display", "block");
+  $("#zoomN").css("display", "none");
   scroll();
   stopOverwrite1();
   stopOverwrite2();
@@ -123,6 +126,7 @@ function zoomC1() {
   ca0.css("display", "block");
   ca1.css("display", "block");
   ca2.css("display", "none");
+  $("#zoomN").css("display", "block");
   scroll();
 }
 function zoomC2() {
@@ -139,6 +143,7 @@ function zoomC2() {
   ca0.css("display", "block");
   ca1.css("display", "none");
   ca2.css("display", "block");
+  $("#zoomN").css("display", "block");
   scroll();
 }
 
@@ -150,7 +155,6 @@ function getTagName() {
     dataType: "json",
     //async: false,
     success: function(result) {
-      positions = result;
       var num = result.num_tags;
       for (var i = 0; i < num; i++) {
         $("#select").append(function() {
@@ -324,7 +328,6 @@ function track() {
       })();
     };
   }
-
   function delay() {
     var p1 = setTimeout(point1, 0);
     var p2 = setTimeout(point2, 1000);
@@ -401,10 +404,12 @@ window.onload = function() {
   $("#zoomB1").click (function() {
     zoomC1();
     init();
+    $("#zoomN").html("100%");
   });
   $("#zoomB2").click (function() {
     zoomC2();
     init();
+    $("#zoomN").html("100%");
   });
   var num = getNum_tags();
   $("#radio").on ("click", function() {

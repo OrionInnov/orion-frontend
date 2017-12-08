@@ -1,3 +1,55 @@
+var configSet;
+function getTagNameset() {
+  $.ajax ({
+    type: "GET",
+    url: "http://localhost:8000/_config",
+    //url: "http://192.168.100.6:8000/_config",
+    dataType: "json",
+    //async: false,
+    success: function(result) {
+      configSet = result;
+      var num = result.num_tags;
+      for (var i = 0; i < num; i++) {
+        $("#selectI").append(function() {
+          return "<option id='tag" + i + "' value='" + result.tag_names[i] + "' class='selecta'>" + result.tag_names[i] + "</option>";
+        });
+      };
+    },
+    error: function(result) {
+      //console.log("fuck");
+    }
+  });
+}
+getTagNameset();
+function changeTagName() {
+  $("#confirmN").on ("click", function() {
+    var tagName = $("#selectI").val();
+    var name  = $("#nameT").val();
+    for (var i = 0; i < configSet.tag_names.length; i++) {
+      if (configSet.tag_names[i] == tagName) {
+        configSet.tag_names[i] = name;
+        //configSet = JSON.stringify(configSet);
+        //configSet = JSON.parse(configSet);
+        console.log(configSet);
+        $.ajax ({
+          type: "POST",
+          url: "http://localhost:8000/set_config",
+          //url: "http://192.168.100.6:8000/_config",
+          dataType: "json",
+          //async: false,
+          data: JSON.stringify(configSet),
+          success: function(result) {
+            console.log("niu bi");
+          },
+          error: function(result) {
+            console.log("cao");
+          }
+        });
+      };
+    };
+  });
+}
+changeTagName();
 function drawBackground1() {
   var myBackground = new Image();
   myBackground.src = "./uploads/position.jpg"
@@ -25,7 +77,6 @@ function drawPoint() {
       y1 = y;
       xa1 = $("#xA").val();
       ya1 = $("#yA").val();
-
     });
     $("#confirmP2").on ("click", function() {
       x2 = x;
@@ -65,6 +116,6 @@ function windowToCanvas(canvas,x,y) {
   var bbox = canvas.get(0).getBoundingClientRect();
   return {
     x:x - bbox.left - (bbox.width - canvas.get(0).offsetWidth) / 2,
-	y:y - bbox.top - (bbox.height - canvas.get(0).offsetHeight) / 2
+    y:y - bbox.top - (bbox.height - canvas.get(0).offsetHeight) / 2
   };
 }
