@@ -10,7 +10,9 @@ import json
 import multiprocessing
 import tempfile
 
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, request, make_response, render_template, redirect, send_from_directory, url_for
+from werkzeug.utils import secure_filename
+from os import path
 import numpy as np
 #from orion import backend
 
@@ -50,6 +52,11 @@ def static_js(path):
     return send_from_directory("static/js", path)
 
 
+@app.route("/uploads/<path:path>")
+def static_uploads(path):
+    return send_from_directory("static/uploads", path)
+
+
 @app.route("/config")
 def load_config():
     raise NotImplementedError()
@@ -64,6 +71,14 @@ def debug_config():
     return json.dumps(config)
 
 
+@app.route("/set_config", methods=["POST"])
+def set_config():
+    data = request.get_data()
+    json.dumps(data)
+    print(data)
+    return json.dumps({"status": "OK"})
+
+
 @app.route("/positions")
 def load_positions():
     raise NotImplementedError()
@@ -75,6 +90,21 @@ def debug_positions():
     pos_repr = np.array(40 * pos_data, dtype=np.int32).tolist()
     response = json.dumps(pos_repr)
     return response
+
+
+@app.route("/_set",methods=["GET","POST"])
+def upload():
+    if request.method=="POST":
+        f = request.files["file"]
+        fname = secure_filename(f.filename)
+        ext = fname.rsplit(".", 1)[1]
+        new_filename = "position." + ext
+        base_path = path.abspath(path.dirname(__file__))
+        upload_path = path.join(base_path, "static/uploads/")
+        file_name = upload_path + secure_filename(new_filename)
+        f.save(file_name)
+        return redirect(url_for("set"))
+    return render_template("set.html")
 
 
 def init_backend():
@@ -96,4 +126,4 @@ def init_backend():
 
 if __name__ == "__main__":
 
-    app.run("0.0.0.0", 8000)
+    app.run("0.0.0.0", 8000, debug=True)

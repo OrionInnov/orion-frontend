@@ -10,10 +10,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
- #wrapper {
-    width: 100%;
-}
-
 #page-wrapper {
     padding: 15px 15px;
     min-height: 600px;
@@ -24,12 +20,17 @@ body {
     min-height: 600px;
     background: #EDEDED;
 }
+#page-set {
+    padding: 15px 15px;
+    min-height: 600px;
+    background: #EDEDED;
+}
 #page-rollC {
     padding: 15px 15px;
     min-height: 600px;
     background: #EDEDED;
 }
-#page-inner {
+.page-inner {
     width:100%;
     margin:10px 20px 10px 0px;
     background-color:transparent;
@@ -106,6 +107,13 @@ position: fixed;
 #page-fixP {
   position: relative;
   top: 55px;
+  box-shadow: 0 0 10px #757575;
+  -moz-box-shadow: 0 0 10px #757575;
+  -webkit-box-shadow: 0 0 10px #757575;
+}
+#page-set {
+  position: relative;
+  top: 0px;
   box-shadow: 0 0 10px #757575;
   -moz-box-shadow: 0 0 10px #757575;
   -webkit-box-shadow: 0 0 10px #757575;
@@ -641,6 +649,13 @@ font-size: 12px;
 line-height: 1.428571429;
 }
 
+.languageB {
+  width: 150px;
+  top: 20px;
+  position: fixed;
+  right: 0px;
+  z-index: 600;
+}
 /*----------------------------------------------
     MEDIA QUERIES
 ------------------------------------------------*/
@@ -656,6 +671,11 @@ line-height: 1.428571429;
                padding: 0;
                min-height: 1200px;
     }
+    #page-set{
+              margin: 0 0 0 0px;
+              padding: 0;
+              min-height: 1200px;
+   }
      #page-rollC{
                margin: 0 0 0 260px;
                padding: 0;
@@ -712,6 +732,9 @@ top: 93px;
 	width:100%;
 	position:relative;
 
+ }
+ .languageB {
+   position: absolute;
  }
  }
  @media(max-width:480px) {
@@ -786,6 +809,9 @@ font-size: 19px;
   overflow: hidden;
 
 }
+.inlineBlock {
+  display: inline-block;
+}
 footer a {
   color: #8d898c;
   text-shadow: none;
@@ -800,4 +826,22 @@ footer a:hover {
 }
 ul li{
   list-style-type:none;
+}
+.selecta {
+  cursor: pointer;
+}
+#selectA {
+  padding-right: 15px;
+  right: 0px;top: 0px;
+  z-index: 500;
+  width: 120px;
+  float: right;
+}
+.overf {
+  height: 300px;
+  overflow:auto;
+}
+#map1 {
+  float: left;
+  padding-left: 15px
 }

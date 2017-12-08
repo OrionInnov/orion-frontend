@@ -8,25 +8,28 @@
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="./css/custom-styles.css">
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.actual/1.0.19/jquery.actual.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
 </head>
 <body>
   <div>
-
+    <div class= "languageB selecta">
+      <a>中文</a>&nbsp&nbsp<a>English</a>
+    </div>
     <nav  class="navbar navbar-default top-navbar" role="navigation">
       <div class="navbar-header">
-        <a class="navbar-brand" href="index.jsp"><strong><i class="icon fa fa-plane"></i>学生管理系统</strong></a>
+        <a class="navbar-brand"><strong><i class="icon fa fa-plane"></i>学生管理系统</strong></a>
       </div>
     </nav>
     <nav class="navbar-default navbar-side" role="navigation">
       <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
           <li>
-            <a id="homeButton" href="javascript:void(0)" onclick="jumpHomeP()"><i class="fa fa-dashboard"></i>首页(home page)</a>
+            <a id="homeButton" href="javascript:void(0)"><i class="fa fa-dashboard"></i>首页(home page)</a>
           </li>
           <li>
-            <a id="fixButton" href="javascript:void(0)" onclick="jumpFixP();"><i class="fa fa-desktop"></i>定位（fix position for students in the class）</a>
+            <a id="fixButton" href="javascript:void(0)"><i class="fa fa-desktop"></i>定位（fix position for students in the class）</a>
           </li>
 		  <!--<li>
             <a id="rollButton" href="javascript:void(0)" onclick="jumpRollC()"><i class="fa fa-desktop"></i>点名（hava a roll call of pupils）</a>
@@ -39,14 +42,14 @@
     <div id="page-wrapper">
       <div class="header">
         <h1 class="page-header">
-                                    学生管理系统 <small>欢迎           老师</small>
+          学生管理系统 <small>欢迎           老师</small>
         </h1>
-		<ol class="breadcrumb">
-          <li><a href="#">首页</a></li>
+        <ol class="breadcrumb">
+          <li><a>首页</a></li>
           <li class="active">教师欢迎页</li>
         </ol>
       </div>
-      <div id="page-inner">
+      <div class="page-inner">
       </div>
     </div>
 
@@ -54,10 +57,10 @@
     <div id="page-fixP">
       <div class="header">
         <h1 class="page-header">
-                                    定位 <small>为班级里的学生定位</small>
+          定位 <small>为班级里的学生定位</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="index.jsp">首页</a></li>
+          <li><a>首页</a></li>
           <li class="active">定位</li>
         </ol>
       </div>
@@ -72,30 +75,32 @@
             <input type="text" class="form-control" id="" >
           </div>
          -->
-          <button type="button" class="btn btn-default" onclick="jumpC1();fixPositionF()">
+          <button id="positionsB" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-play">开始定位</span>
           </button>
           <button id="pauseB" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-pause">暂停</span>
           </button>
-          <button type="button" class="btn btn-default" onclick="jumpC2();track()">
+          <button id="trackB" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-circle-arrow-right">显示轨迹</span>
           </button>
-          <button type="button" class="btn btn-default" onclick="zoomC1();init()">
+          <button id="zoomB1" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-resize-full">定位缩放</span>
           </button>
-          <button type="button" class="btn btn-default" onclick="zoomC2();init()">
+          <button id="zoomB2" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-resize-full">轨迹缩放</span>
           </button>
         </form>
       </div>
-      <div id="page-inner">
-        <div class="row">
-		  <div class="col-md-12">
+
+      <div class="page-inner">
+        <div id="page-inner1" class="row">
+          <div id="map1">
           <!-- Advanced Tables -->
             <div class="panel panel-default">
               <div class="panel-heading">
-                                                        校园地图
+                校园地图
+                <div id="zoomN" style="position: relative; float: right">100%</div>
               </div>
               <div class="panel-body">
                 <div id="wrapper" class="table-responsive">
@@ -112,6 +117,22 @@
               </div>
             </div>
           </div>
+          <div id="selectA">
+            <div class="panel overf">
+              <div class="panel-body">
+                <div id="select">
+                  <form class="form-inline">
+                    <button id="radio" type="button" class="btn btn-default">
+                      <span class="">全选</span>
+                    </button>
+                    <button id="multiple" type="button" class="btn btn-default">
+                      <span class="">重置</span>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <footer><p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="">奥新智能</a></p>
         </footer>
@@ -122,20 +143,20 @@
     <div id="page-rollC">
       <div class="header">
         <h1 class="page-header">
-                                  点名<small>学生点名</small>
+          点名<small>学生点名</small>
         </h1>
         <ol class="breadcrumb">
           <li><a  href="index.jsp">首页</a></li>
           <li class="active">点名</li>
         </ol>
       </div>
-      <div id="page-inner">
+      <div class="page-inner">
         <div class="row">
           <div class="col-md-12">
           <!-- Advanced Tables -->
             <div class="panel panel-default">
               <div class="panel-heading">
-                                                        教室平面图
+                教室平面图
               </div>
               <div class="panel-body">
                 <div class="table-responsive">

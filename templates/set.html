@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="./css/custom-styles.css">
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.actual/1.0.19/jquery.actual.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
+</head>
+<body>
+  <div id="page-set">
+    <div class="header">
+      <h1 class="page-header">
+        准备工作 <small>请上传地图并确定参照点</small>
+      </h1>
+    </div>
+    <div class="header">
+      <form class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <input type="file" name="file">
+        </div>
+        <div class="form-group">
+          <input type ="submit" value="upload" class="btn btn-default">
+        </div>&nbsp&nbsp&nbsp
+        <div class="form-group">
+          <label for="exampleInputName2">x</label>
+          <input type="text" class="form-control" id="xA">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail2">y</label>
+          <input type="text" class="form-control" id="yA">
+        </div>
+        <button id="confirmP1" type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-screenshot">第一点</span>
+        </button>
+        <button id="confirmP2" type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-screenshot">第二点</span>
+        </button>
+        <button id="confirmF" type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-ok">确定</span>
+        </button>&nbsp&nbsp&nbsp
+        <div class="form-group">
+          <label for="exampleInputEmail2">输入姓名</label>
+          <input type="text" class="form-control" id="nameT">
+        </div>
+        <select id="selectI" name="">
+        </select>
+        <button id="confirmN" type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-ok">绑定</span>
+        </button>
+      </form>
+    </div>
+    <div class="page-inner">
+      <div class="row">
+        <div class="col-md-12">
+        <!-- Advanced Tables -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              载入地图
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <div class="relative center-block">
+                  <canvas id="canvasSet" width="1260" height="840" class="canvasBackground0">dsss</canvas>
+                  <canvas id="canvasPoint" width="1260" height="840" class="canvasBackground0" style="z-index: 1000;cursor: crosshair;">dsss</canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer><p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="">奥新智能</a></p>
+      </footer>
+    </div>
+  </div>
+<script src="./js/set.js"></script>
+</body>
+</html>
