@@ -25,7 +25,7 @@ function windowToCanvas(canvasZoom,x,y) {
   var bbox = canvasZoom.getBoundingClientRect();
   return {
     x:x - bbox.left - (bbox.width - canvasZoom.offsetWidth) / 2,
-	  y:y - bbox.top - (bbox.height - canvasZoom.offsetHeight) / 2
+    y:y - bbox.top - (bbox.height - canvasZoom.offsetHeight) / 2
   };
 }
 
