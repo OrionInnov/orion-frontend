@@ -76,7 +76,7 @@ def set_config():
     data = request.get_data()
     data = json.loads(data)
     print(data)
-    return json.dumps(data)
+    return json.dumps(data)#set_config and config needs to change
 
 
 @app.route("/history_track", methods=["POST"])
@@ -94,7 +94,7 @@ def history_track():
         num1 += 1
     for i in config:
         confighistory.append(i[1])
-    return json.dumps(timedata)
+    return json.dumps(timedata)#history_track needs to change
 
 
 @app.route("/positions")
@@ -107,7 +107,7 @@ def debug_positions():
     pos_data = DEBUG_TAG_POS + np.random.random((DEBUG_NUM_TAGS, 2))
     pos_repr = np.array(40 * pos_data, dtype=np.int32).tolist()
     response = json.dumps(pos_repr)
-    return response
+    return response#positions needs to change
 
 
 @app.route("/_set",methods=["GET","POST"])
@@ -122,7 +122,7 @@ def upload():
         file_name = upload_path + secure_filename(new_filename)
         f.save(file_name)
         return redirect(url_for("set"))
-    return render_template("set.html")
+    return render_template("set.html")#There's some error,and need to change to base64
 
 
 def init_backend():
