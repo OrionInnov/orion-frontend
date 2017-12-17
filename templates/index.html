@@ -6,10 +6,14 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
 <link rel="stylesheet" href="./css/custom-styles.css">
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery.actual/1.0.19/jquery.actual.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.10.1/moment.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.19.4/moment-with-locales.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <script src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
 </head>
 <body>
@@ -17,12 +21,12 @@
     <div class= "languageB selecta">
       <a>中文</a>&nbsp&nbsp<a>English</a>
     </div>
-    <nav  class="navbar navbar-default top-navbar" role="navigation">
+    <nav id="nav1" class="navbar navbar-default top-navbar" role="navigation">
       <div class="navbar-header">
         <a class="navbar-brand"><strong><i class="icon fa fa-plane"></i>学生管理系统</strong></a>
       </div>
     </nav>
-    <nav class="navbar-default navbar-side" role="navigation">
+    <nav id="nav2" class="navbar-default navbar-side" role="navigation">
       <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
           <li>
@@ -49,10 +53,86 @@
           <li class="active">教师欢迎页</li>
         </ol>
       </div>
+      <div class="header">
+        <form class="form-inline panel panel-heading">
+          <button id="setB" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-exclamation-sign">校准地图</span>
+          </button>
+        </form>
+      </div>
       <div class="page-inner">
       </div>
     </div>
 
+
+    <div id="page-set">
+      <div class="header">
+        <h1 class="page-header">
+          准备工作 <small>请上传地图并确定参照点</small>
+        </h1>
+      </div>
+      <div class="header">
+        <form class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <input type="file" name="file" style="width: 210px">
+          </div>
+          <div class="form-group">
+            <input type ="submit" value="upload" class="btn btn-default">
+          </div>&nbsp&nbsp&nbsp
+          <div class="form-group">
+            <label for="exampleInputName2">x</label>
+            <input type="text" class="form-control" style="width: 100px" id="xA">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail2">y</label>
+            <input type="text" class="form-control" style="width: 100px" id="yA">
+          </div>
+          <button id="confirmP1" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-screenshot">第一点</span>
+          </button>
+          <button id="confirmP2" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-screenshot">第二点</span>
+          </button>
+          <button id="confirmF" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-ok">确定</span>
+          </button>&nbsp&nbsp&nbsp
+          <div class="form-group">
+            <label for="exampleInputEmail2">输入姓名</label>
+            <input type="text" class="form-control" style="width: 120px" id="nameT">
+          </div>
+          <select id="selectI" name="">
+          </select>
+          <button id="confirmN" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-ok">绑定</span>
+          </button>
+          <button id="leaveS" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-share-alt">返回</span>
+          </button>
+        </form>
+      </div>
+      <div class="page-inner">
+        <div class="row">
+          <div class="col-md-12">
+          <!-- Advanced Tables -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                载入地图
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <div class="relative center-block">
+                    <canvas id="canvasSet" width="1260" height="840" class="canvasBackground0">dsss</canvas>
+                    <canvas id="canvasPoint" width="1260" height="840" class="canvasBackground0" style="z-index: 1000;cursor: crosshair;">dsss</canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer><p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="">奥新智能</a></p>
+        </footer>
+      </div>
+    </div>
 
     <div id="page-fixP">
       <div class="header">
@@ -90,6 +170,22 @@
           <button id="zoomB2" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-resize-full">轨迹缩放</span>
           </button>
+          <div class="input-group date" id="datetimePicker1">
+            <input type="text" class="form-control" style="width: 155px"/>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+          <span class="glyphicon glyphicon-sort"></span>
+          <div class="input-group date" id="datetimePicker2">
+            <input type="text" class="form-control" style="width: 155px"/>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+          <button id="historyTrackB" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-repeat">历史轨迹</span>
+          </button>
         </form>
       </div>
 
@@ -112,6 +208,7 @@
                     <canvas id="myCanvas0" width="1260" height="840" class="fixPosition center-block">dsss</canvas>
                     <canvas id="myCanvas1" width="1260" height="840" class="fixPosition center-block">dsss</canvas>
                     <canvas id="myCanvas2" width="1260" height="840" class="fixPosition center-block">dsss</canvas>
+                    <canvas id="myCanvas3" width="1260" height="840" class="fixPosition center-block">dsss</canvas>
                   </div>
                 </div>
               </div>
@@ -128,6 +225,7 @@
                     <button id="multiple" type="button" class="btn btn-default">
                       <span class="">重置</span>
                     </button>
+                    <div id="selectAdd"></div>
                   </form>
                 </div>
               </div>
@@ -218,6 +316,7 @@
   </div>
   <script src="./js/index.js"></script>
   <script src="./js/main.js"></script>
+  <script src="./js/set.js"></script>
   <script>
     /*function myScroll() {
 	  var myscroll = new IScroll("#wrapper", {

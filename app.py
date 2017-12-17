@@ -74,9 +74,27 @@ def debug_config():
 @app.route("/set_config", methods=["POST"])
 def set_config():
     data = request.get_data()
-    json.dumps(data)
+    data = json.loads(data)
     print(data)
-    return json.dumps({"status": "OK"})
+    return json.dumps(data)
+
+
+@app.route("/history_track", methods=["POST"])
+def history_track():
+    timedata = request.get_data()
+    timedata = json.loads(timedata)
+    num1 = 1
+    num2 = 6
+    config = []
+    confighistory = []
+    while (num1 <= num2):
+        with open("/tmp/orion/" + str(num1) + ".json") as f:
+            timetrackdata = f.readlines()
+            config.append(timetrackdata)
+        num1 += 1
+    for i in config:
+        confighistory.append(i[1])
+    return json.dumps(timedata)
 
 
 @app.route("/positions")
