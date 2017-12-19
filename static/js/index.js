@@ -264,11 +264,6 @@ function track() {
           a[i] = positions1[i][0];
           b[i] = positions1[i][1];
           drawArrow(ctx, c[i], d[i], a[i], b[i], 30, 10, 1, "#F00");
-          /*ctx.beginPath();
-          ctx.moveTo(c[i], d[i]);
-          ctx.lineTo(a[i], b[i]);
-          ctx.closePath();
-          ctx.stroke();*/
         } else if ($("#tag" + i) == false) {
           return false;
         };
@@ -283,11 +278,6 @@ function track() {
           c[i] = positions2[i][0];
           d[i] = positions2[i][1];
           drawArrow(ctx, a[i], b[i], c[i], d[i], 30, 10, 1, "#F00");
-          /*ctx.beginPath();
-          ctx.moveTo(a[i], b[i]);
-          ctx.lineTo(c[i], d[i]);
-          ctx.closePath();
-          ctx.stroke();*/
         } else if ($("#tag" + i) == false) {
           return false;
         };
@@ -334,9 +324,10 @@ function historyTrack() {
     for (var i = 0; i < num; i++) {
       (function() {
         if ($("#tag" + i).get(0).checked == true) {
-          for (var j = 0; j < 9; j++) {
-            drawArrow(ctx, positionH[j][i][0], positionH[j][i][1], positionH[j+1][i][0], positionH[j+1][i][1], 30, 10, 2, "#F00");
+          for (var j = 0; j < 8; j++) {
+            drawTrack(ctx, positionH[j][i][0], positionH[j][i][1], positionH[j+1][i][0], positionH[j+1][i][1], 2, "#F00");
           };
+          drawArrow(ctx, positionH[8][i][0], positionH[8][i][1], positionH[9][i][0], positionH[9][i][1], 30, 10, 2, "#F00");
         } else if ($("#tag" + i) == false) {
           return false;
         };
@@ -352,6 +343,26 @@ function stopOverwrite1() {
 function stopOverwrite2() {
   clearInterval(overwrite2);
 }
+
+//DrawTrack
+function drawTrack(ctx, fromX, fromY, toX, toY, width, color) {
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  ctx.lineWidth = width;
+  ctx.beginPath();
+  ctx.moveTo(fromX, fromY);
+  ctx.lineTo(toX, toY);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(fromX, fromY, 5, 0, Math.PI*2, false);
+  ctx.arc(toX, toY, 5, 0, Math.PI*2, false);
+  ctx.fill();
+  ctx.closePath();
+  ctx.restore();
+}
+
 
 //Draw arrows
 function drawArrow(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
@@ -479,7 +490,7 @@ window.onload = function() {
 
 (function() {
   $("#datetimePicker1").datetimepicker({
-    format: 'MM/DD/YYYY HH:mm'}
+    format: 'YYYY-MM-DD-HH-mm'}
   );
   $("#datetimePicker2").datetimepicker({
     format: 'MM/DD/YYYY HH:mm'
