@@ -181,10 +181,13 @@ var dataURL2 = 0;
 function canvasInit() {
   var c1 = $("#myCanvas1");
   var c2 = $("#myCanvas2");
+  var c3 = $("#myCanvas3");
   var ctx1 = c1.get(0).getContext("2d");
   var ctx2 = c2.get(0).getContext("2d");
+  var ctx3 = c3.get(0).getContext("2d");
   ctx1.translate(1, 1);
   ctx2.translate(1, 1);
+  ctx3.translate(1, 1);
 };
 canvasInit();
 function fixPositionF() {
@@ -260,11 +263,12 @@ function track() {
         if ($("#tag" + i).get(0).checked == true) {
           a[i] = positions1[i][0];
           b[i] = positions1[i][1];
-          ctx.beginPath();
+          drawArrow(ctx, c[i], d[i], a[i], b[i], 30, 10, 1, "#F00");
+          /*ctx.beginPath();
           ctx.moveTo(c[i], d[i]);
           ctx.lineTo(a[i], b[i]);
           ctx.closePath();
-          ctx.stroke();
+          ctx.stroke();*/
         } else if ($("#tag" + i) == false) {
           return false;
         };
@@ -278,11 +282,12 @@ function track() {
         if ($("#tag" + i).get(0).checked == true) {
           c[i] = positions2[i][0];
           d[i] = positions2[i][1];
-          ctx.beginPath();
+          drawArrow(ctx, a[i], b[i], c[i], d[i], 30, 10, 1, "#F00");
+          /*ctx.beginPath();
           ctx.moveTo(a[i], b[i]);
           ctx.lineTo(c[i], d[i]);
           ctx.closePath();
-          ctx.stroke();
+          ctx.stroke();*/
         } else if ($("#tag" + i) == false) {
           return false;
         };
@@ -291,32 +296,54 @@ function track() {
   }
   function delay() {
     var p1 = setTimeout(point1, 0);
-    var p2 = setTimeout(point2, 1000);
+    var p2 = setTimeout(point2, 3000);
     $("#trackB").click (function() {
       clearTimeout(p1);
       clearTimeout(p2);
     });
     dataURL2 = c2.get(0).toDataURL();
   }
-  overwrite2 = setInterval(delay, 2000);
+  overwrite2 = setInterval(delay, 6000);
 }
 
 //historyTrack
 function historyTrack() {
-        $.ajax ({
-          type: "POST",
-          url: "http://localhost:8000/history_track",
-          dataType: "json",
-          //async: false,
-          data: JSON.stringify(configSet),
-          success: function(result) {
-            console.log(result.num_tags);
-          },
-          error: function(result) {
-            console.log("cao");
-            console.log(configSet)
-          }
-        });
+  var num = getNum_tags();
+  var positionH = [];
+  var timedata = [$("#datetimeP1").val(), $("#datetimeP2").val()];
+  $.ajax ({
+    type: "POST",
+    url: "http://localhost:8000/history_track",
+    dataType: "json",
+    //async: false,
+    data: JSON.stringify(timedata),
+    success: function(result) {
+      positionH = result;
+      console.log(result);
+    },
+    error: function(result) {
+      console.log("cao");
+      console.log("fuck");
+    }
+  });
+  var c = $("#myCanvas3");
+  var ctx = c.get(0).getContext("2d");
+  ctx.clearRect(-1, -1, 1260, 840);
+  function drawHistoryPosition() {
+    console.log(positionH[9][9]);
+    for (var i = 0; i < num; i++) {
+      (function() {
+        if ($("#tag" + i).get(0).checked == true) {
+          for (var j = 0; j < 9; j++) {
+            drawArrow(ctx, positionH[j][i][0], positionH[j][i][1], positionH[j+1][i][0], positionH[j+1][i][1], 30, 10, 2, "#F00");
+          };
+        } else if ($("#tag" + i) == false) {
+          return false;
+        };
+      })();
+    };
+  };
+  var draw = setTimeout(drawHistoryPosition, 100);
 }
 //stop cycle
 function stopOverwrite1() {
@@ -326,6 +353,38 @@ function stopOverwrite2() {
   clearInterval(overwrite2);
 }
 
+//Draw arrows
+function drawArrow(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
+  var theta = theta || 30,
+      headlen = headlen || 10,
+      width = width || 1,
+      color = color || '#000',
+      angle = Math.atan2(fromY - toY, fromX - toX) * 180 / Math.PI,
+      angle1 = (angle + theta) * Math.PI / 180,
+      angle2 = (angle - theta) * Math.PI / 180,
+      topX = headlen * Math.cos(angle1),
+      topY = headlen * Math.sin(angle1),
+      botX = headlen * Math.cos(angle2),
+      botY = headlen * Math.sin(angle2);
+  ctx.save();
+  ctx.beginPath();
+  var arrowX, arrowY;
+  ctx.moveTo(fromX, fromY);
+  ctx.lineTo(toX, toY);
+  arrowX = toX + topX;
+  arrowY = toY + topY;
+  ctx.moveTo(arrowX, arrowY);
+  ctx.lineTo(toX, toY);
+  arrowX = toX + botX;
+  arrowY = toY + botY;
+  ctx.lineTo(arrowX, arrowY);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = width;
+  ctx.stroke();
+  ctx.restore();
+}
+
+//onscroll
 window.onscroll = function() {
   var topScroll = document.documentElement.scrollTop||document.body.scrollTop;
   var select = $("#selectA");

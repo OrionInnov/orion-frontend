@@ -82,10 +82,12 @@ def set_config():
 @app.route("/history_track", methods=["POST"])
 def history_track():
     timedata = request.get_data()
+    print(timedata)
     timedata = json.loads(timedata)
-    num1 = 1
-    num2 = 6
+    num1 = 1#timestart
+    num2 = 10#timestop
     config = []
+    configl = []
     confighistory = []
     while (num1 <= num2):
         with open("/tmp/orion/" + str(num1) + ".json") as f:
@@ -93,8 +95,12 @@ def history_track():
             config.append(timetrackdata)
         num1 += 1
     for i in config:
-        confighistory.append(i[1])
-    return json.dumps(timedata)#history_track needs to change
+        for j in i:
+            k = eval(j)
+            configl.append(k)
+        confighistory.append(configl)
+        configl = []
+    return json.dumps(confighistory)#history_track needs to change
 
 
 @app.route("/positions")

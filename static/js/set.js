@@ -58,6 +58,7 @@ function drawBackground1() {
   var ctx0 = c0.get(0).getContext("2d");
   myBackground.onload = function() {
     ctx0.drawImage(myBackground, 0, 0, 1260, 840);
+    drawArrow(ctx0, 30, 30, 600, 600, 30, 20, 5, '#f36');
   };
 }
 drawBackground1();
