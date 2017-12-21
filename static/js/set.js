@@ -53,12 +53,11 @@ function changeTagName() {
 changeTagName();
 function drawBackground1() {
   var myBackground = new Image();
-  myBackground.src = "./uploads/position.jpg"
+  myBackground.src = "./uploads/position.png"
   var c0 = $("#canvasSet");
   var ctx0 = c0.get(0).getContext("2d");
   myBackground.onload = function() {
-    ctx0.drawImage(myBackground, 0, 0, 1260, 840);
-    drawArrow(ctx0, 30, 30, 600, 600, 30, 20, 5, '#f36');
+    ctx0.drawImage(myBackground, 0, 0, 840, 840);
   };
 }
 drawBackground1();
@@ -70,7 +69,7 @@ function drawPoint() {
   ctx.fillStyle = "#F00";
   ctx.lineWidth = 3;
   c1.get(0).onmousedown = function(event) {
-    ctx.clearRect(0, 0, 1260, 840);
+    ctx.clearRect(0, 0, 840, 840);
     var pos = windowToCanvasJq(c1, event.clientX, event.clientY);
     var x = pos.x;
     var y = pos.y;

@@ -134,8 +134,8 @@ function getPosition() {
     success: function(result) {
       positions = result;
       for (var i = 0; i < eval(positions).length; i++) {
-        positions[i][0] = 1 * parseFloat(positions[i][0]);
-        positions[i][1] = 1 * parseFloat(positions[i][1]);
+        positions[i][0] = calibrationC[0][0] * parseFloat(positions[i][0]);
+        positions[i][1] = calibrationC[0][1] * parseFloat(positions[i][1]);
       };
     },
     error: function(result) {
@@ -167,11 +167,11 @@ function getNum_tags() {
 var dataURL0;
 function drawBackground() {
   var myBackground = new Image();
-  myBackground.src = "./img/position.jpg"
+  myBackground.src = "./img/position.png"
   var c0 = $("#myCanvas0");
   var ctx0 = c0.get(0).getContext("2d");
   myBackground.onload = function() {
-    ctx0.drawImage(myBackground, 0, 0, 1260, 840);
+    ctx0.drawImage(myBackground, 0, 0, 840, 840);
     dataURL0 = c0.get(0).toDataURL();
   };
 }
@@ -185,11 +185,24 @@ function canvasInit() {
   var ctx1 = c1.get(0).getContext("2d");
   var ctx2 = c2.get(0).getContext("2d");
   var ctx3 = c3.get(0).getContext("2d");
-  ctx1.translate(1, 1);
-  ctx2.translate(1, 1);
-  ctx3.translate(1, 1);
+  ctx1.save();
+  ctx2.save();
+  ctx3.save();
+  ctx1.translate(calibrationC[1][0], calibrationC[1][1]);
+  ctx2.translate(calibrationC[1][0], calibrationC[1][1]);
+  ctx3.translate(calibrationC[1][0], calibrationC[1][1]);
 };
-canvasInit();
+function canvasRestore() {
+  var c1 = $("#myCanvas1");
+  var c2 = $("#myCanvas2");
+  var c3 = $("#myCanvas3");
+  var ctx1 = c1.get(0).getContext("2d");
+  var ctx2 = c2.get(0).getContext("2d");
+  var ctx3 = c3.get(0).getContext("2d");
+  ctx1.restore();
+  ctx2.restore();
+  ctx3.restore();
+}
 function fixPositionF() {
   var pauseStatus = true;
   var c1 = $("#myCanvas1");
@@ -204,20 +217,20 @@ function fixPositionF() {
     x[49] = 0;
     y[49] = 0;
     for (var k = 0; k < num; k++) {
-      x[k] = positions[k][0] - 12.5;
-      y[k] = positions[k][1] - 12.5;
+      x[k] = positions[k][0] - 5;
+      y[k] = positions[k][1] - 5;
     };
     var myImage = new Image();
     myImage.src = "./img/locationMarker.png";
     ctx.globalCompositeOperation = "copy";
-    ctx.clearRect(-1, -1, 1260, 840);
+    ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
     myImage.onload = function() {
       ctx.globalCompositeOperation = "source-over";
       for (var i = 0; i < num; i++) {
         (function() {
           if ($("#tag" + i).get(0).checked == true) {
-            ctx.drawImage(myImage, x[i], y[i], 25, 25);
-            ctx.fillText(configSet.tag_names[i], x[i] + 25, y[i]);
+            ctx.drawImage(myImage, x[i], y[i], 10, 10);
+            ctx.fillText(configSet.tag_names[i], x[i] + 10, y[i]);
           } else if ($("#tag" + i) == false) {
             return false;
           };
@@ -232,7 +245,7 @@ function fixPositionF() {
   $("#pauseB").click (function() {
     pauseStatus = false;
   });
-  overwrite1 = setInterval(fixPosition, 1000);
+  overwrite1 = setInterval(fixPosition, 200);
 }
 
 //Track.
@@ -252,9 +265,9 @@ function track() {
   var ctx = c2.get(0).getContext("2d");
   ctx.lineWidth = 5;
   ctx.strokeStyle = "#F00";
-  ctx.clearRect(-1, -1, 1260, 840);
+  ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
   $("#multiple").on ("click", function() {
-    ctx.clearRect(-1, -1, 1260, 840);
+    ctx.clearRect(-calibrationC[1][0], -calibrationC[1][0], 840, 840);
   });
   function point1() {
     var positions1 = getPosition()
@@ -263,7 +276,7 @@ function track() {
         if ($("#tag" + i).get(0).checked == true) {
           a[i] = positions1[i][0];
           b[i] = positions1[i][1];
-          drawArrow(ctx, c[i], d[i], a[i], b[i], 30, 10, 1, "#F00");
+          drawTrack(ctx, c[i], d[i], a[i], b[i], 2, "#F00");
         } else if ($("#tag" + i) == false) {
           return false;
         };
@@ -277,7 +290,7 @@ function track() {
         if ($("#tag" + i).get(0).checked == true) {
           c[i] = positions2[i][0];
           d[i] = positions2[i][1];
-          drawArrow(ctx, a[i], b[i], c[i], d[i], 30, 10, 1, "#F00");
+          drawTrack(ctx, a[i], b[i], c[i], d[i], 2, "#F00");
         } else if ($("#tag" + i) == false) {
           return false;
         };
@@ -286,14 +299,14 @@ function track() {
   }
   function delay() {
     var p1 = setTimeout(point1, 0);
-    var p2 = setTimeout(point2, 3000);
+    var p2 = setTimeout(point2, 300);
     $("#trackB").click (function() {
       clearTimeout(p1);
       clearTimeout(p2);
     });
     dataURL2 = c2.get(0).toDataURL();
   }
-  overwrite2 = setInterval(delay, 6000);
+  overwrite2 = setInterval(delay, 600);
 }
 
 //historyTrack
@@ -318,7 +331,7 @@ function historyTrack() {
   });
   var c = $("#myCanvas3");
   var ctx = c.get(0).getContext("2d");
-  ctx.clearRect(-1, -1, 1260, 840);
+  ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
   function drawHistoryPosition() {
     console.log(positionH[9][9]);
     for (var i = 0; i < num; i++) {
@@ -399,15 +412,15 @@ function drawArrow(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
 window.onscroll = function() {
   var topScroll = document.documentElement.scrollTop||document.body.scrollTop;
   var select = $("#selectA");
-  if (topScroll > 247) {
+  if (topScroll > 222) {
     select.css("position", "fixed");
     select.css("zIndex", "500px");
     if ($(window).width() >= 759) {
-      select.css("top", "60px");
+      select.css("top", "80px");
       select.css("right", "15px");
     } else {
       select.css("position", "static");
-      if (topScroll > 447) {
+      if (topScroll > 427) {
         select.css("position", "fixed");
         select.css("top", "0px")
         select.css("right", "30px")
@@ -437,9 +450,11 @@ window.onload = function() {
 (function() {
   $("#setB").click (function() {
     jumpSetP();
+    canvasRestore();
   });
   $("#leaveS").click (function() {
     leaveSetP();
+    canvasInit();
     $("#selectAdd").empty();
     for (var i = 0; i < configSet.num_tags; i++) {
       $("#selectAdd").append(function() {
