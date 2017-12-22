@@ -23,7 +23,7 @@
     </div>
     <nav id="nav1" class="navbar navbar-default top-navbar" role="navigation">
       <div class="navbar-header">
-        <a class="navbar-brand"><strong><i class="icon fa fa-plane"></i>学生管理系统</strong></a>
+        <a class="navbar-brand"><strong><i class="icon fa fa-plane"></i>室内定位系统</strong></a>
       </div>
     </nav>
     <nav id="nav2" class="navbar-default navbar-side" role="navigation">
@@ -33,7 +33,7 @@
             <a id="homeButton" href="javascript:void(0)"><i class="fa fa-dashboard"></i>首页(home page)</a>
           </li>
           <li>
-            <a id="fixButton" href="javascript:void(0)"><i class="fa fa-desktop"></i>定位（fix position for students in the class）</a>
+            <a id="fixButton" href="javascript:void(0)"><i class="fa fa-desktop"></i>定位（fix position）</a>
           </li>
 		  <!--<li>
             <a id="rollButton" href="javascript:void(0)" onclick="jumpRollC()"><i class="fa fa-desktop"></i>点名（hava a roll call of pupils）</a>
@@ -46,15 +46,21 @@
     <div id="page-wrapper">
       <div class="header">
         <h1 class="page-header">
-          学生管理系统 <small>欢迎           老师</small>
+          室内定位系统 <small>欢迎&nbsp请上传地图</small>
         </h1>
         <ol class="breadcrumb">
           <li><a>首页</a></li>
-          <li class="active">教师欢迎页</li>
+          <li class="active">准备工作</li>
         </ol>
       </div>
       <div class="header">
-        <form class="form-inline panel panel-heading">
+        <form class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <input id="fileBackground" type="file" name="file" style="width: 210px">
+          </div>
+          <div class="form-group">
+            <input id="backgroundSubmit" type ="button" value="upload" class="btn btn-default">
+          </div>&nbsp&nbsp&nbsp
           <button id="setB" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-exclamation-sign">校准地图</span>
           </button>
@@ -68,17 +74,11 @@
     <div id="page-set">
       <div class="header">
         <h1 class="page-header">
-          准备工作 <small>请上传地图并确定参照点</small>
+          准备工作 <small>请确定参照点以及绑定标签</small>
         </h1>
       </div>
       <div class="header">
         <form class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
-          <div class="form-group">
-            <input type="file" name="file" style="width: 210px">
-          </div>
-          <div class="form-group">
-            <input type ="submit" value="upload" class="btn btn-default">
-          </div>&nbsp&nbsp&nbsp
           <div class="form-group">
             <label for="exampleInputName2">x</label>
             <input type="text" class="form-control" style="width: 100px" id="xA">
@@ -129,7 +129,7 @@
             </div>
           </div>
         </div>
-        <footer><p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="">奥新智能</a></p>
+        <footer><p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank">奥新智能</a></p>
         </footer>
       </div>
     </div>
@@ -137,7 +137,7 @@
     <div id="page-fixP">
       <div class="header">
         <h1 class="page-header">
-          定位 <small>为班级里的学生定位</small>
+          定位 <small>为多个标签定位</small>
         </h1>
         <ol class="breadcrumb">
           <li><a>首页</a></li>
@@ -232,7 +232,7 @@
             </div>
           </div>
         </div>
-        <footer><p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="">奥新智能</a></p>
+        <footer><p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank">奥新智能</a></p>
         </footer>
       </div>
     </div>

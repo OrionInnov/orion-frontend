@@ -452,6 +452,13 @@ window.onload = function() {
     jumpSetP();
     canvasRestore();
   });
+  $("#backgroundSubmit").click (function() {
+    if ($("#fileBackground").val() == "") {
+      return false;
+    } else {
+      $(this).prop("type", "submit");
+    };
+  });
   $("#leaveS").click (function() {
     leaveSetP();
     canvasInit();

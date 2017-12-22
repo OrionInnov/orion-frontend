@@ -32,9 +32,20 @@ DEBUG_TAG_NAMES = ["Tag" + str(n) for n in range(DEBUG_NUM_TAGS)]
 DEBUG_TAG_POS = np.random.random((DEBUG_NUM_TAGS, 2)) * DEBUG_ROOM_SIZE
 
 
-@app.route("/")
+@app.route("/", methods=["GET","POST"])
 def index():
+    if request.method=="POST":
+        f = request.files["file"]
+        fname = secure_filename(f.filename)
+        ext = fname.rsplit(".", 1)[1]
+        new_filename = "position." + ext
+        base_path = path.abspath(path.dirname(__file__))
+        upload_path = path.join(base_path, "static/uploads/")
+        file_name = upload_path + secure_filename(new_filename)
+        f.save(file_name)
+        return redirect(url_for("index"))
     return render_template("index.html")
+
 
 
 @app.route("/css/<path:path>")
