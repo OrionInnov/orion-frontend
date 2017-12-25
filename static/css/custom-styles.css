@@ -9,6 +9,9 @@ body {
     background: #3E3E3E;
     -webkit-font-smoothing: antialiased;
 }
+.open-sans {
+  font-family: 'Open Sans', sans-serif;
+}
 
 #page-wrapper {
     padding: 15px 15px;
