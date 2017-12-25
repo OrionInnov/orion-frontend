@@ -55,9 +55,11 @@
       </div>
       <div class="header">
         <form class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
-          <div class="form-group">
-            <input id="fileBackground" type="file" name="file" style="width: 210px">
+          <div class="file-container" style="display:inline-block;position:relative;overflow: hidden;vertical-align:middle">
+            <button class="btn btn-default fileinput-button" type="button">上传</button>
+            <input id="fileBackground" type="file" name="file" onchange="loadFile(this.files[0])" style="width: 210px; position:absolute;top:0;left:0;font-size:34px; opacity:0">
           </div>
+          <span id="fileName" style="vertical-align: middle">未上传文件</span>
           <div class="form-group">
             <input id="backgroundSubmit" type ="button" value="upload" class="btn btn-default">
           </div>&nbsp&nbsp&nbsp

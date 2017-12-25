@@ -53,7 +53,7 @@ function changeTagName() {
 changeTagName();
 function drawBackground1() {
   var myBackground = new Image();
-  myBackground.src = "./uploads/position.png"
+  myBackground.src = "./img/position.png"
   var c0 = $("#canvasSet");
   var ctx0 = c0.get(0).getContext("2d");
   myBackground.onload = function() {

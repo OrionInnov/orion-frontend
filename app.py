@@ -40,7 +40,7 @@ def index():
         ext = fname.rsplit(".", 1)[1]
         new_filename = "position." + ext
         base_path = path.abspath(path.dirname(__file__))
-        upload_path = path.join(base_path, "static/uploads/")
+        upload_path = path.join(base_path, "static/img/")
         file_name = upload_path + secure_filename(new_filename)
         f.save(file_name)
         return redirect(url_for("index"))

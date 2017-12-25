@@ -122,6 +122,9 @@ function zoomC2() {
   scroll();
 }
 
+function loadFile(file) {
+    $("#fileName").html(file.name);
+}
 
 function getPosition() {
   var positions;
@@ -207,7 +210,6 @@ function fixPositionF() {
   var pauseStatus = true;
   var c1 = $("#myCanvas1");
   var ctx = c1.get(0).getContext("2d");
-  ctx.fillStyle = "#0000FF";
   var num = getNum_tags();
   function fixPosition() {
     var x, y;
@@ -222,6 +224,7 @@ function fixPositionF() {
     };
     var myImage = new Image();
     myImage.src = "./img/locationMarker.png";
+    ctx.fillStyle = "#00F";
     ctx.globalCompositeOperation = "copy";
     ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
     myImage.onload = function() {
@@ -454,9 +457,11 @@ window.onload = function() {
   });
   $("#backgroundSubmit").click (function() {
     if ($("#fileBackground").val() == "") {
+      alert("请上传图片！");
       return false;
     } else {
       $(this).prop("type", "submit");
+      //drawBackground();
     };
   });
   $("#leaveS").click (function() {
