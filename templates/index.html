@@ -19,11 +19,11 @@
 <body>
   <div>
     <div class= "languageB selecta">
-      <a>中文</a>&nbsp&nbsp<a>English</a>
+      <a id="orionChinese">中文</a>&nbsp&nbsp<a id="orionEnglish">English</a>
     </div>
     <nav id="nav1" class="navbar navbar-default top-navbar" role="navigation">
       <div class="navbar-header">
-        <a class="navbar-brand"><strong><i class="icon fa fa-plane"></i>室内定位系统</strong></a>
+        <a class="navbar-brand"><strong>室内定位系统</strong></a>
       </div>
     </nav>
     <nav id="nav2" class="navbar-default navbar-side" role="navigation">
@@ -46,7 +46,7 @@
     <div id="page-wrapper">
       <div class="header">
         <h1 class="page-header">
-          室内定位系统 <small>欢迎&nbsp请上传地图</small>
+          室内定位系统<small>(Indoor Localization System)</small><small>请上传地图(Please upload map.)</small>
         </h1>
         <ol class="breadcrumb">
           <li><a>首页</a></li>
@@ -56,15 +56,15 @@
       <div class="header">
         <form class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
           <div class="file-container" style="display:inline-block;position:relative;overflow: hidden;vertical-align:middle">
-            <button class="btn btn-default fileinput-button" type="button">上传</button>
+            <button class="btn btn-default fileinput-button" type="button">上传(upload)</button>
             <input id="fileBackground" type="file" name="file" onchange="loadFile(this.files[0])" style="width: 210px; position:absolute;top:0;left:0;font-size:34px; opacity:0">
           </div>
-          <span id="fileName" style="vertical-align: middle">未上传文件</span>
+          <span id="fileName" style="vertical-align: middle">未上传文件(no files)</span>
           <div class="form-group">
-            <input id="backgroundSubmit" type ="button" value="upload" class="btn btn-default">
+            <input id="backgroundSubmit" type ="button" value="提交(submit)" class="btn btn-default">
           </div>&nbsp&nbsp&nbsp
           <button id="setB" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-exclamation-sign">校准地图</span>
+            <span class="glyphicon glyphicon-exclamation-sign">校准地图(calibration)</span>
           </button>
         </form>
       </div>
@@ -75,7 +75,7 @@
 
     <div id="page-set">
       <div class="header">
-        <h1 class="page-header">
+        <h1 id="preparationsHead" class="page-header">
           准备工作 <small>请确定参照点以及绑定标签</small>
         </h1>
       </div>
@@ -99,7 +99,7 @@
             <span class="glyphicon glyphicon-ok">确定</span>
           </button>&nbsp&nbsp&nbsp
           <div class="form-group">
-            <label for="exampleInputEmail2">输入姓名</label>
+            <label id="inputNameEn"for="exampleInputEmail2">输入姓名</label>
             <input type="text" class="form-control" style="width: 120px" id="nameT">
           </div>
           <select id="selectI" name="">
@@ -117,8 +117,8 @@
           <div class="col-md-12">
           <!-- Advanced Tables -->
             <div class="panel panel-default">
-              <div class="panel-heading">
-                载入地图
+              <div id="preparationsP" class="panel-heading">
+                地图
               </div>
               <div class="panel-body">
                 <div class="table-responsive">
@@ -137,7 +137,7 @@
     </div>
 
     <div id="page-fixP">
-      <div class="header">
+      <div id="fixPH" class="header">
         <h1 class="page-header">
           定位 <small>为多个标签定位</small>
         </h1>
@@ -196,9 +196,9 @@
           <div id="map1">
           <!-- Advanced Tables -->
             <div class="panel panel-default">
-              <div class="panel-heading">
+              <div id="positionHead" class="panel-heading">
                 校园地图
-                <div id="zoomN" style="position: relative; float: right">100%</div>
+                <div id="zoomN" style="position: relative; float: right"></div>
               </div>
               <div class="panel-body">
                 <div id="wrapper" class="table-responsive">

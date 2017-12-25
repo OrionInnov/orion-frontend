@@ -451,6 +451,46 @@ window.onload = function() {
 
 //Binding events.
 (function() {
+  $("#orionEnglish").click (function() {
+    $("#preparationsHead").html("Preparations <small>Please confirm reference points and bind tags.</small>");
+    $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>First&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</nobr></span>");
+    $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>Second</nobr></span>");
+    $("#confirmF").html("<span class='glyphicon glyphicon-ok'><nobr class='open-sans'>Confirm</nobr></span>");
+    $("#inputNameEn").html("<nobr class='open-sans'>Name</nobr>");
+    $("#preparationsP").html("<nobr class='open-sans'>Map</nobr>");
+    $("#confirmN").html("<span class='glyphicon glysphicon-ok'><nobr class='open-sans'>&nbsp&nbspBind&nbsp&nbsp</nobr></span>");
+    $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'><nobr class='open-sans'>Back</nobr></span>");
+    $("#fixPH").html("<h1 class='page-header'>Fix position <small>Positioning tags.</small></h1><ol class='breadcrumb'><li><a>Home</a></li><li class='active'>Fix position</li></ol>");
+    $("#positionsB").html("<span class='glyphicon glyphicon-play'><nobr class='open-sans'>Startposition</nobr></span>");
+    $("#pauseB").html("<span class='glyphicon glyphicon-pause'><nobr class='open-sans'>Pause</nobr></span>");
+    $("#trackB").html("<span class='glyphicon glyphicon-circle-arrow-right'><nobr class='open-sans'>Track</nobr></span>");
+    $("#zoomB1").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoomposition</nobr></span>");
+    $("#zoomB2").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoomtrack&nbsp</nobr></span>");
+    $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'><nobr class='open-sans'>Historytrack</nobr></span>");
+    $("#positionHead").html("Map<div id='zoomN' style='position: relative; float: right'></div>");
+    $("#radio").html("<span class=''>&nbsp all &nbsp&nbsp</span>");
+    $("#multiple").html("<span class=''>clear</span>");
+  });
+  $("#orionChinese").click (function() {
+    $("#preparationsHead").html("准备工作 <small>请确定参照点以及绑定标签</small>");
+    $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'>第一点</span>");
+    $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'>第二点</span>");
+    $("#confirmF").html("<span class='glyphicon glyphicon-ok'>确定</span>");
+    $("#inputNameEn").html("输入姓名");
+    $("#preparationsP").html("地图");
+    $("#confirmN").html("<span class='glyphicon glysphicon-ok'>绑定</span>");
+    $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'>返回</span>");
+    $("#fixPH").html("<h1 class='page-header'>定位<small>为多个标签定位.</small></h1><ol class='breadcrumb'><li><a>首页</a></li><li class='active'>定位</li></ol>");
+    $("#positionsB").html("<span class='glyphicon glyphicon-play'>开始定位</span>");
+    $("#pauseB").html("<span class='glyphicon glyphicon-pause'>暂停</span>");
+    $("#trackB").html("<span class='glyphicon glyphicon-circle-arrow-right'>显示轨迹</span>");
+    $("#zoomB1").html("<span class='glyphicon glyphicon-resize-full'>定位缩放</span>");
+    $("#zoomB2").html("<span class='glyphicon glyphicon-resize-full'>轨迹缩放</span>");
+    $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'>历史轨迹</span>");
+    $("#positionHead").html("地图<div id='zoomN' style='position: relative; float: right'></div>");
+    $("#radio").html("<span class=''>全选</span>");
+    $("#multiple").html("<span class=''>重置</span>");
+  });
   $("#setB").click (function() {
     jumpSetP();
     canvasRestore();
