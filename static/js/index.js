@@ -7,105 +7,92 @@
 //Page switch.
 var overwrite1, overwrite2;
 function pageDefine() {
-  var home = $("#page-wrapper");
-  var fixP = $("#page-fixP");
-  var rollC = $("#page-rollC");
-  var homeB = $("#homeButton");
-  var fixB = $("#fixButton");
-  var rollB = $("#rollButton");
-  homeB.addClass("active-menu");
-  home.css("display", "block");
-  fixP.css("display", "none");
-  rollC.css("display", "none");
+  $("#homeButton").addClass("active-menu");
+  $("#page-wrapper").css("display", "block");
+  $("#page-fixP").css("display", "none");
+  $("#page-rollC").css("display", "none");
   $("#zoomN").css("display", "none");
-  return [home, fixP, rollC, homeB, fixB, rollB];
+  $("#page-set").css("display", "none");
 }
 pageDefine();
 
+function jumpSetP() {
+  $("#nav1").css("display", "none");
+  $("#nav2").css("display", "none");
+  $("#page-set").css("display", "block");
+  $("#page-wrapper").css("display", "none");
+  $("#page-fixP").css("display", "none");
+  $("#page-rollC").css("display", "none");
+}
+function leaveSetP() {
+  $("#nav1").css("display", "block");
+  $("#nav2").css("display", "block");
+  $("#page-set").css("display", "none");
+  $("#page-wrapper").css("display", "block");
+  $("#page-fixP").css("display", "none");
+  $("#page-rollC").css("display", "none");
+}
 function jumpHomeP() {
-  var pageD = pageDefine();
-  var home = pageD[0];
-  var fixP = pageD[1];
-  var rollC = pageD[2];
-  var homeB = pageD[3];
-  var fixB = pageD[4];
-  var rollB = pageD[5];
-  homeB.addClass("active-menu");
-  fixB.removeClass("active-menu");
-  rollB.removeClass("active-menu");
-  home.css("display", "block");
-  fixP.css("display", "none");
-  rollC.css("display", "none");
+  $("#homeButton").addClass("active-menu");
+  $("#fixButton").removeClass("active-menu");
+  $("#rollButton").removeClass("active-menu");
+  $("#page-wrapper").css("display", "block");
+  $("#page-fixP").css("display", "none");
+  $("#page-rollC").css("display", "none");
 }
 function jumpFixP() {
-  var pageD = pageDefine();
-  var home = pageD[0];
-  var fixP = pageD[1];
-  var rollC = pageD[2];
-  var homeB = pageD[3];
-  var fixB = pageD[4];
-  var rollB = pageD[5];
-  homeB.removeClass("active-menu");
-  fixB.addClass("active-menu");
-  rollB.removeClass("active-menu");
-  home.css("display", "none");
-  fixP.css("display", "block");
-  rollC.css("display", "none");
+  $("#homeButton").removeClass("active-menu");
+  $("#fixButton").addClass("active-menu");
+  $("#rollButton").removeClass("active-menu");
+  $("#page-wrapper").css("display", "none");
+  $("#page-fixP").css("display", "block");
+  $("#page-rollC").css("display", "none");
 }
 function jumpRollC() {
-  var pageD = pageDefine();
-  var home = pageD[0];
-  var fixP = pageD[1];
-  var rollC = pageD[2];
-  var homeB = pageD[3];
-  var fixB = pageD[4];
-  var rollB = pageD[5];
-  homeB.removeClass("active-menu");
-  fixB.removeClass("active-menu");
-  rollB.addClass("active-menu");
-  home.css("display", "none");
-  fixP.css("display", "none");
-  rollC.css("display", "block");
+  $("#homeButton").removeClass("active-menu");
+  $("#fixButton").removeClass("active-menu");
+  $("#rollButton").addClass("active-menu");
+  $("#page-wrapper").css("display", "none");
+  $("#page-fixP").css("display", "none");
+  $("#page-rollC").css("display", "block");
 }
 
 //FixPosition and track switch.
 function canvasDefine() {
-  var c0 = $("#myCanvas0");
-  var c1 = $("#myCanvas1");
-  var c2 = $("#myCanvas2");
-  var ca0 = $("#canvas0");
-  var ca1 = $("#canvas1");
-  var ca2 = $("#canvas2");
-  c0.css("display", "block");
-  c1.css("display", "none");
-  c2.css("display", "none");
-  ca0.css("display", "none");
-  ca1.css("display", "none");
-  ca2.css("display", "none");
-  return [c0, c1, c2, ca0, ca1, ca2];
+  $("#myCanvas0").css("display", "block");
+  $("#myCanvas1").css("display", "none");
+  $("#myCanvas2").css("display", "none");
+  $("#myCanvas3").css("display", "none");
+  $("#canvas0").css("display", "none");
+  $("#canvas1").css("display", "none");
+  $("#canvas2").css("display", "none");
 }
+canvasDefine();
 function jumpC1() {
-  var canvasD = canvasDefine();
-  var c0 = canvasD[0];
-  var c1 = canvasD[1];
-  var c2 = canvasD[2];
-  c0.css("display", "block");
-  c1.css("display", "block");
-  c2.css("display", "none");
+  $("#myCanvas0").css("display", "block");
+  $("#myCanvas1").css("display", "block");
+  $("#myCanvas2").css("display", "none");
+  $("#myCanvas3").css("display", "none");
   $("#zoomN").css("display", "none");
   scroll();
   stopOverwrite1();
   stopOverwrite2();
-  //document.write(dataURL0);
 }
 function jumpC2() {
-  var canvasD = canvasDefine();
-  var c0 = canvasD[0];
-  var c1 = canvasD[1];
-  var c2 = canvasD[2];
-  c0.css("display", "block");
-  c1.css("display", "none");
-  c2.css("display", "block");
+  $("#myCanvas0").css("display", "block");
+  $("#myCanvas1").css("display", "none");
+  $("#myCanvas2").css("display", "block");
+  $("#myCanvas3").css("display", "none");
+  $("#zoomN").css("display", "none");
+  scroll();
+  stopOverwrite1();
+  stopOverwrite2();
+}
+function jumpC3() {
+  $("#myCanvas0").css("display", "block");
+  $("#myCanvas1").css("display", "none");
+  $("#myCanvas2").css("display", "none");
+  $("#myCanvas3").css("display", "block");
   $("#zoomN").css("display", "none");
   scroll();
   stopOverwrite1();
@@ -113,61 +100,31 @@ function jumpC2() {
   //document.write(dataURL1);
 }
 function zoomC1() {
-  var canvasD = canvasDefine();
-  var c0 = canvasD[0];
-  var c1 = canvasD[1];
-  var c2 = canvasD[2];
-  var ca0 = canvasD[3];
-  var ca1 = canvasD[4];
-  var ca2 = canvasD[5];
-  c0.css("display", "none");
-  c1.css("display", "none");
-  c2.css("display", "none");
-  ca0.css("display", "block");
-  ca1.css("display", "block");
-  ca2.css("display", "none");
+  $("#myCanvas0").css("display", "none");
+  $("#myCanvas1").css("display", "none");
+  $("#myCanvas2").css("display", "none");
+  $("#myCanvas3").css("display", "none");
+  $("#canvas0").css("display", "block");
+  $("#canvas1").css("display", "block");
+  $("#canvas2").css("display", "none");
   $("#zoomN").css("display", "block");
   scroll();
 }
 function zoomC2() {
-  var canvasD = canvasDefine();
-  var c0 = canvasD[0];
-  var c1 = canvasD[1];
-  var c2 = canvasD[2];
-  var ca0 = canvasD[3];
-  var ca1 = canvasD[4];
-  var ca2 = canvasD[5];
-  c0.css("display", "none");
-  c1.css("display", "none");
-  c2.css("display", "none");
-  ca0.css("display", "block");
-  ca1.css("display", "none");
-  ca2.css("display", "block");
+  $("#myCanvas0").css("display", "none");
+  $("#myCanvas1").css("display", "none");
+  $("#myCanvas2").css("display", "none");
+  $("#myCanvas3").css("display", "none");
+  $("#canvas0").css("display", "block");
+  $("#canvas1").css("display", "none");
+  $("#canvas2").css("display", "block");
   $("#zoomN").css("display", "block");
   scroll();
 }
 
-function getTagName() {
-  $.ajax ({
-    type: "GET",
-    url: "http://localhost:8000/_config",
-    //url: "http://192.168.100.6:8000/_config",
-    dataType: "json",
-    //async: false,
-    success: function(result) {
-      var num = result.num_tags;
-      for (var i = 0; i < num; i++) {
-        $("#select").append(function() {
-          return "<input id='tag" + i + "' type='checkbox' class='selecta'>" + result.tag_names[i] + "<br/>";
-        });
-      };
-    },
-    error: function(result) {
-      //console.log("fuck");
-    }
-  });
+function loadFile(file) {
+    $("#fileName").html(file.name);
 }
-getTagName();
 
 function getPosition() {
   var positions;
@@ -180,9 +137,8 @@ function getPosition() {
     success: function(result) {
       positions = result;
       for (var i = 0; i < eval(positions).length; i++) {
-        for (var j = 0; j < 2; j++) {
-          positions[i][j] = parseFloat(positions[i][j]);
-        };
+        positions[i][0] = calibrationC[0][0] * parseFloat(positions[i][0]);
+        positions[i][1] = calibrationC[0][1] * parseFloat(positions[i][1]);
       };
     },
     error: function(result) {
@@ -214,23 +170,46 @@ function getNum_tags() {
 var dataURL0;
 function drawBackground() {
   var myBackground = new Image();
-  myBackground.src = "./img/position.jpg"
+  myBackground.src = "./img/position.png"
   var c0 = $("#myCanvas0");
   var ctx0 = c0.get(0).getContext("2d");
   myBackground.onload = function() {
-    ctx0.drawImage(myBackground, 0, 0, 1260, 840);
+    ctx0.drawImage(myBackground, 0, 0, 840, 840);
     dataURL0 = c0.get(0).toDataURL();
   };
 }
 drawBackground();
-dataURL1 = 0;
-dataURL2 = 0;
-
+var dataURL1 = 0;
+var dataURL2 = 0;
+function canvasInit() {
+  var c1 = $("#myCanvas1");
+  var c2 = $("#myCanvas2");
+  var c3 = $("#myCanvas3");
+  var ctx1 = c1.get(0).getContext("2d");
+  var ctx2 = c2.get(0).getContext("2d");
+  var ctx3 = c3.get(0).getContext("2d");
+  ctx1.save();
+  ctx2.save();
+  ctx3.save();
+  ctx1.translate(calibrationC[1][0], calibrationC[1][1]);
+  ctx2.translate(calibrationC[1][0], calibrationC[1][1]);
+  ctx3.translate(calibrationC[1][0], calibrationC[1][1]);
+};
+function canvasRestore() {
+  var c1 = $("#myCanvas1");
+  var c2 = $("#myCanvas2");
+  var c3 = $("#myCanvas3");
+  var ctx1 = c1.get(0).getContext("2d");
+  var ctx2 = c2.get(0).getContext("2d");
+  var ctx3 = c3.get(0).getContext("2d");
+  ctx1.restore();
+  ctx2.restore();
+  ctx3.restore();
+}
 function fixPositionF() {
   var pauseStatus = true;
   var c1 = $("#myCanvas1");
   var ctx = c1.get(0).getContext("2d");
-  ctx.fillStyle = "#0000FF";
   var num = getNum_tags();
   function fixPosition() {
     var x, y;
@@ -240,20 +219,21 @@ function fixPositionF() {
     x[49] = 0;
     y[49] = 0;
     for (var k = 0; k < num; k++) {
-      x[k] = positions[k][0] - 12.5;
-      y[k] = positions[k][1] - 12.5;
+      x[k] = positions[k][0] - 5;
+      y[k] = positions[k][1] - 5;
     };
     var myImage = new Image();
     myImage.src = "./img/locationMarker.png";
+    ctx.fillStyle = "#00F";
     ctx.globalCompositeOperation = "copy";
-    ctx.clearRect(0, 0, 1260, 840);
+    ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
     myImage.onload = function() {
       ctx.globalCompositeOperation = "source-over";
       for (var i = 0; i < num; i++) {
         (function() {
           if ($("#tag" + i).get(0).checked == true) {
-            ctx.drawImage(myImage, x[i], y[i], 25, 25);
-            ctx.fillText("Tag" + i, x[i] + 25, y[i]);
+            ctx.drawImage(myImage, x[i], y[i], 10, 10);
+            ctx.fillText(configSet.tag_names[i], x[i] + 10, y[i]);
           } else if ($("#tag" + i) == false) {
             return false;
           };
@@ -268,7 +248,7 @@ function fixPositionF() {
   $("#pauseB").click (function() {
     pauseStatus = false;
   });
-  overwrite1 = setInterval(fixPosition, 1000);
+  overwrite1 = setInterval(fixPosition, 200);
 }
 
 //Track.
@@ -280,7 +260,7 @@ function track() {
   d = [];
   var num = getNum_tags();
   var positions = getPosition();
-  c2 = $("#myCanvas2");
+  var c2 = $("#myCanvas2");
   for (var j = 0; j < num; j++) {
     c[j] = positions[j][0];
     d[j] = positions[j][1];
@@ -288,9 +268,9 @@ function track() {
   var ctx = c2.get(0).getContext("2d");
   ctx.lineWidth = 5;
   ctx.strokeStyle = "#F00";
-  ctx.clearRect(0, 0, 1260, 840);
+  ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
   $("#multiple").on ("click", function() {
-    ctx.clearRect(0, 0, 1260, 840);
+    ctx.clearRect(-calibrationC[1][0], -calibrationC[1][0], 840, 840);
   });
   function point1() {
     var positions1 = getPosition()
@@ -299,11 +279,7 @@ function track() {
         if ($("#tag" + i).get(0).checked == true) {
           a[i] = positions1[i][0];
           b[i] = positions1[i][1];
-          ctx.beginPath();
-          ctx.moveTo(c[i], d[i]);
-          ctx.lineTo(a[i], b[i]);
-          ctx.closePath();
-          ctx.stroke();
+          drawTrack(ctx, c[i], d[i], a[i], b[i], 2, "#F00");
         } else if ($("#tag" + i) == false) {
           return false;
         };
@@ -317,11 +293,7 @@ function track() {
         if ($("#tag" + i).get(0).checked == true) {
           c[i] = positions2[i][0];
           d[i] = positions2[i][1];
-          ctx.beginPath();
-          ctx.moveTo(a[i], b[i]);
-          ctx.lineTo(c[i], d[i]);
-          ctx.closePath();
-          ctx.stroke();
+          drawTrack(ctx, a[i], b[i], c[i], d[i], 2, "#F00");
         } else if ($("#tag" + i) == false) {
           return false;
         };
@@ -330,16 +302,56 @@ function track() {
   }
   function delay() {
     var p1 = setTimeout(point1, 0);
-    var p2 = setTimeout(point2, 1000);
+    var p2 = setTimeout(point2, 300);
     $("#trackB").click (function() {
       clearTimeout(p1);
       clearTimeout(p2);
     });
     dataURL2 = c2.get(0).toDataURL();
   }
-  overwrite2 = setInterval(delay, 2000);
+  overwrite2 = setInterval(delay, 600);
 }
 
+//historyTrack
+function historyTrack() {
+  var num = getNum_tags();
+  var positionH = [];
+  var timedata = [$("#datetimeP1").val(), $("#datetimeP2").val()];
+  $.ajax ({
+    type: "POST",
+    url: "http://localhost:8000/history_track",
+    dataType: "json",
+    //async: false,
+    data: JSON.stringify(timedata),
+    success: function(result) {
+      positionH = result;
+      console.log(result);
+    },
+    error: function(result) {
+      console.log("cao");
+      console.log("fuck");
+    }
+  });
+  var c = $("#myCanvas3");
+  var ctx = c.get(0).getContext("2d");
+  ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
+  function drawHistoryPosition() {
+    console.log(positionH[9][9]);
+    for (var i = 0; i < num; i++) {
+      (function() {
+        if ($("#tag" + i).get(0).checked == true) {
+          for (var j = 0; j < 8; j++) {
+            drawTrack(ctx, positionH[j][i][0], positionH[j][i][1], positionH[j+1][i][0], positionH[j+1][i][1], 2, "#F00");
+          };
+          drawArrow(ctx, positionH[8][i][0], positionH[8][i][1], positionH[9][i][0], positionH[9][i][1], 30, 10, 2, "#F00");
+        } else if ($("#tag" + i) == false) {
+          return false;
+        };
+      })();
+    };
+  };
+  var draw = setTimeout(drawHistoryPosition, 100);
+}
 //stop cycle
 function stopOverwrite1() {
   clearInterval(overwrite1);
@@ -348,18 +360,70 @@ function stopOverwrite2() {
   clearInterval(overwrite2);
 }
 
+//DrawTrack
+function drawTrack(ctx, fromX, fromY, toX, toY, width, color) {
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  ctx.lineWidth = width;
+  ctx.beginPath();
+  ctx.moveTo(fromX, fromY);
+  ctx.lineTo(toX, toY);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(fromX, fromY, 5, 0, Math.PI*2, false);
+  ctx.arc(toX, toY, 5, 0, Math.PI*2, false);
+  ctx.fill();
+  ctx.closePath();
+  ctx.restore();
+}
+
+
+//Draw arrows
+function drawArrow(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
+  var theta = theta || 30,
+      headlen = headlen || 10,
+      width = width || 1,
+      color = color || '#000',
+      angle = Math.atan2(fromY - toY, fromX - toX) * 180 / Math.PI,
+      angle1 = (angle + theta) * Math.PI / 180,
+      angle2 = (angle - theta) * Math.PI / 180,
+      topX = headlen * Math.cos(angle1),
+      topY = headlen * Math.sin(angle1),
+      botX = headlen * Math.cos(angle2),
+      botY = headlen * Math.sin(angle2);
+  ctx.save();
+  ctx.beginPath();
+  var arrowX, arrowY;
+  ctx.moveTo(fromX, fromY);
+  ctx.lineTo(toX, toY);
+  arrowX = toX + topX;
+  arrowY = toY + topY;
+  ctx.moveTo(arrowX, arrowY);
+  ctx.lineTo(toX, toY);
+  arrowX = toX + botX;
+  arrowY = toY + botY;
+  ctx.lineTo(arrowX, arrowY);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = width;
+  ctx.stroke();
+  ctx.restore();
+}
+
+//onscroll
 window.onscroll = function() {
   var topScroll = document.documentElement.scrollTop||document.body.scrollTop;
   var select = $("#selectA");
-  if (topScroll > 247) {
+  if (topScroll > 222) {
     select.css("position", "fixed");
     select.css("zIndex", "500px");
     if ($(window).width() >= 759) {
-      select.css("top", "60px");
+      select.css("top", "80px");
       select.css("right", "15px");
     } else {
       select.css("position", "static");
-      if (topScroll > 447) {
+      if (topScroll > 427) {
         select.css("position", "fixed");
         select.css("top", "0px")
         select.css("right", "30px")
@@ -387,6 +451,29 @@ window.onload = function() {
 
 //Binding events.
 (function() {
+  $("#setB").click (function() {
+    jumpSetP();
+    canvasRestore();
+  });
+  $("#backgroundSubmit").click (function() {
+    if ($("#fileBackground").val() == "") {
+      alert("请上传图片！");
+      return false;
+    } else {
+      $(this).prop("type", "submit");
+      //drawBackground();
+    };
+  });
+  $("#leaveS").click (function() {
+    leaveSetP();
+    canvasInit();
+    $("#selectAdd").empty();
+    for (var i = 0; i < configSet.num_tags; i++) {
+      $("#selectAdd").append(function() {
+        return "<input id='tag" + i + "' type='checkbox' class='selecta'>" + configSet.tag_names[i] + "<br/>";
+      });
+    };
+  });
   $("#homeButton").click (function() {
     jumpHomeP();
   });
@@ -400,6 +487,10 @@ window.onload = function() {
   $("#trackB").click (function() {
     jumpC2();
     track();
+  });
+  $("#historyTrackB").click (function() {
+    jumpC3();
+    historyTrack();
   });
   $("#zoomB1").click (function() {
     zoomC1();
@@ -421,5 +512,22 @@ window.onload = function() {
     for (var i = 0; i < num; i++) {
       $("#tag" + i).get(0).checked = false;
     };
+  });
+})();
+
+(function() {
+  $("#datetimePicker1").datetimepicker({
+    format: 'YYYY-MM-DD-HH-mm'}
+  );
+  $("#datetimePicker2").datetimepicker({
+    format: 'MM/DD/YYYY HH:mm'
+  });
+  $("#datetimePicker1").on("dp.change", function (e) {
+    $("#datetimePicker2").data("DateTimePicker").minDate(e.date);
+    $("#datetimePicker1").data("DateTimePicker").maxDate(window.date);
+  });
+  $("#datetimePicker2").on("dp.change", function (e) {
+    $("#datetimePicker1").data("DateTimePicker").maxDate(e.date);
+    $("#datetimePicker2").data("DateTimePicker").maxDate(window.date);
   });
 })();

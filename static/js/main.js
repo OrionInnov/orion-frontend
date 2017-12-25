@@ -74,7 +74,7 @@ function loadImg2() {
 }
 
 function scroll() {
-  document.documentElement.style.overflow = "scroll";
+  document.documentElement.style.overflow = "auto";
 }
 
 function drawImage0() {
