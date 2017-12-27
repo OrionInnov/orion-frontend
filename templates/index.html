@@ -7,14 +7,13 @@
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
-<link rel="stylesheet" href="./css/custom-styles.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/custom-styles.css') }}">
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery.actual/1.0.19/jquery.actual.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdn.bootcss.com/moment.js/2.10.1/moment.min.js"></script>
 <script src="https://cdn.bootcss.com/moment.js/2.19.4/moment-with-locales.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-<script src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
 </head>
 <body>
   <div>
@@ -246,7 +245,7 @@
           点名<small>学生点名</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a  href="index.jsp">首页</a></li>
+          <li><a ref="index.jsp">首页</a></li>
           <li class="active">点名</li>
         </ol>
       </div>
@@ -316,17 +315,12 @@
 
 
   </div>
-  <script src="./js/set.js"></script>
-  <script src="./js/index.js"></script>
-  <script src="./js/main.js"></script>
-  <script>
-    /*function myScroll() {
-	  var myscroll = new IScroll("#wrapper", {
-		    scrollbars: true ,
-		    scrollbars: "custom"
-		});
-    };
-    */
+  <script type=text/javascript>
+    POSITION_IMG_URL = "{{ url_for('static', filename='img/position.png') }}";
+    MARKER_IMG_URL = "{{ url_for('static', filename='img/marker.png') }}";
   </script>
+  <script src="{{ url_for('static', filename='js/set.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

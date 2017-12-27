@@ -170,7 +170,7 @@ function getNum_tags() {
 var dataURL0;
 function drawBackground() {
   var myBackground = new Image();
-  myBackground.src = "./img/position.png"
+  myBackground.src = POSITION_IMG_URL;
   var c0 = $("#myCanvas0");
   var ctx0 = c0.get(0).getContext("2d");
   myBackground.onload = function() {
@@ -223,7 +223,7 @@ function fixPositionF() {
       y[k] = positions[k][1] - 5;
     };
     var myImage = new Image();
-    myImage.src = "./img/locationMarker.png";
+    myImage.src = MARKER_IMG_URL;
     ctx.fillStyle = "#00F";
     ctx.globalCompositeOperation = "copy";
     ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
