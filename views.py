@@ -39,20 +39,12 @@ UPLOAD_PATH = os.path.join(BASE_PATH, "static", "uploads")
 def index():
     return render_template("index.html")
 
-@app.route("/img/<path:path>")
-def static_imgs(path):
-    return send_from_directory("static/img", path)
-
-@app.route("/uploads/<path:path>")
-def static_uploads(path):
-    return send_from_directory("static/uploads", path)
-
-
-################################ DYNAMIC PAGES ################################
-
 @app.route("/config")
 def load_config():
     return json.dumps(current_app.orion_config)
+
+
+################################ DYNAMIC PAGES ################################
 
 @app.route("/set_config", methods=["POST"])
 def set_config():
