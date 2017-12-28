@@ -191,7 +191,7 @@ function uploadImg() {
 var dataURL0;
 function drawBackground() {
   var myBackground = new Image();
-  myBackground.src = "POSITION_IMG_URL"
+  myBackground.src = POSITION_IMG_URL;
   var c0 = $("#myCanvas0");
   var ctx0 = c0.get(0).getContext("2d");
   myBackground.onload = function() {
