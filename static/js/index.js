@@ -538,7 +538,11 @@ window.onload = function() {
   });
   $("#backgroundSubmit").click (function() {
     if ($("#fileBackground").val() == "") {
-      alert("请上传图片！");
+      if ($("#uploadB").html() == "上传") {
+        alert("请上传图片！");
+      } else {
+        alert("Please upload map!");
+      };
       return false;
     } else {
       uploadImg();
