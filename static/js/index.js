@@ -514,7 +514,7 @@ window.onload = function() {
     $("#homeH").html("<h1 class='page-header'>室内定位系统<small>请上传地图</small></h1><ol class='breadcrumb'><li><a>首页</a></li><li class='active'>准备工作</li></ol>");
     $("#upload").html("上传");
     if ($("#fileBackground").val() == "") {
-      $("#fileName").html("no files");
+      $("#fileName").html("未上传文件");
     };
     $("#backgroundSubmit").html("提交");
     $("#setB").html("<span class='glyphicon glyphicon-exclamation-sign'>校准地图</span>");
