@@ -30,7 +30,7 @@ DEBUG_TAG_POS = np.random.random((DEBUG_NUM_TAGS, 2)) * DEBUG_ROOM_SIZE
 
 # base and upload directories
 BASE_PATH = os.path.abspath(os.path.dirname(__file__))
-UPLOAD_PATH = os.path.join(BASE_PATH, "static", "uploads")
+UPLOAD_PATH = os.path.join(BASE_PATH, "static", "img")
 
 
 ################################ STATIC ROUTES ################################
@@ -87,8 +87,7 @@ def upload():
     new_filename = "position." + ext
     file_name = UPLOAD_PATH + secure_filename(new_filename)
     f.save(file_name)
-    return redirect(url_for("set"))
-    #return render_template("set.html")#There's some error,and need to change to base64
+    return json.dumps(["success"])
 
 
 ################################# DEBUG PAGES #################################
