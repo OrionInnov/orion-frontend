@@ -20,13 +20,6 @@ from werkzeug.utils import secure_filename
 
 from . import app
 
-import numpy as np
-
-# debug parameters
-DEBUG_NUM_TAGS = 10
-DEBUG_ROOM_SIZE = 25
-DEBUG_TAG_NAMES = ["Tag" + str(n) for n in range(DEBUG_NUM_TAGS)]
-DEBUG_TAG_POS = np.random.random((DEBUG_NUM_TAGS, 2)) * DEBUG_ROOM_SIZE
 
 # base and upload directories
 BASE_PATH = os.path.abspath(os.path.dirname(__file__))
@@ -93,6 +86,14 @@ def upload():
 
 ################################# DEBUG PAGES #################################
 
+import numpy as np
+
+# debug parameters
+DEBUG_NUM_TAGS = 10
+DEBUG_ROOM_SIZE = 25
+DEBUG_TAG_NAMES = ["Tag" + str(n) for n in range(DEBUG_NUM_TAGS)]
+DEBUG_TAG_POS = np.random.random((DEBUG_NUM_TAGS, 2)) * DEBUG_ROOM_SIZE
+
 @app.route("/_config")
 def debug_config():
     config = {
@@ -105,5 +106,4 @@ def debug_config():
 def debug_positions():
     pos_data = DEBUG_TAG_POS + np.random.random((DEBUG_NUM_TAGS, 2))
     pos_repr = np.array(40 * pos_data, dtype=np.int32).tolist()
-    response = json.dumps(pos_repr)
-    return response#positions needs to change
+    return json.dumps(pos_repr)
