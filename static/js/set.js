@@ -1,4 +1,4 @@
-var configSet, calibrationC;
+var configSet, calibrationC = [[NaN, NaN], [NaN, NaN]];
 function getTagNameset() {
   $.ajax ({
     type: "GET",

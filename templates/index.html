@@ -29,10 +29,10 @@
       <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
           <li>
-            <a id="homeButton" href="javascript:void(0)"><i class="fa fa-dashboard"></i>首页(home page)</a>
+            <a id="homeButton" href="javascript:void(0)"><i class="fa fa-dashboard"></i>&nbsp&nbsp&nbsp&nbsp&nbsp首页</a>
           </li>
           <li>
-            <a id="fixButton" href="javascript:void(0)"><i class="fa fa-desktop"></i>定位（fix position）</a>
+            <a id="fixButton" href="javascript:void(0)"><i class="fa fa-desktop"></i>&nbsp&nbsp&nbsp&nbsp&nbsp定位</a>
           </li>
 		  <!--<li>
             <a id="rollButton" href="javascript:void(0)" onclick="jumpRollC()"><i class="fa fa-desktop"></i>点名（hava a roll call of pupils）</a>
@@ -43,27 +43,27 @@
 
 
     <div id="page-wrapper">
-      <div class="header">
+      <div id= "homeH" class="header">
         <h1 class="page-header">
-          室内定位系统<small>(Indoor Localization System)</small><small>请上传地图(Please upload map.)</small>
+          室内定位系统<small>请上传地图</small>
         </h1>
-        <ol class="breadcrumb">
+        <ol id="" class="breadcrumb">
           <li><a>首页</a></li>
           <li class="active">准备工作</li>
         </ol>
       </div>
       <div class="header">
-        <form class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
+        <form id="f1" class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
           <div class="file-container" style="display:inline-block;position:relative;overflow: hidden;vertical-align:middle">
-            <button class="btn btn-default fileinput-button" type="button">上传(upload)</button>
+            <button id="uploadB" class="btn btn-default fileinput-button" type="button">上传</button>
             <input id="fileBackground" type="file" name="file" onchange="loadFile(this.files[0])" style="width: 210px; position:absolute;top:0;left:0;font-size:34px; opacity:0">
           </div>
-          <span id="fileName" style="vertical-align: middle">未上传文件(no files)</span>
+          <span id="fileName" style="vertical-align: middle">未上传文件</span>
           <div class="form-group">
-            <input id="backgroundSubmit" type ="button" value="提交(submit)" class="btn btn-default">
+            <button id="backgroundSubmit" type ="button" class="btn btn-default fileinput-button">提交</button>
           </div>&nbsp&nbsp&nbsp
           <button id="setB" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-exclamation-sign">校准地图(calibration)</span>
+            <span class="glyphicon glyphicon-exclamation-sign">校准地图</span>
           </button>
         </form>
       </div>
@@ -130,7 +130,7 @@
             </div>
           </div>
         </div>
-        <footer><p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank">奥新智能</a></p>
+        <footer><p>Orion &copy; 2017.Orion.<a target="_blank">奥新智能</a></p>
         </footer>
       </div>
     </div>
@@ -233,7 +233,7 @@
             </div>
           </div>
         </div>
-        <footer><p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank">奥新智能</a></p>
+        <footer><p>Orion&copy; 2017.Orion.<a target="_blank">奥新智能</a></p>
         </footer>
       </div>
     </div>
@@ -245,7 +245,7 @@
           点名<small>学生点名</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a ref="index.jsp">首页</a></li>
+          <li><a>首页</a></li>
           <li class="active">点名</li>
         </ol>
       </div>
@@ -285,8 +285,8 @@
             </ul>
           </div>
           <div class="col-md-4">
-            <h3 >Flinkhub</h3>
-            <p >Flinkhub, an AI-driven sales platform, helps B2B SaaS companies in selling their products to companies which have the highest probability of buying their product.
+            <h3 >Orion</h3>
+            <p >Orion.
             </p>
             <div >
             <a ></a>
@@ -305,7 +305,7 @@
               </a>
             </div>
             <div>
-              <p >© 2017 Flinkhub Inc. All Rights Reserved.</p>
+              <p >© 2017  All Rights Reserved.</p>
             </div>
           </div>
         </div>
