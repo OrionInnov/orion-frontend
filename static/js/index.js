@@ -483,7 +483,9 @@ window.onload = function() {
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'><nobr class='open-sans'>Back</nobr></span>");
     $("#homeH").html("<h1 class='page-header'>Indoor Localization System<small>Please upload map.</small></h1><ol class='breadcrumb'><li><a>Home</a></li><li class='active'>Preparations</li></ol>");
     $("#uploadB").html("Upload");
-    $("#fileName").html("no files");
+    if ($("#fileBackground").val() == "") {
+      $("#fileName").html("no files");
+    };
     $("#backgroundSubmit").html("Submit");
     $("#setB").html("<span class='glyphicon glyphicon-exclamation-sign'>Calibration</span>");
     $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>IndoorLocation</strong></a></div>");
@@ -511,7 +513,9 @@ window.onload = function() {
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'>返回</span>");
     $("#homeH").html("<h1 class='page-header'>室内定位系统<small>请上传地图</small></h1><ol class='breadcrumb'><li><a>首页</a></li><li class='active'>准备工作</li></ol>");
     $("#upload").html("上传");
-    $("#fileName").html("未上传文件");
+    if ($("#fileBackground").val() == "") {
+      $("#fileName").html("no files");
+    };
     $("#backgroundSubmit").html("提交");
     $("#setB").html("<span class='glyphicon glyphicon-exclamation-sign'>校准地图</span>");
     $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>室内定位系统</strong></a></div>");
@@ -538,8 +542,13 @@ window.onload = function() {
       return false;
     } else {
       uploadImg();
-      //$(this).prop("type", "submit");
-      //drawBackground();
+      var file = $("#fileBackground");
+      file.after(file.clone().val(""));
+      file.remove();
+      if ($("#uploadB").html() == "上传") {
+        $("#fileName").html("未上传文件");
+      } else {
+        $("#fileName").html("no files");
     };
   });
   $("#leaveS").click (function() {
