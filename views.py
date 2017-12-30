@@ -9,78 +9,73 @@ from __future__ import print_function
 import json
 import os
 
-from flask import current_app
 from flask import make_response
 from flask import redirect
 from flask import request
 from flask import render_template
 from flask import send_from_directory
 from flask import url_for
-from werkzeug.utils import secure_filename
 
 from . import app
+from . import orion_dir
+from . import cfg_path, pos_path
+from ..config import load_config
+from ..config import save_config
 
 
-# base and upload directories
-BASE_PATH = os.path.abspath(os.path.dirname(__file__))
-UPLOAD_PATH = os.path.join(BASE_PATH, "static", "img")
+VALID_IMG_EXT = [".jpg", ".png", ".svg"]
 
 
 ################################ STATIC ROUTES ################################
 
 @app.route("/")
 def index():
+
     return render_template("index.html")
 
-@app.route("/config")
-def load_config():
-    return json.dumps(current_app.orion_config)
+@app.route("/getconf")
+def getconf():
+
+    return json.dumps(load_config(path=cfg_path))
+
+@app.route("/setconf", methods=["POST"])
+def setconf():
+
+    save_config(request.get_data(), cfg_path)
+    return json.dumps({"status": 1})
 
 
 ################################ DYNAMIC PAGES ################################
 
-@app.route("/set_config", methods=["POST"])
-def set_config():
-    current_app.orion_config = request.get_data()
-    return {}
+@app.route("/history", methods=["POST"])
+def history():
 
-@app.route("/history_track", methods=["POST"])
-def history_track():
     # TODO(fzliu): get this working
     timedata = request.get_data()
     print(timedata)
-    timedata = json.loads(timedata)
-    num1 = 1#timestart
-    num2 = 10#timestop
-    config = []
-    configl = []
-    confighistory = []
-    while (num1 <= num2):
-        with open("/tmp/orion/" + str(num1) + ".json") as f:
-            timetrackdata = f.readlines()
-            config.append(timetrackdata)
-        num1 += 1
-    for i in config:
-        for j in i:
-            k = eval(j)
-            configl.append(k)
-        confighistory.append(configl)
-        configl = []
-    return json.dumps(confighistory)
+    raise NotImplementedError()
 
 @app.route("/positions")
-def load_positions():
-    raise NotImplementedError()
+def positions():
+
+    with open(pos_path, "r") as f:
+        return f.read()
 
 @app.route("/upload", methods=["POST"])
 def upload():
-    f = request.files["file"]
-    fname = secure_filename(f.filename)
-    ext = fname.rsplit(".", 1)[1]
-    new_filename = "position." + ext
-    file_name = UPLOAD_PATH + secure_filename(new_filename)
-    f.save(file_name)
-    return json.dumps(["success"])
+
+    file = request.files["file"]
+
+    # ensure that file extension is valid
+    ext = file.filename.split(".")[-1]
+    if ext.lowercase not in VALID_IMG_EXT:
+        return json.dumps({"status": 0})
+
+    # save the image
+    fname = "position." + ext
+    file.save(os.path.join(app.root_path, "static", "img", fname))
+
+    return json.dumps({"status": 1})
 
 
 ################################# DEBUG PAGES #################################
@@ -93,8 +88,9 @@ DEBUG_ROOM_SIZE = 25
 DEBUG_TAG_NAMES = ["Tag" + str(n) for n in range(DEBUG_NUM_TAGS)]
 DEBUG_TAG_POS = np.random.random((DEBUG_NUM_TAGS, 2)) * DEBUG_ROOM_SIZE
 
-@app.route("/_config")
-def debug_config():
+@app.route("/_getconf")
+def _config():
+
     config = {
         "num_tags": DEBUG_NUM_TAGS,
         "tag_names": DEBUG_TAG_NAMES
@@ -102,7 +98,8 @@ def debug_config():
     return json.dumps(config)
 
 @app.route("/_positions")
-def debug_positions():
+def _positions():
+
     pos_data = DEBUG_TAG_POS + np.random.random((DEBUG_NUM_TAGS, 2))
     pos_repr = np.array(40 * pos_data, dtype=np.int32).tolist()
     return json.dumps(pos_repr)
