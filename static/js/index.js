@@ -1,10 +1,8 @@
-/*It's for index.html.
- *
- *
- *
- *
+/**
+ * @fileoverview Description of file, its uses and information about its
+ * dependencies.
  */
-//Page switch.
+
 var overwrite1, overwrite2;
 function pageDefine() {
   $("#homeButton").addClass("active-menu");
@@ -148,7 +146,7 @@ function getPosition() {
   return positions;
 }
 
-function getNum_tags() {
+function getNumTags() {
   var num;
   $.ajax ({
     type: "GET",
@@ -231,7 +229,7 @@ function fixPositionF() {
   var pauseStatus = true;
   var c1 = $("#myCanvas1");
   var ctx = c1.get(0).getContext("2d");
-  var num = getNum_tags();
+  var num = getNumTags();
   function fixPosition() {
     var x, y;
     var positions = getPosition();
@@ -266,7 +264,7 @@ function fixPositionF() {
       stopOverwrite1();
     };
   }
-  $("#pauseB").click (function() {
+  $("#pauseB").click(function() {
     pauseStatus = false;
   });
   overwrite1 = setInterval(fixPosition, 200);
@@ -279,7 +277,7 @@ function track() {
   b = [];
   c = [];
   d = [];
-  var num = getNum_tags();
+  var num = getNumTags();
   var positions = getPosition();
   var c2 = $("#myCanvas2");
   for (var j = 0; j < num; j++) {
@@ -324,7 +322,7 @@ function track() {
   function delay() {
     var p1 = setTimeout(point1, 0);
     var p2 = setTimeout(point2, 300);
-    $("#trackB").click (function() {
+    $("#trackB").click(function() {
       clearTimeout(p1);
       clearTimeout(p2);
     });
@@ -335,7 +333,7 @@ function track() {
 
 //historyTrack
 function historyTrack() {
-  var num = getNum_tags();
+  var num = getNumTags();
   var positionH = [];
   var timedata = [$("#datetimeP1").val(), $("#datetimeP2").val()];
   $.ajax ({
@@ -472,7 +470,7 @@ window.onload = function() {
 
 //Binding events.
 (function() {
-  $("#orionEnglish").click (function() {
+  $("#orionEnglish").click(function() {
     $("#preparationsHead").html("Preparations <small>Please confirm reference points and bind tags.</small>");
     $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>First&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</nobr></span>");
     $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>Second</nobr></span>");
@@ -502,7 +500,7 @@ window.onload = function() {
     $("#radio").html("<span class=''>&nbsp all &nbsp&nbsp</span>");
     $("#multiple").html("<span class=''>clear</span>");
   });
-  $("#orionChinese").click (function() {
+  $("#orionChinese").click(function() {
     $("#preparationsHead").html("准备工作 <small>请确定参照点以及绑定标签</small>");
     $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'>第一点</span>");
     $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'>第二点</span>");
@@ -532,11 +530,11 @@ window.onload = function() {
     $("#radio").html("<span class=''>全选</span>");
     $("#multiple").html("<span class=''>重置</span>");
   });
-  $("#setB").click (function() {
+  $("#setB").click(function() {
     jumpSetP();
     canvasRestore();
   });
-  $("#backgroundSubmit").click (function() {
+  $("#backgroundSubmit").click(function() {
     if ($("#fileBackground").val() == "") {
       if ($("#uploadB").html() == "上传") {
         alert("请上传图片！");
@@ -553,9 +551,9 @@ window.onload = function() {
         $("#fileName").html("未上传文件");
       } else {
         $("#fileName").html("no files");
-    };
-  });
-  $("#leaveS").click (function() {
+    }
+  }});
+  $("#leaveS").click(function() {
     leaveSetP();
     canvasInit();
     $("#selectAdd").empty();
@@ -565,35 +563,35 @@ window.onload = function() {
       });
     };
   });
-  $("#homeButton").click (function() {
+  $("#homeButton").click(function() {
     jumpHomeP();
   });
-  $("#fixButton").click (function() {
+  $("#fixButton").click(function() {
     jumpFixP();
   });
-  $("#positionsB").click (function() {
+  $("#positionsB").click(function() {
     jumpC1();
     fixPositionF();
   });
-  $("#trackB").click (function() {
+  $("#trackB").click(function() {
     jumpC2();
     track();
   });
-  $("#historyTrackB").click (function() {
+  $("#historyTrackB").click(function() {
     jumpC3();
     historyTrack();
   });
-  $("#zoomB1").click (function() {
+  $("#zoomB1").click(function() {
     zoomC1();
     init();
     $("#zoomN").html("100%");
   });
-  $("#zoomB2").click (function() {
+  $("#zoomB2").click(function() {
     zoomC2();
     init();
     $("#zoomN").html("100%");
   });
-  var num = getNum_tags();
+  var num = getNumTags();
   $("#radio").on ("click", function() {
     for (var i = 0; i < num; i++) {
       $("#tag" + i).get(0).checked = true;

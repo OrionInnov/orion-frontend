@@ -1,4 +1,10 @@
+/**
+ * @fileoverview Description of file, its uses and information about its
+ * dependencies.
+ */
+
 var configSet, calibrationC = [[NaN, NaN], [NaN, NaN]];
+
 function getTagNameset() {
   $.ajax ({
     type: "GET",

@@ -1,6 +1,8 @@
-//
-//
-//
+/**
+ * @fileoverview Description of file, its uses and information about its
+ * dependencies.
+ */
+
 var canvasZoom = document.getElementById("canvas");
 
 var img1,//图片对象
@@ -24,8 +26,8 @@ function init() {
 function windowToCanvas(canvasZoom,x,y) {
   var bbox = canvasZoom.getBoundingClientRect();
   return {
-    x:x - bbox.left - (bbox.width - canvasZoom.offsetWidth) / 2,
-    y:y - bbox.top - (bbox.height - canvasZoom.offsetHeight) / 2
+    x: x - bbox.left - (bbox.width - canvasZoom.offsetWidth) / 2,
+    y: y - bbox.top - (bbox.height - canvasZoom.offsetHeight) / 2
   };
 }
 
