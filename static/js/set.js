@@ -124,9 +124,9 @@ function drawPoint() {
   $("#confirmF").get(0).onmousedown = function() {
     if (x1 == x2 || y1 == y2 || xa1 == xa2 || ya1 == ya2) {
       if ($("#inputNameEn").html() == "输入姓名") {
-        alert("Error：the coordinate value of reference points are equal，无法校准坐标！");
+        alert("错误：参照点坐标值相同，无法校准坐标！");
       } else {
-        alert("Please upload map!");
+        alert("Error：the coordinate value of reference points are equal!");
       };
       return false;
     };
