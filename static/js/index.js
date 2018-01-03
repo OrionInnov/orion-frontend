@@ -66,58 +66,24 @@ function canvasDefine() {
   $("#canvas2").css("display", "none");
 }
 canvasDefine();
-function jumpC1() {
+function jumpC(c1, c2, c3) {
   $("#myCanvas0").css("display", "block");
-  $("#myCanvas1").css("display", "block");
-  $("#myCanvas2").css("display", "none");
-  $("#myCanvas3").css("display", "none");
+  $(c1).css("display", "block");
+  $(c2).css("display", "none");
+  $(c3).css("display", "none");
   $("#zoomN").css("display", "none");
-  scroll();
   stopOverwrite1();
   stopOverwrite2();
 }
-function jumpC2() {
-  $("#myCanvas0").css("display", "block");
-  $("#myCanvas1").css("display", "none");
-  $("#myCanvas2").css("display", "block");
-  $("#myCanvas3").css("display", "none");
-  $("#zoomN").css("display", "none");
-  scroll();
-  stopOverwrite1();
-  stopOverwrite2();
-}
-function jumpC3() {
-  $("#myCanvas0").css("display", "block");
-  $("#myCanvas1").css("display", "none");
-  $("#myCanvas2").css("display", "none");
-  $("#myCanvas3").css("display", "block");
-  $("#zoomN").css("display", "none");
-  scroll();
-  stopOverwrite1();
-  stopOverwrite2();
-  //document.write(dataURL1);
-}
-function zoomC1() {
+function zoomC(c1, c2) {
   $("#myCanvas0").css("display", "none");
   $("#myCanvas1").css("display", "none");
   $("#myCanvas2").css("display", "none");
   $("#myCanvas3").css("display", "none");
   $("#canvas0").css("display", "block");
-  $("#canvas1").css("display", "block");
-  $("#canvas2").css("display", "none");
+  $(c1).css("display", "block");
+  $(c2).css("display", "none");
   $("#zoomN").css("display", "block");
-  scroll();
-}
-function zoomC2() {
-  $("#myCanvas0").css("display", "none");
-  $("#myCanvas1").css("display", "none");
-  $("#myCanvas2").css("display", "none");
-  $("#myCanvas3").css("display", "none");
-  $("#canvas0").css("display", "block");
-  $("#canvas1").css("display", "none");
-  $("#canvas2").css("display", "block");
-  $("#zoomN").css("display", "block");
-  scroll();
 }
 
 function loadFile(file) {
@@ -128,13 +94,13 @@ function getPosition() {
   var positions;
   $.ajax ({
     type: "GET",
-    url: "http://localhost:8000/_positions",
+    url: "http://localhost:8000/positions",
     //url: "http://192.168.100.6:8000/_positions",
     dataType: "json",
     async: false,
     success: function(result) {
       positions = result;
-      for (var i = 0; i < eval(positions).length; i++) {
+      for (var i = 0; i < positions.length; i++) {
         positions[i][0] = calibrationC[0][0] * parseFloat(positions[i][0]);
         positions[i][1] = calibrationC[0][1] * parseFloat(positions[i][1]);
       };
@@ -145,24 +111,7 @@ function getPosition() {
   });
   return positions;
 }
-
-function getNumTags() {
-  var num;
-  $.ajax ({
-    type: "GET",
-    url: "http://localhost:8000/_config",
-    //url: "http://192.168.100.6:8000/_positions",
-    dataType: "json",
-    async: false,
-    success: function(result) {
-      num = result.num_tags;
-    },
-    error: function(result) {
-      //console.log("fuck");
-    }
-  });
-  return num;
-}
+getPosition();
 
 function uploadImg() {
   var form = new FormData($("#f1")[0]);
@@ -186,27 +135,26 @@ function uploadImg() {
 }
 
 //Fix position.
-var dataURL0;
+var dataURL0 = 0, dataURL1 = 0, dataURL2 = 0;
 function drawBackground() {
-  var myBackground = new Image();
-  myBackground.src = POSITION_IMG_URL;
-  var c0 = $("#myCanvas0");
+  var myBackground = new Image(),
+      c0 = $("#myCanvas0");
   var ctx0 = c0.get(0).getContext("2d");
+  myBackground.src = POSITION_IMG_URL;
   myBackground.onload = function() {
     ctx0.drawImage(myBackground, 0, 0, 840, 840);
     dataURL0 = c0.get(0).toDataURL();
   };
 }
 drawBackground();
-var dataURL1 = 0;
-var dataURL2 = 0;
+
 function canvasInit() {
-  var c1 = $("#myCanvas1");
-  var c2 = $("#myCanvas2");
-  var c3 = $("#myCanvas3");
-  var ctx1 = c1.get(0).getContext("2d");
-  var ctx2 = c2.get(0).getContext("2d");
-  var ctx3 = c3.get(0).getContext("2d");
+  var c1 = $("#myCanvas1"),
+      c2 = $("#myCanvas2"),
+      c3 = $("#myCanvas3");
+  var ctx1 = c1.get(0).getContext("2d"),
+      ctx2 = c2.get(0).getContext("2d"),
+      ctx3 = c3.get(0).getContext("2d");
   ctx1.save();
   ctx2.save();
   ctx3.save();
@@ -215,33 +163,30 @@ function canvasInit() {
   ctx3.translate(calibrationC[1][0], calibrationC[1][1]);
 };
 function canvasRestore() {
-  var c1 = $("#myCanvas1");
-  var c2 = $("#myCanvas2");
-  var c3 = $("#myCanvas3");
-  var ctx1 = c1.get(0).getContext("2d");
-  var ctx2 = c2.get(0).getContext("2d");
-  var ctx3 = c3.get(0).getContext("2d");
+  var c1 = $("#myCanvas1"),
+      c2 = $("#myCanvas2"),
+      c3 = $("#myCanvas3");
+  var ctx1 = c1.get(0).getContext("2d"),
+      ctx2 = c2.get(0).getContext("2d"),
+      ctx3 = c3.get(0).getContext("2d");
   ctx1.restore();
   ctx2.restore();
   ctx3.restore();
 }
 function fixPositionF() {
   var pauseStatus = true;
-  var c1 = $("#myCanvas1");
-  var ctx = c1.get(0).getContext("2d");
-  var num = getNumTags();
   function fixPosition() {
-    var x, y;
-    var positions = getPosition();
-    x = new Array();
-    y = new Array();
-    x[49] = 0;
-    y[49] = 0;
+    var c1 = $("#myCanvas1"),
+        num = configSet.tags.length,
+        myImage = new Image(),
+        positions = getPosition(),
+        x = [],
+        y = [];
+    var ctx = c1.get(0).getContext("2d");
     for (var k = 0; k < num; k++) {
-      x[k] = positions[k][0] - 5;
-      y[k] = positions[k][1] - 5;
+      x[k] = positions[k][0] - 10;
+      y[k] = positions[k][1] - 10;
     };
-    var myImage = new Image();
     myImage.src = MARKER_IMG_URL;
     ctx.fillStyle = "#00F";
     ctx.globalCompositeOperation = "copy";
@@ -251,10 +196,8 @@ function fixPositionF() {
       for (var i = 0; i < num; i++) {
         (function() {
           if ($("#tag" + i).get(0).checked == true) {
-            ctx.drawImage(myImage, x[i], y[i], 10, 10);
-            ctx.fillText(configSet.tag_names[i], x[i] + 10, y[i]);
-          } else if ($("#tag" + i) == false) {
-            return false;
+            ctx.drawImage(myImage, x[i], y[i], 20, 20);
+            ctx.fillText(configSet.tags[i].name, x[i] + 20, y[i]);
           };
         })();
       };
@@ -267,24 +210,23 @@ function fixPositionF() {
   $("#pauseB").click(function() {
     pauseStatus = false;
   });
-  overwrite1 = setInterval(fixPosition, 200);
+  overwrite1 = setInterval(fixPosition, 500);
 }
 
 //Track.
 function track() {
-  var a,b,c,d;
-  a = [];
-  b = [];
-  c = [];
-  d = [];
-  var num = getNumTags();
-  var positions = getPosition();
-  var c2 = $("#myCanvas2");
+  var a = [],
+      b = [],
+      c = [],
+      d = [],
+      num = configSet.tags.length,
+      positions = getPosition(),
+      c2 = $("#myCanvas2");
+  var ctx = c2.get(0).getContext("2d");
   for (var j = 0; j < num; j++) {
     c[j] = positions[j][0];
     d[j] = positions[j][1];
   };
-  var ctx = c2.get(0).getContext("2d");
   ctx.lineWidth = 5;
   ctx.strokeStyle = "#F00";
   ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
@@ -299,8 +241,6 @@ function track() {
           a[i] = positions1[i][0];
           b[i] = positions1[i][1];
           drawTrack(ctx, c[i], d[i], a[i], b[i], 2, "#F00");
-        } else if ($("#tag" + i) == false) {
-          return false;
         };
       })();
     };
@@ -313,29 +253,26 @@ function track() {
           c[i] = positions2[i][0];
           d[i] = positions2[i][1];
           drawTrack(ctx, a[i], b[i], c[i], d[i], 2, "#F00");
-        } else if ($("#tag" + i) == false) {
-          return false;
         };
       })();
     };
   }
   function delay() {
-    var p1 = setTimeout(point1, 0);
-    var p2 = setTimeout(point2, 300);
+    var p1 = setTimeout(point1, 0),
+        p2 = setTimeout(point2, 1000);
     $("#trackB").click(function() {
       clearTimeout(p1);
       clearTimeout(p2);
     });
     dataURL2 = c2.get(0).toDataURL();
   }
-  overwrite2 = setInterval(delay, 600);
+  overwrite2 = setInterval(delay, 2000);
 }
 
 //historyTrack
 function historyTrack() {
-  var num = getNumTags();
-  var positionH = [];
-  var timedata = [$("#datetimeP1").val(), $("#datetimeP2").val()];
+  var positionH = [],
+      timedata = [$("#datetimeP1").val(), $("#datetimeP2").val()];
   $.ajax ({
     type: "POST",
     url: "http://localhost:8000/history_track",
@@ -348,13 +285,13 @@ function historyTrack() {
     },
     error: function(result) {
       console.log("cao");
-      console.log("fuck");
     }
   });
   var c = $("#myCanvas3");
   var ctx = c.get(0).getContext("2d");
   ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
   function drawHistoryPosition() {
+    var num = configSet.tags.length;
     console.log(positionH[9][9]);
     for (var i = 0; i < num; i++) {
       (function() {
@@ -363,8 +300,6 @@ function historyTrack() {
             drawTrack(ctx, positionH[j][i][0], positionH[j][i][1], positionH[j+1][i][0], positionH[j+1][i][1], 2, "#F00");
           };
           drawArrow(ctx, positionH[8][i][0], positionH[8][i][1], positionH[9][i][0], positionH[9][i][1], 30, 10, 2, "#F00");
-        } else if ($("#tag" + i) == false) {
-          return false;
         };
       })();
     };
@@ -432,8 +367,8 @@ function drawArrow(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
 
 //onscroll
 window.onscroll = function() {
-  var topScroll = document.documentElement.scrollTop||document.body.scrollTop;
-  var select = $("#selectA");
+  var topScroll = document.documentElement.scrollTop||document.body.scrollTop,
+      select = $("#selectA");
   if (topScroll > 222) {
     select.css("position", "fixed");
     select.css("zIndex", "500px");
@@ -455,15 +390,15 @@ window.onscroll = function() {
   }
 };
 
-function adjust() {
-  var map1 = $("#map1");
-  var select = $("#selectA");
-  var w = $("#page-inner1").actual("width");
-  var ws = $("#selectA").actual("width");
-  w = w - ws - 45;
-  map1.width(w);
-}
 window.onload = function() {
+  function adjust() {
+    var map1 = $("#map1"),
+        select = $("#selectA"),
+        w = $("#page-inner1").actual("width"),
+        ws = $("#selectA").actual("width");
+    w = w - ws - 45;
+    map1.width(w);
+  }
   adjust();
   window.onresize = adjust;
 };
@@ -556,12 +491,6 @@ window.onload = function() {
   $("#leaveS").click(function() {
     leaveSetP();
     canvasInit();
-    $("#selectAdd").empty();
-    for (var i = 0; i < configSet.num_tags; i++) {
-      $("#selectAdd").append(function() {
-        return "<input id='tag" + i + "' type='checkbox' class='selecta'>" + configSet.tag_names[i] + "<br/>";
-      });
-    };
   });
   $("#homeButton").click(function() {
     jumpHomeP();
@@ -570,35 +499,34 @@ window.onload = function() {
     jumpFixP();
   });
   $("#positionsB").click(function() {
-    jumpC1();
+    jumpC("#myCanvas1", "#myCanvas2", "#myCanvas3");
     fixPositionF();
   });
   $("#trackB").click(function() {
-    jumpC2();
+    jumpC("#myCanvas2", "#myCanvas1", "#myCanvas3");
     track();
   });
   $("#historyTrackB").click(function() {
-    jumpC3();
+    jumpC("#myCanvas3", "#myCanvas1", "#myCanvas2");
     historyTrack();
   });
   $("#zoomB1").click(function() {
-    zoomC1();
+    zoomC("#canvas1", "#canvas2");
     init();
     $("#zoomN").html("100%");
   });
   $("#zoomB2").click(function() {
-    zoomC2();
+    zoomC("#canvas2", "#canvas1");
     init();
     $("#zoomN").html("100%");
   });
-  var num = getNumTags();
   $("#radio").on ("click", function() {
-    for (var i = 0; i < num; i++) {
+    for (var i = 0; i < configSet.tags.length; i++) {
       $("#tag" + i).get(0).checked = true;
     };
   });
   $("#multiple").on ("click", function() {
-    for (var i = 0; i < num; i++) {
+    for (var i = 0; i < configSet.tags.length; i++) {
       $("#tag" + i).get(0).checked = false;
     };
   });

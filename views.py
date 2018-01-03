@@ -23,7 +23,7 @@ from ..config import load_config
 from ..config import save_config
 
 
-VALID_IMG_EXT = [".jpg", ".png", ".svg"]
+VALID_IMG_EXT = ["jpg", "png", "svg"]
 
 
 ################################ STATIC ROUTES ################################
@@ -41,7 +41,8 @@ def getconf():
 @app.route("/setconf", methods=["POST"])
 def setconf():
 
-    save_config(request.get_data(), cfg_path)
+    config = json.loads(request.get_data())
+    save_config(config, cfg_path)
     return json.dumps({"status": 1})
 
 
@@ -68,7 +69,7 @@ def upload():
 
     # ensure that file extension is valid
     ext = file.filename.split(".")[-1]
-    if ext.lowercase not in VALID_IMG_EXT:
+    if ext.lower() not in VALID_IMG_EXT:
         return json.dumps({"status": 0})
 
     # save the image
