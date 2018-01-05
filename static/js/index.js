@@ -106,7 +106,7 @@ function getPosition() {
       };
     },
     error: function(result) {
-      //console.log("fuck");
+      //console.log("");
     }
   });
   return positions;
@@ -126,10 +126,10 @@ function uploadImg() {
     success: function(result) {
       drawBackground();
       drawBackground1();
-      console.log("niubi");
+      //console.log("");
     },
     error: function(result) {
-      console.log("fuck");
+      //console.log("");
     }
   });
 }
@@ -284,7 +284,7 @@ function historyTrack() {
       console.log(result);
     },
     error: function(result) {
-      console.log("cao");
+      console.log("");
     }
   });
   var c = $("#myCanvas3");
@@ -414,7 +414,7 @@ window.onload = function() {
     $("#preparationsP").html("<nobr class='open-sans'>Map</nobr>");
     $("#confirmN").html("<span class='glyphicon glysphicon-ok'><nobr class='open-sans'>&nbsp&nbspBind&nbsp&nbsp</nobr></span>");
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'><nobr class='open-sans'>Back</nobr></span>");
-    $("#homeH").html("<h1 class='page-header'>Indoor Localization System<small>Please upload map.</small></h1><ol class='breadcrumb'><li><a>Home</a></li>&nbsp<li class='active'>Preparations</li></ol>");
+    $("#homeH").html("<h1 class='page-header'>Indoor Localization System<small>Please upload map.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Preparations</li></ol>");
     $("#uploadB").html("Upload");
     if ($("#fileBackground").val() == "") {
       $("#fileName").html("no files");
@@ -422,9 +422,9 @@ window.onload = function() {
     $("#backgroundSubmit").html("Submit");
     $("#setB").html("<span class='glyphicon glyphicon-exclamation-sign'>Calibration</span>");
     $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>IndoorLocation</strong></a></div>");
-    $("#homeButton").html("<i class='fa fa-desktop'></i>&nbsp&nbsp&nbsp&nbsp&nbspHome");
-    $("#fixButton").html("<i class='fa fa-desktop'></i>&nbsp&nbsp&nbsp&nbsp&nbspFix position");
-    $("#fixPH").html("<h1 class='page-header'>Fix position <small>Positioning tags.</small></h1><ol class='breadcrumb'><li><a>Home</a></li>&nbsp<li class='active'>Fix position</li></ol>");
+    $("#homeButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHome");
+    $("#fixButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspFix position");
+    $("#fixPH").html("<h1 class='page-header'>Fix position <small>Positioning tags.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Fix position</li></ol>");
     $("#positionsB").html("<span class='glyphicon glyphicon-play'><nobr class='open-sans'>Startposition</nobr></span>");
     $("#pauseB").html("<span class='glyphicon glyphicon-pause'><nobr class='open-sans'>Pause</nobr></span>");
     $("#trackB").html("<span class='glyphicon glyphicon-circle-arrow-right'><nobr class='open-sans'>Track</nobr></span>");
@@ -432,8 +432,8 @@ window.onload = function() {
     $("#zoomB2").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoomtrack&nbsp</nobr></span>");
     $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'><nobr class='open-sans'>Historytrack</nobr></span>");
     $("#positionHead").html("Map<div id='zoomN' style='position: relative; float: right'></div>");
-    $("#radio").html("<span class=''>&nbsp all &nbsp&nbsp</span>");
-    $("#multiple").html("<span class=''>clear</span>");
+    $("#radio").html("<span class=''>ALL</span>");
+    $("#multiple").html("<span class=''>CLR</span>");
   });
   $("#orionChinese").click(function() {
     $("#preparationsHead").html("准备工作 <small>请确定参照点以及绑定标签</small>");
@@ -444,17 +444,17 @@ window.onload = function() {
     $("#preparationsP").html("地图");
     $("#confirmN").html("<span class='glyphicon glysphicon-ok'>绑定</span>");
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'>返回</span>");
-    $("#homeH").html("<h1 class='page-header'>室内定位系统<small>请上传地图</small></h1><ol class='breadcrumb'><li><a>首页</a></li>&nbsp<li class='active'>准备工作</li></ol>");
-    $("#upload").html("上传");
+    $("#homeH").html("<h1 class='page-header'>室内定位系统<small>请上传地图</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>首页</a></li>&nbsp<li class='active'>准备工作</li></ol>");
+    $("#uploadB").html("上传");
     if ($("#fileBackground").val() == "") {
       $("#fileName").html("未上传文件");
     };
     $("#backgroundSubmit").html("提交");
     $("#setB").html("<span class='glyphicon glyphicon-exclamation-sign'>校准地图</span>");
     $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>室内定位系统</strong></a></div>");
-    $("#homeButton").html("<i class='fa fa-dashboard'></i>&nbsp&nbsp&nbsp&nbsp&nbsp首页");
-    $("#fixButton").html("<i class='fa fa-desktop'></i>&nbsp&nbsp&nbsp&nbsp&nbsp定位");
-    $("#fixPH").html("<h1 class='page-header'>定位<small>为多个标签定位.</small></h1><ol class='breadcrumb'><li><a>首页</a></li>&nbsp<li class='active'>定位</li></ol>");
+    $("#homeButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp首页");
+    $("#fixButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp定位");
+    $("#fixPH").html("<h1 class='page-header'>定位<small>为多个标签定位.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>首页</a></li>&nbsp<li class='active'>定位</li></ol>");
     $("#positionsB").html("<span class='glyphicon glyphicon-play'>开始定位</span>");
     $("#pauseB").html("<span class='glyphicon glyphicon-pause'>暂停</span>");
     $("#trackB").html("<span class='glyphicon glyphicon-circle-arrow-right'>显示轨迹</span>");

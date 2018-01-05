@@ -29,10 +29,10 @@
       <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
           <li>
-            <a id="homeButton" href="javascript:void(0)"><i class="fa fa-dashboard"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a>
+            <a id="homeButton" href="javascript:void(0)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a>
           </li>
           <li>
-            <a id="fixButton" href="javascript:void(0)"><i class="fa fa-desktop"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定位</a>
+            <a id="fixButton" href="javascript:void(0)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定位</a>
           </li>
 		  <!--<li>
             <a id="rollButton" href="javascript:void(0)" onclick="jumpRollC()"><i class="fa fa-desktop"></i>点名（hava a roll call of pupils）</a>
@@ -47,7 +47,7 @@
         <h1 class="page-header">
           室内定位系统<small>请上传地图</small>
         </h1>
-        <ol id="" class="breadcrumb">
+        <ol id="" class="breadcrumb borderRadiusHead">
           <li><a>首页</a></li>
           <li class="active">准备工作</li>
         </ol>
@@ -140,7 +140,7 @@
         <h1 class="page-header">
           定位 <small>为多个标签定位</small>
         </h1>
-        <ol class="breadcrumb">
+        <ol class="breadcrumb borderRadiusHead">
           <li><a>首页</a></li>
           <li class="active">定位</li>
         </ol>
@@ -194,8 +194,8 @@
         <div id="page-inner1" class="row">
           <div id="map1">
           <!-- Advanced Tables -->
-            <div class="panel panel-default">
-              <div id="positionHead" class="panel-heading">
+            <div class="panel panel-default borderRadius">
+              <div id="positionHead" class="panel-heading borderRadiusTop">
                 校园地图
                 <div id="zoomN" style="position: relative; float: right"></div>
               </div>
@@ -216,17 +216,21 @@
             </div>
           </div>
           <div id="selectA">
-            <div class="panel overf">
+            <form>
+              <div class="row" style="padding: 0px 15px">
+                <button id="radio" type="button" class="btn btn-default col-xs-6">
+                  <span class="">全选</span>
+                </button>
+                <button id="multiple" type="button" class="btn btn-default col-xs-6">
+                  <span class="">重置</span>
+                </button>
+              </div>
+            </form>
+            <div class="panel overf borderRadiusBottom">
               <div class="panel-body">
-                <div id="select">
+                <div id="select" style='white-space: nowrap'>
                   <form class="form-inline">
-                    <button id="radio" type="button" class="btn btn-default">
-                      <span class="">全选</span>
-                    </button>
-                    <button id="multiple" type="button" class="btn btn-default">
-                      <span class="">重置</span>
-                    </button>
-                    <div id="selectAdd"></div>
+                    <div id="selectAdd" ></div>
                   </form>
                 </div>
               </div>
@@ -244,7 +248,7 @@
         <h1 class="page-header">
           点名<small>学生点名</small>
         </h1>
-        <ol class="breadcrumb">
+        <ol class="breadcrumb borderRadius">
           <li><a>首页</a></li>
           <li class="active">点名</li>
         </ol>

@@ -7,7 +7,7 @@ var canvasZoom = document.getElementById("canvas");
 
 var img0 = new Image(),
     img1 = new Image(),
-    img2 = new Image();
+    img2 = new Image(),
     imgX = 0,
     imgY = 0,
     imgScale = 1;
@@ -102,7 +102,7 @@ canvasZoom.onmousewheel = canvasZoom.onwheel = function(event) {
     };
     imgX = imgX * imgScale / imgScale0 - pos.x * (imgScale / imgScale0 - 1);
     imgY = imgY * imgScale / imgScale0 - pos.y * (imgScale / imgScale0 - 1);
-  }else {
+  } else {
     imgScale -= 0.2;
     $("#zoomN").html(imgScale);
     if (imgScale < 0.3) {

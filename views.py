@@ -36,13 +36,12 @@ def index():
 @app.route("/getconf")
 def getconf():
 
-    return json.dumps(load_config(path=cfg_path))
+    return json.dumps(load_config(path=cfg_path, ldall=False))
 
 @app.route("/setconf", methods=["POST"])
 def setconf():
 
-    config = json.loads(request.get_data())
-    save_config(config, cfg_path)
+    save_config(json.loads(request.get_data()), cfg_path)
     return json.dumps({"status": 1})
 
 

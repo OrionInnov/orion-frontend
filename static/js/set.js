@@ -21,19 +21,19 @@ function getTagNameset() {
           return "<option value='" + tagNames[i].name + "' class='selecta'>" + tagNames[i].name + "</option>";
         });
         $("#selectAdd").append(function() {
-          return "<input id='tag" + i + "' type='checkbox' class='selecta'>" + tagNames[i].name + "<br/>";
+          return "<input id='tag" + i + "' type='checkbox' class='selecta' style='white-space: nowrap'>" + tagNames[i].name + "<br/>";
         });
       };
     },
     error: function(result) {
-      //console.log("fuck");
+      //console.log("");
     }
   });
 }
 getTagNameset();
 function changeTagName() {
   $("#confirmN").on ("click", function() {
-    var tagNames = configSet.tags;
+    var tagNames = configSet.tags,
         tagName = $("#selectI").val(),
         name  = $("#nameT").val();
     for (var i = 0; i < tagNames.length; i++) {
@@ -57,10 +57,10 @@ function changeTagName() {
                 return "<input id='tag" + i + "' type='checkbox' class='selecta'>" + tagNames[i].name + "<br/>";
               });
             };
-            console.log("niu bi");
+            //console.log("");
           },
           error: function(result) {
-            console.log("cao");
+            //console.log("");
           }
         });
       };
