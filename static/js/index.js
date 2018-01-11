@@ -124,6 +124,8 @@ function uploadImg() {
     processData: false,
     contentType: false,
     success: function(result) {
+      var imgBase64 = JSON.parse(result)
+      POSITION_IMG_URL = imgBase64.img;
       drawBackground();
       drawBackground1();
       //console.log("");
@@ -406,6 +408,11 @@ window.onload = function() {
 //Binding events.
 (function() {
   $("#orionEnglish").click(function() {
+    $("#navHead1").html("Intraduction");
+    $("#navHead2").html("xxxxxx");
+    $("#navHead3").html("xxxxxx");
+    $("#navHead4").html("xxxxxx");
+    $("#navHead5").html("xxxxxx");
     $("#preparationsHead").html("Preparations <small>Please confirm reference points and bind tags.</small>");
     $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>First&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</nobr></span>");
     $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>Second</nobr></span>");
@@ -436,6 +443,11 @@ window.onload = function() {
     $("#multiple").html("<span class=''>CLR</span>");
   });
   $("#orionChinese").click(function() {
+    $("#navHead1").html("系统介绍");
+    $("#navHead2").html("使用说明");
+    $("#navHead3").html("注意事项");
+    $("#navHead4").html("关于奥新");
+    $("#navHead5").html("联系我们");
     $("#preparationsHead").html("准备工作 <small>请确定参照点以及绑定标签</small>");
     $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'>第一点</span>");
     $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'>第二点</span>");

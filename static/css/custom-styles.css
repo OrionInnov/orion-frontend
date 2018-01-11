@@ -660,6 +660,12 @@ line-height: 1.428571429;
   right: 0px;
   z-index: 600;
 }
+.top-head {
+  width: auto;
+  position: fixed;
+  left: 290px;
+  z-index: 600;
+}
 /*----------------------------------------------
     MEDIA QUERIES
 ------------------------------------------------*/
@@ -739,6 +745,9 @@ top: 93px;
 
  }
  .languageB {
+   position: absolute;
+ }
+ .top-head {
    position: absolute;
  }
  }
@@ -830,6 +839,12 @@ font-size: 19px;
 .borderRadiusBottom {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+}
+.headPadding {
+  padding: 20px 20px 20px 20px;
+}
+.headPadding:hover {
+  background-color: #EDEDED;
 }
 footer a {
   color: #8d898c;

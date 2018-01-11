@@ -4,21 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+<style type="text/css">
+/* menu */
+/*.menu{height:80px;background:#efefef;position:relative;}
+.menu .nav{width:960px;height:80px;margin:0 auto;}*/
+.headPadding .box{width:500px;height:50px;position:absolute;top:60px;left:-30px;background:#EDEDED;display:none;height:200px;}
+.headPadding .box .top-head a{display:block;height:50px;float:left;color:#000;line-height:50px;border:none;background:none;padding:0;width:96px;text-align:center;}
+.headPadding .box .top-head a:hover{text-decoration:underline;color:#46bd01}
+</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datetimepicker.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/custom-styles.css') }}">
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery.actual/1.0.19/jquery.actual.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.10.1/moment.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.19.4/moment-with-locales.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.actual.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/moment-with-locales.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}"></script>
 </head>
 <body>
   <div>
-    <div class= "languageB selecta">
-      <a id="orionChinese">中文</a>&nbsp;&nbsp;<a id="orionEnglish">English</a>
+    <nav class="top-head">
+      <div class="headPadding navbar-header selecta">
+        <span id="navHead1">系统介绍</span>
+        <div class="box">
+          <div class="top-head">
+            <a>定位系统</a>
+            <a>点名系统</a>
+            <a>监狱系统</a>
+            <a>工厂系统</a>
+          </div>
+				</div>
+      </div>
+      <div id="" class="headPadding navbar-header selecta">
+        <span id="navHead2">使用说明</span>
+        <div class="box">
+          <div class="top-head">
+					  <a>上传地图</a>
+					  <a>校准地图</a>
+					  <a>定位操作</a>
+					  <a>历史轨迹</a>
+          </div>
+				</div>
+      </div>
+      <div id="" class="headPadding navbar-header selecta">
+        <span id="navHead3">注意事项</span>
+      </div>
+      <div id="" class="headPadding navbar-header selecta">
+        <span id="navHead4">关于奥新</span>
+      </div>
+      <div id="" class="headPadding navbar-header selecta">
+        <span id="navHead5">联系我们</span>
+      </div>
+    </nav>
+    <div class="languageB selecta">
+      <span id="orionChinese">中文</span>&nbsp;&nbsp;<span id="orionEnglish">English</span>
     </div>
     <nav id="nav1" class="navbar navbar-default top-navbar" role="navigation">
       <div class="navbar-header">
@@ -138,7 +179,7 @@
     <div id="page-fixP">
       <div id="fixPH" class="header">
         <h1 class="page-header">
-          定位 <small>为多个标签定位</small>
+          定位<small>为多个标签定位</small>
         </h1>
         <ol class="breadcrumb borderRadiusHead">
           <li><a>首页</a></li>
@@ -196,7 +237,7 @@
           <!-- Advanced Tables -->
             <div class="panel panel-default borderRadius">
               <div id="positionHead" class="panel-heading borderRadiusTop">
-                校园地图
+                地图
                 <div id="zoomN" style="position: relative; float: right"></div>
               </div>
               <div class="panel-body">
@@ -322,6 +363,22 @@
   <script type=text/javascript>
     POSITION_IMG_URL = "{{ url_for('static', filename='img/position.png') }}";
     MARKER_IMG_URL = "{{ url_for('static', filename='img/marker.png') }}";
+  </script>
+  <script type="text/javascript">
+  $(function () {
+
+  	var winw = parseInt($(window).width());
+  	$('.headPadding .box').css({'padding-left':0,'padding-right':0,'margin-left':0});
+  	var navLi=$(".headPadding");
+  	navLi.mouseover(function () {
+  		$(this).find("a").addClass("current");
+  		$(this).find(".box").stop().slideDown(200);
+  	})
+  	navLi.mouseleave(function() {
+  		$(this).find("a").removeClass("current");
+  		$(this).find(".box").stop().slideUp(0);
+  	})
+  })
   </script>
   <script src="{{ url_for('static', filename='js/set.js') }}"></script>
   <script src="{{ url_for('static', filename='js/index.js') }}"></script>

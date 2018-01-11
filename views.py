@@ -6,6 +6,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import base64
 import json
 import os
 
@@ -23,7 +24,7 @@ from ..config import load_config
 from ..config import save_config
 
 
-VALID_IMG_EXT = ["jpg", "png", "svg"]
+VALID_IMG_EXT = ["jpg", "png"]
 
 
 ################################ STATIC ROUTES ################################
@@ -32,6 +33,13 @@ VALID_IMG_EXT = ["jpg", "png", "svg"]
 def index():
 
     return render_template("index.html")
+
+@app.route("/fonts/<path:path>")
+def static_fonts():
+
+    return send_from_directory(os.path.join("static", "fonts"))
+
+################################ DYNAMIC PAGES ################################
 
 @app.route("/getconf")
 def getconf():
@@ -44,17 +52,6 @@ def setconf():
     save_config(json.loads(request.get_data()), cfg_path)
     return json.dumps({"status": 1})
 
-
-################################ DYNAMIC PAGES ################################
-
-@app.route("/history", methods=["POST"])
-def history():
-
-    # TODO(fzliu): get this working
-    timedata = request.get_data()
-    print(timedata)
-    raise NotImplementedError()
-
 @app.route("/positions")
 def positions():
 
@@ -64,19 +61,31 @@ def positions():
 @app.route("/upload", methods=["POST"])
 def upload():
 
-    file = request.files["file"]
+    img = request.files["file"]
 
     # ensure that file extension is valid
-    ext = file.filename.split(".")[-1]
-    if ext.lower() not in VALID_IMG_EXT:
+    ext = img.filename.split(".")[-1].lower()
+    if ext not in VALID_IMG_EXT:
         return json.dumps({"status": 0})
 
     # save the image
     fname = "position." + ext
-    file.save(os.path.join(app.root_path, "static", "img", fname))
+    img.save(os.path.join(app.root_path, "static", "img", fname))
 
-    return json.dumps({"status": 1})
+    # create base64-encoded image
+    img.seek(0)
+    img_b64 = base64.b64encode(img.read())
+    img_b64 = "data:image/{0};base64,".format(ext) + img_b64
 
+    return json.dumps({"status": 1, "img": img_b64})
+
+@app.route("/history", methods=["POST"])
+def history():
+
+    # TODO(fzliu): get this working
+    timedata = request.get_data()
+    print(timedata)
+    raise NotImplementedError()
 
 ################################# DEBUG PAGES #################################
 
