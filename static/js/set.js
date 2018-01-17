@@ -4,6 +4,39 @@
  */
 
 var configSet, calibrationC = [[NaN, NaN], [NaN, NaN]];
+(function() {
+  var canvasSizeWidth = "840", canvasSizeHeight = "840",
+      canvasSize0 = document.getElementById("canvasSet");
+      canvasSize1 = document.getElementById("canvasPoint"),
+      canvasSize2 = document.getElementById("canvas"),
+      canvasSize3 = document.getElementById("canvas0"),
+      canvasSize4 = document.getElementById("canvas1"),
+      canvasSize5 = document.getElementById("canvas2"),
+      canvasSize6 = document.getElementById("myCanvas0"),
+      canvasSize7 = document.getElementById("myCanvas1"),
+      canvasSize8 = document.getElementById("myCanvas2"),
+      canvasSize9 = document.getElementById("myCanvas3");
+  canvasSize0.width = canvasSizeWidth;
+  canvasSize0.height = canvasSizeHeight;
+  canvasSize1.width = canvasSizeWidth;
+  canvasSize1.height = canvasSizeHeight;
+  canvasSize2.width = canvasSizeWidth;
+  canvasSize2.height = canvasSizeHeight;
+  canvasSize3.width = canvasSizeWidth;
+  canvasSize3.height = canvasSizeHeight;
+  canvasSize4.width = canvasSizeWidth;
+  canvasSize4.height = canvasSizeHeight;
+  canvasSize5.width = canvasSizeWidth;
+  canvasSize5.height = canvasSizeHeight;
+  canvasSize6.width = canvasSizeWidth;
+  canvasSize6.height = canvasSizeHeight;
+  canvasSize7.width = canvasSizeWidth;
+  canvasSize7.height = canvasSizeHeight;
+  canvasSize8.width = canvasSizeWidth;
+  canvasSize8.height = canvasSizeHeight;
+  canvasSize9.width = canvasSizeWidth;
+  canvasSize9.height = canvasSizeHeight;
+})();
 
 function getTagNameset() {
   $.ajax ({
@@ -14,8 +47,9 @@ function getTagNameset() {
     //async: false,
     success: function(result) {
       configSet = result;
-      var value,
-          tagNames = result.tags;
+      var tagNames = result.tags;
+      calibrationC = configSet.system.calib;
+      canvasInit();
       for (var i = 0; i < tagNames.length; i++) {
         $("#selectI").append(function() {
           return "<option value='" + tagNames[i].name + "' class='selecta'>" + tagNames[i].name + "</option>";
@@ -139,6 +173,22 @@ function drawPoint() {
     console.log(calibrationC[0][1]);
     console.log(calibrationC[1][0]);
     console.log(calibrationC[1][1]);
+    configSet.system.calib = calibrationC;
+    $.ajax ({
+      type: "POST",
+      url: "http://localhost:8000/setconf",
+      //url: "http://192.168.100.6:8000/_config",
+      dataType: "json",
+      //async: false,
+      data: JSON.stringify(configSet),
+      success: function(result) {
+        canvasInit();
+        //console.log("");
+      },
+      error: function(result) {
+        //console.log("");
+      }
+    });
   };
 }
 drawPoint();

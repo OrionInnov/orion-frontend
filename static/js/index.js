@@ -4,6 +4,20 @@
  */
 
 var overwrite1, overwrite2;
+(function() {
+  var winw = parseInt($(window).width());
+  $('.headPadding .box').css({'padding-left':0,'padding-right':0,'margin-left':0});
+  var navLi=$(".headPadding");
+  navLi.mouseover(function () {
+    $(this).find("a").addClass("current");
+    $(this).find(".box").stop().slideDown(200);
+  })
+  navLi.mouseleave(function() {
+    $(this).find("a").removeClass("current");
+    $(this).find(".box").stop().slideUp(0);
+  })
+})();
+
 function pageDefine() {
   $("#homeButton").addClass("active-menu");
   $("#page-wrapper").css("display", "block");
@@ -408,11 +422,11 @@ window.onload = function() {
 //Binding events.
 (function() {
   $("#orionEnglish").click(function() {
-    $("#navHead1").html("Intraduction");
-    $("#navHead2").html("xxxxxx");
-    $("#navHead3").html("xxxxxx");
-    $("#navHead4").html("xxxxxx");
-    $("#navHead5").html("xxxxxx");
+    $("#navHead1").html("SYSTEM");
+    $("#navHead2").html("INSTRUCTIONS");
+    $("#navHead3").html("PRECAUTIONS");
+    $("#navHead4").html("ABOUT");
+    $("#navHead5").html("CONTACT");
     $("#preparationsHead").html("Preparations <small>Please confirm reference points and bind tags.</small>");
     $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>First&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</nobr></span>");
     $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>Second</nobr></span>");
@@ -427,8 +441,8 @@ window.onload = function() {
       $("#fileName").html("no files");
     };
     $("#backgroundSubmit").html("Submit");
-    $("#setB").html("<span class='glyphicon glyphicon-exclamation-sign'>Calibration</span>");
-    $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>IndoorLocation</strong></a></div>");
+    $("#setB").html("<span class='glyphicon glyphicon-exclamation-sign'><nobr class='open-sans'>Calibration</nobr></span>");
+    $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>INDOORSYSTEM</strong></a></div>");
     $("#homeButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHome");
     $("#fixButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspFix position");
     $("#fixPH").html("<h1 class='page-header'>Fix position <small>Positioning tags.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Fix position</li></ol>");
@@ -502,7 +516,6 @@ window.onload = function() {
   }});
   $("#leaveS").click(function() {
     leaveSetP();
-    canvasInit();
   });
   $("#homeButton").click(function() {
     jumpHomeP();
