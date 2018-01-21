@@ -109,7 +109,6 @@ function getPosition() {
   $.ajax ({
     type: "GET",
     url: "http://localhost:8000/positions",
-    //url: "http://192.168.100.6:8000/_positions",
     dataType: "json",
     async: false,
     success: function(result) {
@@ -120,19 +119,18 @@ function getPosition() {
       };
     },
     error: function(result) {
-      //console.log("");
+      console.log("could not get positions");
+      positions = null;
     }
   });
   return positions;
 }
-getPosition();
 
 function uploadImg() {
   var form = new FormData($("#f1")[0]);
   $.ajax ({
     type: "POST",
     url: "http://localhost:8000/upload",
-    //url: "http://192.168.100.6:8000/_positions",
     data: form,
     cache: false,
     processData: false,
@@ -142,10 +140,9 @@ function uploadImg() {
       POSITION_IMG_URL = imgBase64.img;
       drawBackground();
       drawBackground1();
-      //console.log("");
     },
     error: function(result) {
-      //console.log("");
+      console.log("could not upload image");
     }
   });
 }
@@ -192,41 +189,43 @@ function canvasRestore() {
 function fixPositionF() {
   var pauseStatus = true;
   function fixPosition() {
-    var c1 = $("#myCanvas1"),
-        num = configSet.tags.length,
-        myImage = new Image(),
-        positions = getPosition(),
-        x = [],
-        y = [];
-    var ctx = c1.get(0).getContext("2d");
-    for (var k = 0; k < num; k++) {
-      x[k] = positions[k][0] - 10;
-      y[k] = positions[k][1] - 10;
-    };
-    myImage.src = MARKER_IMG_URL;
-    ctx.fillStyle = "#00F";
-    ctx.globalCompositeOperation = "copy";
-    ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
-    myImage.onload = function() {
-      ctx.globalCompositeOperation = "source-over";
-      for (var i = 0; i < num; i++) {
-        (function() {
-          if ($("#tag" + i).get(0).checked == true) {
-            ctx.drawImage(myImage, x[i], y[i], 20, 20);
-            ctx.fillText(configSet.tags[i].name, x[i] + 20, y[i]);
-          };
-        })();
+    var positions = getPosition();
+      if (positions !== null) {
+      var c1 = $("#myCanvas1"),
+          num = configSet.tags.length,
+          myImage = new Image(),
+          x = [],
+          y = [];
+      var ctx = c1.get(0).getContext("2d");
+      for (var k = 0; k < num; k++) {
+        x[k] = positions[k][0] - 10;
+        y[k] = positions[k][1] - 10;
       };
-      dataURL1 = c1.get(0).toDataURL();
-    };
-    if (pauseStatus == false) {
-      stopOverwrite1();
+      myImage.src = MARKER_IMG_URL;
+      ctx.fillStyle = "#00F";
+      ctx.globalCompositeOperation = "copy";
+      ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
+      myImage.onload = function() {
+        ctx.globalCompositeOperation = "source-over";
+        for (var i = 0; i < num; i++) {
+          (function() {
+            if ($("#tag" + i).get(0).checked == true) {
+              ctx.drawImage(myImage, x[i], y[i], 20, 20);
+              ctx.fillText(configSet.tags[i].name, x[i] + 20, y[i]);
+            };
+          })();
+        };
+        dataURL1 = c1.get(0).toDataURL();
+      };
+      if (pauseStatus == false) {
+        stopOverwrite1();
+      }
     };
   }
   $("#pauseB").click(function() {
     pauseStatus = false;
   });
-  overwrite1 = setInterval(fixPosition, 500);
+  overwrite1 = setInterval(fixPosition, 200);
 }
 
 //Track.
@@ -427,34 +426,34 @@ window.onload = function() {
     $("#navHead3").html("PRECAUTIONS");
     $("#navHead4").html("ABOUT");
     $("#navHead5").html("CONTACT");
-    $("#preparationsHead").html("Preparations <small>Please confirm reference points and bind tags.</small>");
-    $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>First&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</nobr></span>");
-    $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>Second</nobr></span>");
+    $("#preparationsHead").html("Preparations <small>Please input reference points and tag names.</small>");
+    $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>Coord 1</nobr></span>");
+    $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>Coord 2</nobr></span>");
     $("#confirmF").html("<span class='glyphicon glyphicon-ok'><nobr class='open-sans'>Confirm</nobr></span>");
     $("#inputNameEn").html("<nobr class='open-sans'>Name</nobr>");
     $("#preparationsP").html("<nobr class='open-sans'>Map</nobr>");
     $("#confirmN").html("<span class='glyphicon glysphicon-ok'><nobr class='open-sans'>&nbsp&nbspBind&nbsp&nbsp</nobr></span>");
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'><nobr class='open-sans'>Back</nobr></span>");
-    $("#homeH").html("<h1 class='page-header'>Indoor Localization System<small>Please upload map.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Preparations</li></ol>");
+    $("#homeH").html("<h1 class='page-header'>Indoor Localization System<small>Upload localization map.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Initialization</li></ol>");
     $("#uploadB").html("Upload");
     if ($("#fileBackground").val() == "") {
       $("#fileName").html("no files");
     };
     $("#backgroundSubmit").html("Submit");
     $("#setB").html("<span class='glyphicon glyphicon-exclamation-sign'><nobr class='open-sans'>Calibration</nobr></span>");
-    $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>INDOORSYSTEM</strong></a></div>");
+    $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'>ORION IPS<strong></strong></a></div>");
     $("#homeButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHome");
     $("#fixButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspFix position");
     $("#fixPH").html("<h1 class='page-header'>Fix position <small>Positioning tags.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Fix position</li></ol>");
-    $("#positionsB").html("<span class='glyphicon glyphicon-play'><nobr class='open-sans'>Startposition</nobr></span>");
+    $("#positionsB").html("<span class='glyphicon glyphicon-play'><nobr class='open-sans'>Start</nobr></span>");
     $("#pauseB").html("<span class='glyphicon glyphicon-pause'><nobr class='open-sans'>Pause</nobr></span>");
-    $("#trackB").html("<span class='glyphicon glyphicon-circle-arrow-right'><nobr class='open-sans'>Track</nobr></span>");
-    $("#zoomB1").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoomposition</nobr></span>");
-    $("#zoomB2").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoomtrack&nbsp</nobr></span>");
-    $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'><nobr class='open-sans'>Historytrack</nobr></span>");
+    $("#trackB").html("<span class='glyphicon glyphicon-circle-arrow-right'><nobr class='open-sans'>Trajectory</nobr></span>");
+    $("#zoomB1").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoom (position)</nobr></span>");
+    $("#zoomB2").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoom (trajectory)&nbsp</nobr></span>");
+    $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'><nobr class='open-sans'>Load OPRs</nobr></span>");
     $("#positionHead").html("Map<div id='zoomN' style='position: relative; float: right'></div>");
-    $("#radio").html("<span class=''>ALL</span>");
-    $("#multiple").html("<span class=''>CLR</span>");
+    $("#radio").html("<span class=''>All</span>");
+    $("#multiple").html("<span class=''>Clear</span>");
   });
   $("#orionChinese").click(function() {
     $("#navHead1").html("系统介绍");
