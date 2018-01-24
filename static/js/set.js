@@ -6,7 +6,7 @@
 var configSet, calibrationC = [[NaN, NaN], [NaN, NaN]];
 (function() {
   var canvasSizeWidth = "840", canvasSizeHeight = "840",
-      canvasSize0 = document.getElementById("canvasSet");
+      canvasSize0 = document.getElementById("canvasSet"),
       canvasSize1 = document.getElementById("canvasPoint"),
       canvasSize2 = document.getElementById("canvas"),
       canvasSize3 = document.getElementById("canvas0"),
@@ -106,7 +106,7 @@ function drawBackground1() {
   var c0 = $("#canvasSet");
   var ctx0 = c0.get(0).getContext("2d"),
       myBackground = new Image();
-  myBackground.src = POSITION_IMG_URL;
+  myBackground.src = map_img;
   myBackground.onload = function() {
     ctx0.drawImage(myBackground, 0, 0, 840, 840);
   };

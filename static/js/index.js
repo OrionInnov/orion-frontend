@@ -137,7 +137,7 @@ function uploadImg() {
     contentType: false,
     success: function(result) {
       var imgBase64 = JSON.parse(result)
-      POSITION_IMG_URL = imgBase64.img;
+      map_img = imgBase64.img;
       drawBackground();
       drawBackground1();
     },
@@ -153,7 +153,7 @@ function drawBackground() {
   var myBackground = new Image(),
       c0 = $("#myCanvas0");
   var ctx0 = c0.get(0).getContext("2d");
-  myBackground.src = POSITION_IMG_URL;
+  myBackground.src = map_img;
   myBackground.onload = function() {
     ctx0.drawImage(myBackground, 0, 0, 840, 840);
     dataURL0 = c0.get(0).toDataURL();
@@ -201,7 +201,7 @@ function fixPositionF() {
         x[k] = positions[k][0] - 10;
         y[k] = positions[k][1] - 10;
       };
-      myImage.src = MARKER_IMG_URL;
+      myImage.src = point_img;
       ctx.fillStyle = "#00F";
       ctx.globalCompositeOperation = "copy";
       ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
