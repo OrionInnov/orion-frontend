@@ -1,11 +1,23 @@
-/*It's for index.html.
- *
- *
- *
- *
+/**
+ * @fileoverview Description of file, its uses and information about its
+ * dependencies.
  */
-//Page switch.
+
 var overwrite1, overwrite2;
+(function() {
+  var winw = parseInt($(window).width());
+  $('.headPadding .box').css({'padding-left':0,'padding-right':0,'margin-left':0});
+  var navLi=$(".headPadding");
+  navLi.mouseover(function () {
+    $(this).find("a").addClass("current");
+    $(this).find(".box").stop().slideDown(200);
+  })
+  navLi.mouseleave(function() {
+    $(this).find("a").removeClass("current");
+    $(this).find(".box").stop().slideUp(0);
+  })
+})();
+
 function pageDefine() {
   $("#homeButton").addClass("active-menu");
   $("#page-wrapper").css("display", "block");
@@ -68,58 +80,24 @@ function canvasDefine() {
   $("#canvas2").css("display", "none");
 }
 canvasDefine();
-function jumpC1() {
+function jumpC(c1, c2, c3) {
   $("#myCanvas0").css("display", "block");
-  $("#myCanvas1").css("display", "block");
-  $("#myCanvas2").css("display", "none");
-  $("#myCanvas3").css("display", "none");
+  $(c1).css("display", "block");
+  $(c2).css("display", "none");
+  $(c3).css("display", "none");
   $("#zoomN").css("display", "none");
-  scroll();
   stopOverwrite1();
   stopOverwrite2();
 }
-function jumpC2() {
-  $("#myCanvas0").css("display", "block");
-  $("#myCanvas1").css("display", "none");
-  $("#myCanvas2").css("display", "block");
-  $("#myCanvas3").css("display", "none");
-  $("#zoomN").css("display", "none");
-  scroll();
-  stopOverwrite1();
-  stopOverwrite2();
-}
-function jumpC3() {
-  $("#myCanvas0").css("display", "block");
-  $("#myCanvas1").css("display", "none");
-  $("#myCanvas2").css("display", "none");
-  $("#myCanvas3").css("display", "block");
-  $("#zoomN").css("display", "none");
-  scroll();
-  stopOverwrite1();
-  stopOverwrite2();
-  //document.write(dataURL1);
-}
-function zoomC1() {
+function zoomC(c1, c2) {
   $("#myCanvas0").css("display", "none");
   $("#myCanvas1").css("display", "none");
   $("#myCanvas2").css("display", "none");
   $("#myCanvas3").css("display", "none");
   $("#canvas0").css("display", "block");
-  $("#canvas1").css("display", "block");
-  $("#canvas2").css("display", "none");
+  $(c1).css("display", "block");
+  $(c2).css("display", "none");
   $("#zoomN").css("display", "block");
-  scroll();
-}
-function zoomC2() {
-  $("#myCanvas0").css("display", "none");
-  $("#myCanvas1").css("display", "none");
-  $("#myCanvas2").css("display", "none");
-  $("#myCanvas3").css("display", "none");
-  $("#canvas0").css("display", "block");
-  $("#canvas1").css("display", "none");
-  $("#canvas2").css("display", "block");
-  $("#zoomN").css("display", "block");
-  scroll();
 }
 
 function loadFile(file) {
@@ -130,64 +108,66 @@ function getPosition() {
   var positions;
   $.ajax ({
     type: "GET",
-    url: "http://localhost:8000/_positions",
-    //url: "http://192.168.100.6:8000/_positions",
+    url: "http://localhost:8000/positions",
     dataType: "json",
     async: false,
     success: function(result) {
       positions = result;
-      for (var i = 0; i < eval(positions).length; i++) {
+      for (var i = 0; i < positions.length; i++) {
         positions[i][0] = calibrationC[0][0] * parseFloat(positions[i][0]);
         positions[i][1] = calibrationC[0][1] * parseFloat(positions[i][1]);
       };
     },
     error: function(result) {
-      //console.log("fuck");
+      console.log("could not get positions");
+      positions = null;
     }
   });
   return positions;
 }
 
-function getNum_tags() {
-  var num;
+function uploadImg() {
+  var form = new FormData($("#f1")[0]);
   $.ajax ({
-    type: "GET",
-    url: "http://localhost:8000/_config",
-    //url: "http://192.168.100.6:8000/_positions",
-    dataType: "json",
-    async: false,
+    type: "POST",
+    url: "http://localhost:8000/upload",
+    data: form,
+    cache: false,
+    processData: false,
+    contentType: false,
     success: function(result) {
-      num = result.num_tags;
+      var imgBase64 = JSON.parse(result)
+      map_img = imgBase64.img;
+      drawBackground();
+      drawBackground1();
     },
     error: function(result) {
-      //console.log("fuck");
+      console.log("could not upload image");
     }
   });
-  return num;
 }
 
 //Fix position.
-var dataURL0;
+var dataURL0 = 0, dataURL1 = 0, dataURL2 = 0;
 function drawBackground() {
-  var myBackground = new Image();
-  myBackground.src = "./img/position.png"
-  var c0 = $("#myCanvas0");
+  var myBackground = new Image(),
+      c0 = $("#myCanvas0");
   var ctx0 = c0.get(0).getContext("2d");
+  myBackground.src = map_img;
   myBackground.onload = function() {
     ctx0.drawImage(myBackground, 0, 0, 840, 840);
     dataURL0 = c0.get(0).toDataURL();
   };
 }
 drawBackground();
-var dataURL1 = 0;
-var dataURL2 = 0;
+
 function canvasInit() {
-  var c1 = $("#myCanvas1");
-  var c2 = $("#myCanvas2");
-  var c3 = $("#myCanvas3");
-  var ctx1 = c1.get(0).getContext("2d");
-  var ctx2 = c2.get(0).getContext("2d");
-  var ctx3 = c3.get(0).getContext("2d");
+  var c1 = $("#myCanvas1"),
+      c2 = $("#myCanvas2"),
+      c3 = $("#myCanvas3");
+  var ctx1 = c1.get(0).getContext("2d"),
+      ctx2 = c2.get(0).getContext("2d"),
+      ctx3 = c3.get(0).getContext("2d");
   ctx1.save();
   ctx2.save();
   ctx3.save();
@@ -196,56 +176,53 @@ function canvasInit() {
   ctx3.translate(calibrationC[1][0], calibrationC[1][1]);
 };
 function canvasRestore() {
-  var c1 = $("#myCanvas1");
-  var c2 = $("#myCanvas2");
-  var c3 = $("#myCanvas3");
-  var ctx1 = c1.get(0).getContext("2d");
-  var ctx2 = c2.get(0).getContext("2d");
-  var ctx3 = c3.get(0).getContext("2d");
+  var c1 = $("#myCanvas1"),
+      c2 = $("#myCanvas2"),
+      c3 = $("#myCanvas3");
+  var ctx1 = c1.get(0).getContext("2d"),
+      ctx2 = c2.get(0).getContext("2d"),
+      ctx3 = c3.get(0).getContext("2d");
   ctx1.restore();
   ctx2.restore();
   ctx3.restore();
 }
 function fixPositionF() {
   var pauseStatus = true;
-  var c1 = $("#myCanvas1");
-  var ctx = c1.get(0).getContext("2d");
-  var num = getNum_tags();
   function fixPosition() {
-    var x, y;
     var positions = getPosition();
-    x = new Array();
-    y = new Array();
-    x[49] = 0;
-    y[49] = 0;
-    for (var k = 0; k < num; k++) {
-      x[k] = positions[k][0] - 5;
-      y[k] = positions[k][1] - 5;
-    };
-    var myImage = new Image();
-    myImage.src = "./img/locationMarker.png";
-    ctx.fillStyle = "#00F";
-    ctx.globalCompositeOperation = "copy";
-    ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
-    myImage.onload = function() {
-      ctx.globalCompositeOperation = "source-over";
-      for (var i = 0; i < num; i++) {
-        (function() {
-          if ($("#tag" + i).get(0).checked == true) {
-            ctx.drawImage(myImage, x[i], y[i], 10, 10);
-            ctx.fillText(configSet.tag_names[i], x[i] + 10, y[i]);
-          } else if ($("#tag" + i) == false) {
-            return false;
-          };
-        })();
+      if (positions !== null) {
+      var c1 = $("#myCanvas1"),
+          num = configSet.tags.length,
+          myImage = new Image(),
+          x = [],
+          y = [];
+      var ctx = c1.get(0).getContext("2d");
+      for (var k = 0; k < num; k++) {
+        x[k] = positions[k][0] - 10;
+        y[k] = positions[k][1] - 10;
       };
-      dataURL1 = c1.get(0).toDataURL();
-    };
-    if (pauseStatus == false) {
-      stopOverwrite1();
+      myImage.src = point_img;
+      ctx.fillStyle = "#00F";
+      ctx.globalCompositeOperation = "copy";
+      ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
+      myImage.onload = function() {
+        ctx.globalCompositeOperation = "source-over";
+        for (var i = 0; i < num; i++) {
+          (function() {
+            if ($("#tag" + i).get(0).checked == true) {
+              ctx.drawImage(myImage, x[i], y[i], 20, 20);
+              ctx.fillText(configSet.tags[i].name, x[i] + 20, y[i]);
+            };
+          })();
+        };
+        dataURL1 = c1.get(0).toDataURL();
+      };
+      if (pauseStatus == false) {
+        stopOverwrite1();
+      }
     };
   }
-  $("#pauseB").click (function() {
+  $("#pauseB").click(function() {
     pauseStatus = false;
   });
   overwrite1 = setInterval(fixPosition, 200);
@@ -253,19 +230,18 @@ function fixPositionF() {
 
 //Track.
 function track() {
-  var a,b,c,d;
-  a = [];
-  b = [];
-  c = [];
-  d = [];
-  var num = getNum_tags();
-  var positions = getPosition();
-  var c2 = $("#myCanvas2");
+  var a = [],
+      b = [],
+      c = [],
+      d = [],
+      num = configSet.tags.length,
+      positions = getPosition(),
+      c2 = $("#myCanvas2");
+  var ctx = c2.get(0).getContext("2d");
   for (var j = 0; j < num; j++) {
     c[j] = positions[j][0];
     d[j] = positions[j][1];
   };
-  var ctx = c2.get(0).getContext("2d");
   ctx.lineWidth = 5;
   ctx.strokeStyle = "#F00";
   ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
@@ -280,8 +256,6 @@ function track() {
           a[i] = positions1[i][0];
           b[i] = positions1[i][1];
           drawTrack(ctx, c[i], d[i], a[i], b[i], 2, "#F00");
-        } else if ($("#tag" + i) == false) {
-          return false;
         };
       })();
     };
@@ -294,29 +268,26 @@ function track() {
           c[i] = positions2[i][0];
           d[i] = positions2[i][1];
           drawTrack(ctx, a[i], b[i], c[i], d[i], 2, "#F00");
-        } else if ($("#tag" + i) == false) {
-          return false;
         };
       })();
     };
   }
   function delay() {
-    var p1 = setTimeout(point1, 0);
-    var p2 = setTimeout(point2, 300);
-    $("#trackB").click (function() {
+    var p1 = setTimeout(point1, 0),
+        p2 = setTimeout(point2, 1000);
+    $("#trackB").click(function() {
       clearTimeout(p1);
       clearTimeout(p2);
     });
     dataURL2 = c2.get(0).toDataURL();
   }
-  overwrite2 = setInterval(delay, 600);
+  overwrite2 = setInterval(delay, 2000);
 }
 
 //historyTrack
 function historyTrack() {
-  var num = getNum_tags();
-  var positionH = [];
-  var timedata = [$("#datetimeP1").val(), $("#datetimeP2").val()];
+  var positionH = [],
+      timedata = [$("#datetimeP1").val(), $("#datetimeP2").val()];
   $.ajax ({
     type: "POST",
     url: "http://localhost:8000/history_track",
@@ -328,14 +299,14 @@ function historyTrack() {
       console.log(result);
     },
     error: function(result) {
-      console.log("cao");
-      console.log("fuck");
+      console.log("");
     }
   });
   var c = $("#myCanvas3");
   var ctx = c.get(0).getContext("2d");
   ctx.clearRect(-calibrationC[1][0], -calibrationC[1][1], 840, 840);
   function drawHistoryPosition() {
+    var num = configSet.tags.length;
     console.log(positionH[9][9]);
     for (var i = 0; i < num; i++) {
       (function() {
@@ -344,8 +315,6 @@ function historyTrack() {
             drawTrack(ctx, positionH[j][i][0], positionH[j][i][1], positionH[j+1][i][0], positionH[j+1][i][1], 2, "#F00");
           };
           drawArrow(ctx, positionH[8][i][0], positionH[8][i][1], positionH[9][i][0], positionH[9][i][1], 30, 10, 2, "#F00");
-        } else if ($("#tag" + i) == false) {
-          return false;
         };
       })();
     };
@@ -413,8 +382,8 @@ function drawArrow(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
 
 //onscroll
 window.onscroll = function() {
-  var topScroll = document.documentElement.scrollTop||document.body.scrollTop;
-  var select = $("#selectA");
+  var topScroll = document.documentElement.scrollTop||document.body.scrollTop,
+      select = $("#selectA");
   if (topScroll > 222) {
     select.css("position", "fixed");
     select.css("zIndex", "500px");
@@ -436,42 +405,62 @@ window.onscroll = function() {
   }
 };
 
-function adjust() {
-  var map1 = $("#map1");
-  var select = $("#selectA");
-  var w = $("#page-inner1").actual("width");
-  var ws = $("#selectA").actual("width");
-  w = w - ws - 45;
-  map1.width(w);
-}
 window.onload = function() {
+  function adjust() {
+    var map1 = $("#map1"),
+        select = $("#selectA"),
+        w = $("#page-inner1").actual("width"),
+        ws = $("#selectA").actual("width");
+    w = w - ws - 45;
+    map1.width(w);
+  }
   adjust();
   window.onresize = adjust;
 };
 
 //Binding events.
 (function() {
-  $("#orionEnglish").click (function() {
-    $("#preparationsHead").html("Preparations <small>Please confirm reference points and bind tags.</small>");
-    $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>First&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</nobr></span>");
-    $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>Second</nobr></span>");
+  $("#orionEnglish").click(function() {
+    $("#navHead1").html("SYSTEM");
+    $("#navHead2").html("INSTRUCTIONS");
+    $("#navHead3").html("PRECAUTIONS");
+    $("#navHead4").html("ABOUT");
+    $("#navHead5").html("CONTACT");
+    $("#preparationsHead").html("Preparations <small>Please input reference points and tag names.</small>");
+    $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>Coord 1</nobr></span>");
+    $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>Coord 2</nobr></span>");
     $("#confirmF").html("<span class='glyphicon glyphicon-ok'><nobr class='open-sans'>Confirm</nobr></span>");
     $("#inputNameEn").html("<nobr class='open-sans'>Name</nobr>");
     $("#preparationsP").html("<nobr class='open-sans'>Map</nobr>");
     $("#confirmN").html("<span class='glyphicon glysphicon-ok'><nobr class='open-sans'>&nbsp&nbspBind&nbsp&nbsp</nobr></span>");
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'><nobr class='open-sans'>Back</nobr></span>");
-    $("#fixPH").html("<h1 class='page-header'>Fix position <small>Positioning tags.</small></h1><ol class='breadcrumb'><li><a>Home</a></li><li class='active'>Fix position</li></ol>");
-    $("#positionsB").html("<span class='glyphicon glyphicon-play'><nobr class='open-sans'>Startposition</nobr></span>");
+    $("#homeH").html("<h1 class='page-header'>Indoor Localization System<small>Upload localization map.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Initialization</li></ol>");
+    $("#uploadB").html("Upload");
+    if ($("#fileBackground").val() == "") {
+      $("#fileName").html("no files");
+    };
+    $("#backgroundSubmit").html("Submit");
+    $("#setB").html("<span class='glyphicon glyphicon-exclamation-sign'><nobr class='open-sans'>Calibration</nobr></span>");
+    $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'>ORION IPS<strong></strong></a></div>");
+    $("#homeButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHome");
+    $("#fixButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspFix position");
+    $("#fixPH").html("<h1 class='page-header'>Fix position <small>Positioning tags.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Fix position</li></ol>");
+    $("#positionsB").html("<span class='glyphicon glyphicon-play'><nobr class='open-sans'>Start</nobr></span>");
     $("#pauseB").html("<span class='glyphicon glyphicon-pause'><nobr class='open-sans'>Pause</nobr></span>");
-    $("#trackB").html("<span class='glyphicon glyphicon-circle-arrow-right'><nobr class='open-sans'>Track</nobr></span>");
-    $("#zoomB1").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoomposition</nobr></span>");
-    $("#zoomB2").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoomtrack&nbsp</nobr></span>");
-    $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'><nobr class='open-sans'>Historytrack</nobr></span>");
+    $("#trackB").html("<span class='glyphicon glyphicon-circle-arrow-right'><nobr class='open-sans'>Trajectory</nobr></span>");
+    $("#zoomB1").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoom (position)</nobr></span>");
+    $("#zoomB2").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoom (trajectory)&nbsp</nobr></span>");
+    $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'><nobr class='open-sans'>Load OPRs</nobr></span>");
     $("#positionHead").html("Map<div id='zoomN' style='position: relative; float: right'></div>");
-    $("#radio").html("<span class=''>&nbsp all &nbsp&nbsp</span>");
-    $("#multiple").html("<span class=''>clear</span>");
+    $("#radio").html("<span class=''>All</span>");
+    $("#multiple").html("<span class=''>Clear</span>");
   });
-  $("#orionChinese").click (function() {
+  $("#orionChinese").click(function() {
+    $("#navHead1").html("系统介绍");
+    $("#navHead2").html("使用说明");
+    $("#navHead3").html("注意事项");
+    $("#navHead4").html("关于奥新");
+    $("#navHead5").html("联系我们");
     $("#preparationsHead").html("准备工作 <small>请确定参照点以及绑定标签</small>");
     $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'>第一点</span>");
     $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'>第二点</span>");
@@ -480,7 +469,17 @@ window.onload = function() {
     $("#preparationsP").html("地图");
     $("#confirmN").html("<span class='glyphicon glysphicon-ok'>绑定</span>");
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'>返回</span>");
-    $("#fixPH").html("<h1 class='page-header'>定位<small>为多个标签定位.</small></h1><ol class='breadcrumb'><li><a>首页</a></li><li class='active'>定位</li></ol>");
+    $("#homeH").html("<h1 class='page-header'>室内定位系统<small>请上传地图</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>首页</a></li>&nbsp<li class='active'>准备工作</li></ol>");
+    $("#uploadB").html("上传");
+    if ($("#fileBackground").val() == "") {
+      $("#fileName").html("未上传文件");
+    };
+    $("#backgroundSubmit").html("提交");
+    $("#setB").html("<span class='glyphicon glyphicon-exclamation-sign'>校准地图</span>");
+    $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>室内定位系统</strong></a></div>");
+    $("#homeButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp首页");
+    $("#fixButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp定位");
+    $("#fixPH").html("<h1 class='page-header'>定位<small>为多个标签定位.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>首页</a></li>&nbsp<li class='active'>定位</li></ol>");
     $("#positionsB").html("<span class='glyphicon glyphicon-play'>开始定位</span>");
     $("#pauseB").html("<span class='glyphicon glyphicon-pause'>暂停</span>");
     $("#trackB").html("<span class='glyphicon glyphicon-circle-arrow-right'>显示轨迹</span>");
@@ -491,65 +490,67 @@ window.onload = function() {
     $("#radio").html("<span class=''>全选</span>");
     $("#multiple").html("<span class=''>重置</span>");
   });
-  $("#setB").click (function() {
+  $("#setB").click(function() {
     jumpSetP();
     canvasRestore();
   });
-  $("#backgroundSubmit").click (function() {
+  $("#backgroundSubmit").click(function() {
     if ($("#fileBackground").val() == "") {
-      alert("请上传图片！");
+      if ($("#uploadB").html() == "上传") {
+        alert("请上传图片！");
+      } else {
+        alert("Please upload map!");
+      };
       return false;
     } else {
-      $(this).prop("type", "submit");
-      //drawBackground();
-    };
-  });
-  $("#leaveS").click (function() {
+      uploadImg();
+      var file = $("#fileBackground");
+      file.after(file.clone().val(""));
+      file.remove();
+      if ($("#uploadB").html() == "上传") {
+        $("#fileName").html("未上传文件");
+      } else {
+        $("#fileName").html("no files");
+    }
+  }});
+  $("#leaveS").click(function() {
     leaveSetP();
-    canvasInit();
-    $("#selectAdd").empty();
-    for (var i = 0; i < configSet.num_tags; i++) {
-      $("#selectAdd").append(function() {
-        return "<input id='tag" + i + "' type='checkbox' class='selecta'>" + configSet.tag_names[i] + "<br/>";
-      });
-    };
   });
-  $("#homeButton").click (function() {
+  $("#homeButton").click(function() {
     jumpHomeP();
   });
-  $("#fixButton").click (function() {
+  $("#fixButton").click(function() {
     jumpFixP();
   });
-  $("#positionsB").click (function() {
-    jumpC1();
+  $("#positionsB").click(function() {
+    jumpC("#myCanvas1", "#myCanvas2", "#myCanvas3");
     fixPositionF();
   });
-  $("#trackB").click (function() {
-    jumpC2();
+  $("#trackB").click(function() {
+    jumpC("#myCanvas2", "#myCanvas1", "#myCanvas3");
     track();
   });
-  $("#historyTrackB").click (function() {
-    jumpC3();
+  $("#historyTrackB").click(function() {
+    jumpC("#myCanvas3", "#myCanvas1", "#myCanvas2");
     historyTrack();
   });
-  $("#zoomB1").click (function() {
-    zoomC1();
+  $("#zoomB1").click(function() {
+    zoomC("#canvas1", "#canvas2");
     init();
     $("#zoomN").html("100%");
   });
-  $("#zoomB2").click (function() {
-    zoomC2();
+  $("#zoomB2").click(function() {
+    zoomC("#canvas2", "#canvas1");
     init();
     $("#zoomN").html("100%");
   });
-  var num = getNum_tags();
   $("#radio").on ("click", function() {
-    for (var i = 0; i < num; i++) {
+    for (var i = 0; i < configSet.tags.length; i++) {
       $("#tag" + i).get(0).checked = true;
     };
   });
   $("#multiple").on ("click", function() {
-    for (var i = 0; i < num; i++) {
+    for (var i = 0; i < configSet.tags.length; i++) {
       $("#tag" + i).get(0).checked = false;
     };
   });

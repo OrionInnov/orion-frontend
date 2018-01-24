@@ -4,22 +4,54 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
-<link rel="stylesheet" href="./css/custom-styles.css">
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery.actual/1.0.19/jquery.actual.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.10.1/moment.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.19.4/moment-with-locales.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-<script src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datetimepicker.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/custom-styles.css') }}">
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.actual.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/moment-with-locales.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}"></script>
 </head>
 <body>
   <div>
-    <div class= "languageB selecta">
-      <a id="orionChinese">中文</a>&nbsp&nbsp<a id="orionEnglish">English</a>
+    <nav class="top-head">
+      <div class="headPadding navbar-header selecta">
+        <span id="navHead1">系统介绍</span>
+        <div class="box">
+          <div class="top-head">
+            <a>定位系统</a>
+            <a>点名系统</a>
+            <a>监狱系统</a>
+            <a>工厂系统</a>
+          </div>
+				</div>
+      </div>
+      <div id="" class="headPadding navbar-header selecta">
+        <span id="navHead2">使用说明</span>
+        <div class="box">
+          <div class="top-head">
+					  <a>上传地图</a>
+					  <a>校准地图</a>
+					  <a>定位操作</a>
+					  <a>历史轨迹</a>
+          </div>
+				</div>
+      </div>
+      <div id="" class="headPadding navbar-header selecta">
+        <span id="navHead3">注意事项</span>
+      </div>
+      <div id="" class="headPadding navbar-header selecta">
+        <span id="navHead4">关于奥新</span>
+      </div>
+      <div id="" class="headPadding navbar-header selecta">
+        <span id="navHead5">联系我们</span>
+      </div>
+    </nav>
+    <div class="languageB selecta">
+      <span id="orionChinese">中文</span>&nbsp;&nbsp;<span id="orionEnglish">English</span>
     </div>
     <nav id="nav1" class="navbar navbar-default top-navbar" role="navigation">
       <div class="navbar-header">
@@ -30,10 +62,10 @@
       <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
           <li>
-            <a id="homeButton" href="javascript:void(0)"><i class="fa fa-dashboard"></i>首页(home page)</a>
+            <a id="homeButton" href="javascript:void(0)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首页</a>
           </li>
           <li>
-            <a id="fixButton" href="javascript:void(0)"><i class="fa fa-desktop"></i>定位（fix position）</a>
+            <a id="fixButton" href="javascript:void(0)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定位</a>
           </li>
 		  <!--<li>
             <a id="rollButton" href="javascript:void(0)" onclick="jumpRollC()"><i class="fa fa-desktop"></i>点名（hava a roll call of pupils）</a>
@@ -44,27 +76,27 @@
 
 
     <div id="page-wrapper">
-      <div class="header">
+      <div id= "homeH" class="header">
         <h1 class="page-header">
-          室内定位系统<small>(Indoor Localization System)</small><small>请上传地图(Please upload map.)</small>
+          室内定位系统<small>请上传地图</small>
         </h1>
-        <ol class="breadcrumb">
+        <ol id="" class="breadcrumb borderRadiusHead">
           <li><a>首页</a></li>
           <li class="active">准备工作</li>
         </ol>
       </div>
       <div class="header">
-        <form class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
+        <form id="f1" class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
           <div class="file-container" style="display:inline-block;position:relative;overflow: hidden;vertical-align:middle">
-            <button class="btn btn-default fileinput-button" type="button">上传(upload)</button>
+            <button id="uploadB" class="btn btn-default fileinput-button" type="button">上传</button>
             <input id="fileBackground" type="file" name="file" onchange="loadFile(this.files[0])" style="width: 210px; position:absolute;top:0;left:0;font-size:34px; opacity:0">
           </div>
-          <span id="fileName" style="vertical-align: middle">未上传文件(no files)</span>
+          <span id="fileName" style="vertical-align: middle">未上传文件</span>
           <div class="form-group">
-            <input id="backgroundSubmit" type ="button" value="提交(submit)" class="btn btn-default">
-          </div>&nbsp&nbsp&nbsp
+            <button id="backgroundSubmit" type ="button" class="btn btn-default fileinput-button">提交</button>
+          </div>&nbsp;&nbsp;&nbsp;
           <button id="setB" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-exclamation-sign">校准地图(calibration)</span>
+            <span class="glyphicon glyphicon-exclamation-sign">校准地图</span>
           </button>
         </form>
       </div>
@@ -97,9 +129,9 @@
           </button>
           <button id="confirmF" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-ok">确定</span>
-          </button>&nbsp&nbsp&nbsp
+          </button>&nbsp;&nbsp;&nbsp;
           <div class="form-group">
-            <label id="inputNameEn"for="exampleInputEmail2">输入姓名</label>
+            <label id="inputNameEn" for="exampleInputEmail2">输入姓名</label>
             <input type="text" class="form-control" style="width: 120px" id="nameT">
           </div>
           <select id="selectI" name="">
@@ -123,15 +155,15 @@
               <div class="panel-body">
                 <div class="table-responsive">
                   <div class="relative center-block">
-                    <canvas id="canvasSet" width="840" height="840" class="canvasBackground0">dsss</canvas>
-                    <canvas id="canvasPoint" width="840" height="840" class="canvasBackground0" style="z-index: 1000;cursor: crosshair;">dsss</canvas>
+                    <canvas id="canvasSet" class="canvasBackground0">Your browser does't support canvas.</canvas>
+                    <canvas id="canvasPoint" class="canvasBackground0" style="z-index: 1000;cursor: crosshair;">Your browser does't support canvas.</canvas>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <footer><p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank">奥新智能</a></p>
+        <footer><p>Orion &copy; 2017.Orion.<a target="_blank">奥新智能</a></p>
         </footer>
       </div>
     </div>
@@ -139,9 +171,9 @@
     <div id="page-fixP">
       <div id="fixPH" class="header">
         <h1 class="page-header">
-          定位 <small>为多个标签定位</small>
+          定位<small>为多个标签定位</small>
         </h1>
-        <ol class="breadcrumb">
+        <ol class="breadcrumb borderRadiusHead">
           <li><a>首页</a></li>
           <li class="active">定位</li>
         </ol>
@@ -195,46 +227,50 @@
         <div id="page-inner1" class="row">
           <div id="map1">
           <!-- Advanced Tables -->
-            <div class="panel panel-default">
-              <div id="positionHead" class="panel-heading">
-                校园地图
+            <div class="panel panel-default borderRadius">
+              <div id="positionHead" class="panel-heading borderRadiusTop">
+                地图
                 <div id="zoomN" style="position: relative; float: right"></div>
               </div>
               <div class="panel-body">
                 <div id="wrapper" class="table-responsive">
                   <div class="relative center-block">
-                    <canvas id="canvas0" width="840" height="840" class="canvasBackground0">dsss</canvas>
-                    <canvas id="canvas1" width="840" height="840" class="canvasBackground1">dsss</canvas>
-                    <canvas id="canvas2" width="840" height="840" class="canvasBackground2">dsss</canvas>
-                    <canvas id="canvas" width="840" height="840" class="canvasBackground"></canvas>
-                    <canvas id="myCanvas0" width="840" height="840" class="fixPosition center-block">dsss</canvas>
-                    <canvas id="myCanvas1" width="840" height="840" class="fixPosition center-block">dsss</canvas>
-                    <canvas id="myCanvas2" width="840" height="840" class="fixPosition center-block">dsss</canvas>
-                    <canvas id="myCanvas3" width="840" height="840" class="fixPosition center-block">dsss</canvas>
+                    <canvas id="canvas0" class="canvasBackground0">Your browser does't support canvas.</canvas>
+                    <canvas id="canvas1" class="canvasBackground1">Your browser does't support canvas.</canvas>
+                    <canvas id="canvas2" class="canvasBackground2">Your browser does't support canvas.</canvas>
+                    <canvas id="canvas" class="canvasBackground">Your browser does't support canvas.</canvas>
+                    <canvas id="myCanvas0" class="fixPosition center-block">Your browser does't support canvas.</canvas>
+                    <canvas id="myCanvas1" class="fixPosition center-block">Your browser does't support canvas.</canvas>
+                    <canvas id="myCanvas2" class="fixPosition center-block">Your browser does't support canvas.</canvas>
+                    <canvas id="myCanvas3" class="fixPosition center-block">Your browser does't support canvas.</canvas>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div id="selectA">
-            <div class="panel overf">
+            <form>
+              <div class="row" style="padding: 0px 15px">
+                <button id="radio" type="button" class="btn btn-default col-xs-6">
+                  <span class="">全选</span>
+                </button>
+                <button id="multiple" type="button" class="btn btn-default col-xs-6">
+                  <span class="">重置</span>
+                </button>
+              </div>
+            </form>
+            <div class="panel overf borderRadiusBottom">
               <div class="panel-body">
-                <div id="select">
+                <div id="select" style='white-space: nowrap'>
                   <form class="form-inline">
-                    <button id="radio" type="button" class="btn btn-default">
-                      <span class="">全选</span>
-                    </button>
-                    <button id="multiple" type="button" class="btn btn-default">
-                      <span class="">重置</span>
-                    </button>
-                    <div id="selectAdd"></div>
+                    <div id="selectAdd" ></div>
                   </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <footer><p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank">奥新智能</a></p>
+        <footer><p>Orion&copy; 2017.Orion.<a target="_blank">奥新智能</a></p>
         </footer>
       </div>
     </div>
@@ -245,8 +281,8 @@
         <h1 class="page-header">
           点名<small>学生点名</small>
         </h1>
-        <ol class="breadcrumb">
-          <li><a  href="index.jsp">首页</a></li>
+        <ol class="breadcrumb borderRadius">
+          <li><a>首页</a></li>
           <li class="active">点名</li>
         </ol>
       </div>
@@ -286,8 +322,8 @@
             </ul>
           </div>
           <div class="col-md-4">
-            <h3 >Flinkhub</h3>
-            <p >Flinkhub, an AI-driven sales platform, helps B2B SaaS companies in selling their products to companies which have the highest probability of buying their product.
+            <h3 >Orion</h3>
+            <p >Orion.
             </p>
             <div >
             <a ></a>
@@ -306,7 +342,7 @@
               </a>
             </div>
             <div>
-              <p >© 2017 Flinkhub Inc. All Rights Reserved.</p>
+              <p >© 2017  All Rights Reserved.</p>
             </div>
           </div>
         </div>
@@ -316,17 +352,12 @@
 
 
   </div>
-  <script src="./js/set.js"></script>
-  <script src="./js/index.js"></script>
-  <script src="./js/main.js"></script>
-  <script>
-    /*function myScroll() {
-	  var myscroll = new IScroll("#wrapper", {
-		    scrollbars: true ,
-		    scrollbars: "custom"
-		});
-    };
-    */
+  <script type=text/javascript>
+    map_img = "{{ url_for('static', filename='img/position.png') }}";
+    point_img = "{{ url_for('static', filename='img/marker.png') }}";
   </script>
+  <script src="{{ url_for('static', filename='js/set.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
