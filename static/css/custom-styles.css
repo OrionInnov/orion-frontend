@@ -16,23 +16,23 @@ body {
 #page-wrapper {
     padding: 15px 15px;
     min-height: 600px;
-    background: #EDEDEDE6;
+    background: rgba(232, 232, 232, 0.89);
 }
 #page-fixP {
     padding: 15px 15px;
     min-height: 600px;
-    background: #EDEDEDE6;
+    background: rgba(232, 232, 232, 0.89);
 }
 #page-set {
     z-index: 2000;
     padding: 15px 15px;
     min-height: 600px;
-    background: #EDEDEDE6;
+    background: rgba(232, 232, 232, 0.89);
 }
 #page-rollC {
     padding: 15px 15px;
     min-height: 600px;
-    background: #EDEDEDE6;
+    background: rgba(232, 232, 232, 0.89);
 }
 .page-inner {
     width:100%;
@@ -525,7 +525,7 @@ line-height: 21px;
 padding-top: 4px;
 }
 .active-menu, .active-menu i {
-    background-color: #EDEDEDE6 !important;
+    background-color: rgba(232, 232, 232, 0.89) !important;
     color: #F35543!important;
 }
 .active-menu i{color: #F35543!important;}
