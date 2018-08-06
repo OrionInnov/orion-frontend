@@ -1,0 +1,28 @@
+#banner {
+  background: url('./../../images/banner.jpg');
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 24vh;
+  text-align: center;
+}
+
+.nav2{
+  position: absolute;
+  background: #3E3E3E;
+  width: 260px;
+  height: 100%;
+}
+
+#dropmenu{
+    right: 166px;
+}
