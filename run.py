@@ -17,19 +17,12 @@ from flask import request
 from flask import send_from_directory
 
 
-
-
+# Type of image
 VALID_IMG_EXT = ["jpg", "png"]
 
-# create Orion-specific directory in user's home
-# orion_dir = os.path.expanduser(r"C:\Users\Administrator\Desktop\orion-frontend-v4.0\webapp\.orion")
-# if not os.path.isdir(orion_dir):
-#    os.mkdir(orion_dir)
+# MongoDB client URL and port
+DEFAULT_URL = "mongodb://localhost:27017"
 
-# configuration and latest positioning paths
-# .opf = Orion Positioning Result file
-# cfg_path = os.path.join(orion_dir, "config.json")
-# pos_path = os.path.join(orion_dir, "latest.txt")
 
 # Flask instance webapp
 # http://flask.pocoo.org/docs/latest/patterns/packages/
@@ -39,21 +32,11 @@ if getattr(sys, 'frozen', False):
 else:
     app = Flask(__name__)
 
-app = Flask(__name__)
-
-client = pymongo.MongoClient('mongodb://localhost:27017')
+client = pymongo.MongoClient(DEFAULT_URL)
 db = client['orion']
 
 
-# user.insert({'username': "aaa"})
-
-
 ################################ STATIC ROUTES ################################
-
-# @app.route("/")
-# def home():
-#     return render_template("home.html")
-
 
 @app.route("/")
 def index():
@@ -72,31 +55,31 @@ def getconf():
     cursor = db.config.find()
     for result in cursor:
         result.pop("_id")
-    c = json.dumps(result)
-    print(result)
-    return c
+    tagname = json.dumps(result)
+    
+    return tagname
 
 
 @app.route("/setconf", methods=["POST"])
-def setconf():
+def setconf():  
     data = request.get_json()
-    print(data)
     db.col.save(data, check_keys=False)
+    
     return json.dumps({"status": 1})
 
 
 @app.route("/positions")
-def positions():
+def positions():  
     TagStart = 1
     TagEnd = 10
     num1 = 1  # timestart
     num2 = 10  # timestop
     config = []
     configl = []
+    
     cursor = db.history.find()
     for result in cursor:
         result.pop("_id")
-        print(result)
         while TagStart <= TagEnd:
             num1 = 1
             while num1 <= num2:
@@ -106,6 +89,7 @@ def positions():
             config.append(configl)
             configl = []
             TagStart += 1
+            
         return json.dumps(config)
 
 
@@ -148,10 +132,10 @@ def history_track():
     num2 = 10  # timestop
     config = []
     configl = []
+    
     cursor = db.history.find()
     for result in cursor:
         result.pop("_id")
-
         while TagStart <= TagEnd:
             num1 = 1
             while num1 <= num2:
@@ -161,7 +145,7 @@ def history_track():
             config.append(configl)
             configl = []
             TagStart += 1
-    print(config)
+            
     return json.dumps(config)  # history_track needs to change
 
 
