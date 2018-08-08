@@ -63,7 +63,7 @@ def getconf():
 @app.route("/setconf", methods=["POST"])
 def setconf():  
     data = request.get_json()
-    db.col.save(data, check_keys=False)
+    db.config.save(data, check_keys=False)
     
     return json.dumps({"status": 1})
 
