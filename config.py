@@ -6,17 +6,25 @@ client = pymongo.MongoClient('mongodb://localhost:27017')
 db = client['orion']
 
 def save_history():
-    num = 1
-    posdic = {}
+    num = 0
     import time
-    time = time.time()
-    while num <= len(test):
-        posdic[str(num)] = test[num - 1]
+    time1 = time.time()
+    list1 = []
+    dic1 = {}
+    dic2 = {}
+    while num < len(test):
+        dic1["name"] = "Tag" + str(num)
+        dic1["pos"] = test[num]
+        dic1["time"] = time1
+        print(num)
+        print(dic1)
+        list1.append(dic1)
+        dic1 = {}
+        print(list1)
         num = num + 1
-
-    posdic["time"] = time
-    print(posdic)
-    db.history.insert(posdic)
+    dic2["historytrack"] = list1
+    print(dic2)
+    db.history.insert(dic2, check_keys=False)
     
 
 def load_config():
