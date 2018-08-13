@@ -70,8 +70,8 @@ def setconf():
 
 @app.route("/positions")
 def positions():  
-    TagStart = 1
-    TagEnd = 10
+    tagstart = 1
+    tagend = 10
     num1 = 1  # timestart
     num2 = 10  # timestop
     config = []
@@ -80,15 +80,15 @@ def positions():
     cursor = db.history.find()
     for result in cursor:
         result.pop("_id")
-        while TagStart <= TagEnd:
+        while tagstart <= tagend:
             num1 = 1
             while num1 <= num2:
-                timetrackdata = result["Tag" + str(TagStart)][num1 - 1]["pos"]
+                timetrackdata = result["Tag" + str(tagstart)][num1 - 1]["pos"]
                 configl.append(timetrackdata)
                 num1 += 1
             config.append(configl)
             configl = []
-            TagStart += 1
+            tagstart += 1
             
         return json.dumps(config)
 
