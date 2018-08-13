@@ -1,7 +1,15 @@
 import json
 import pymongo
 
-test = [[1, 2, 3], [2, 3, 1], [2, 4, 5], [3, 2, 3]]
+
+test = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
+        [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
+
+data = {"tag": 6, "location": [1, 2, 3]}
+def change_pos(data, test):
+    test[data["tag"]] = data["location"]
+    print(test)
+
 client = pymongo.MongoClient('mongodb://localhost:27017')
 db = client['orion']
 
