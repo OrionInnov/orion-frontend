@@ -13,37 +13,15 @@ db = client['orion']
 # test = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
 #        [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
-# 这个是我用来传值用的，类似上面的test，将它传入save_history中，存入数据库
-poslist = []
-# 这个data是你通过算法传过来的数据，我这里只是用来模拟你传过来的数据
-data = {"tag": 1, "location": [1, 2, 3]}
-
-def change_pos(data):
-    num = 0
-    cursor = db.history.find()
-    print(cursor)
-    for result in cursor:
-        result.pop("_id")
-    # print(result)
-    # print(result['historytrack'][1]['pos'])
-    # print(len(result['historytrack']))
-    while num < len(result['historytrack']):
-        list = result['historytrack'][num]['pos']
-        poslist.append(list)
-        num = num + 1
-    poslist[data["tag"]] = data["location"]
-    # print(poslist)
-
-        
-def save_history(poslist):
+def save_history(totallist):
     num = 0
     time1 = time.time()
     list1 = []
     dic1 = {}
     dic2 = {}
-    while num < len(poslist):
+    while num < len(totallist):
         dic1["name"] = "Tag" + str(num)
-        dic1["pos"] = poslist[num]
+        dic1["pos"] = totallist[num]
         dic1["time"] = time1
         print(num)
         print(dic1)
@@ -54,6 +32,23 @@ def save_history(poslist):
     dic2["historytrack"] = list1
     print(dic2)
     db.history.insert(dic2, check_keys=False)
+    
+
+def change_pos(data):
+    totallist = []
+    num = 0
+    cursor = db.history.find()
+    print(cursor)
+    for result in cursor:
+        result.pop("_id")
+    while num < len(result['historytrack']):
+        poslist = result['historytrack'][num]['pos']
+        totallist.append(poslist)
+        num = num + 1
+    totallist[data["tag"]] = data["location"]
+    save_history(totallist)
+        
+
     
 
 def load_config():
