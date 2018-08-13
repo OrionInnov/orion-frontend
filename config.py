@@ -37,7 +37,6 @@ def change_pos(data):
         
 def save_history(poslist):
     num = 0
-    import time
     time1 = time.time()
     list1 = []
     dic1 = {}
