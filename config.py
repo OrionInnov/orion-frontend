@@ -1,6 +1,7 @@
-# coding:utf-8
 import json
 import pymongo
+import time
+
 
 # MongoDB client URL and port
 DEFAULT_URL = "mongodb://localhost:27017"
@@ -12,7 +13,9 @@ db = client['orion']
 # test = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0],
 #        [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
+# 这个是我用来传值用的，类似上面的test，将它传入save_history中，存入数据库
 poslist = []
+# 这个data是你通过算法传过来的数据，我这里只是用来模拟你传过来的数据
 data = {"tag": 1, "location": [1, 2, 3]}
 
 def change_pos(data):
