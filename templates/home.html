@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>室内定位系统</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/nivo-lightbox.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/nivo_themes/default/default.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- 预加载 -->
+<section class="preloader">
+	<div class="sk-spinner sk-spinner-pulse"></div>
+</section>
+
+<!-- 头部导航 -->
+<section class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon icon-bar"></span>
+				<span class="icon icon-bar"></span>
+				<span class="icon icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand">ORION-FRONTEND</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="{{ url_for('home') }}" class="smoothScroll">系统介绍</a></li>
+				<li><a href="{{ url_for('index') }}" class="smoothScroll">使用说明</a></li>
+				<li><a href="#" class="smoothScroll">注意事项</a></li>
+				<li><a href="#" class="smoothScroll">关于澳新</a></li>
+				<li><a href="#contact" class="smoothScroll">联系我们</a></li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+
+<!-- 主页模块 -->
+<section id="home" class="parallax-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<h1>浙江奥新智能科技有限公司</h1>
+				<h2>室内定位系统</h2>
+				<a href="#gallery" class="smoothScroll btn btn-default">了解更多</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<!-- 产品介绍 -->
+<section id="gallery" class="parallax-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-2 col-md-8 col-sm-12 text-center">
+				<h1 class="heading">系统介绍</h1>
+				<hr>
+			</div>
+			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.3s">
+				<a href="#" data-lightbox-gallery="zenda-gallery"><img src="{{ url_for('static', filename='images/gallery-img1.jpg') }}" alt="gallery img"></a>
+				<div>
+					<h3>工厂人员定位</h3>
+					<span>高精度室内定位智能系统的技术研发</span>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
+				<a href="#" data-lightbox-gallery="zenda-gallery"><img src="{{ url_for('static', filename='images/gallery-img2.jpg') }}" alt="gallery img"></a>
+				<div>
+					<h3>监狱看守所定位</h3>
+					<span>高精度室内定位智能系统的技术研发</span>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+
+<!-- 联系我们板块 -->
+<!-- <section id="contact" class="parallax-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-1 col-md-10 col-sm-12 text-center">
+				<h1 class="heading">联系我们</h1>
+				<hr>
+			</div>
+			<div class="col-md-offset-1 col-md-10 col-sm-12 wow fadeIn" data-wow-delay="0.9s">
+				<form action="#" method="post">
+					<div class="col-md-6 col-sm-6">
+						<input name="name" type="text" class="form-control" id="name" placeholder="姓名">
+				  </div>
+					<div class="col-md-6 col-sm-6">
+						<input name="email" type="email" class="form-control" id="email" placeholder="email">
+				  </div>
+					<div class="col-md-12 col-sm-12">
+						<textarea name="message" rows="8" class="form-control" id="message" placeholder="信息"></textarea>
+					</div>
+					<div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
+						<input name="submit" type="submit" class="form-control" id="submit" value="确认提交">
+					</div>
+				</form>
+			</div>
+			<div class="col-md-2 col-sm-1"></div>
+		</div>
+	</div>
+</section>-->
+
+
+<!-- 底部栏目 -->
+<!--<footer class="parallax-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
+				<h2 class="heading">联系方式</h2>
+				<div class="ph">
+					<p><i class="fa fa-phone"></i>手机</p>
+					<h4>000-000-0000</h4>
+				</div>
+				<div class="address">
+					<p><i class="fa fa-map-marker"></i>位置</p>
+					<h4>浙江 金华 婺城区 新华街301号信息大厦</h4>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
+				<h2 class="heading">工作时间</h2>
+					<p>周一 - 周五<span>8:30 AM - 5:30 PM</span></p>
+					<p>周六周日<span>休息</span></p>
+			</div>
+			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
+				<h2 class="heading">关注我们</h2>
+				<ul class="social-icon">
+					<li><a href="#" class="fa fa-facebook wow bounceIn" data-wow-delay="0.3s"></a></li>
+					<li><a href="#" class="fa fa-twitter wow bounceIn" data-wow-delay="0.6s"></a></li>
+					<li><a href="#" class="fa fa-behance wow bounceIn" data-wow-delay="0.9s"></a></li>
+					<li><a href="#" class="fa fa-dribbble wow bounceIn" data-wow-delay="0.9s"></a></li>
+					<li><a href="#" class="fa fa-github wow bounceIn" data-wow-delay="0.9s"></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>-->
+
+
+<!-- 版权 -->
+<section id="copyright">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<h3>ORION-FRONTEND</h3>
+				<p>© 2017  浙江奥新智能科技(金华)有限公司 版权所有</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- JS -->
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.parallax.js') }}"></script>
+<script src="{{ url_for('static', filename='js/smoothscroll.js') }}"></script>
+<script src="{{ url_for('static', filename='js/nivo-lightbox.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+</body>
+</html>
