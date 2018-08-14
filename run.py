@@ -70,27 +70,28 @@ def setconf():
 
 @app.route("/positions")
 def positions():  
-    tagstart = 1
-    tagend = 10
-    num1 = 1  # timestart
-    num2 = 10  # timestop
-    config = []
-    configl = []
-    
+    num = 0
+    num1 = 0
+    posdata = []
+    posdata1 = []
+    posdata2 = []
     cursor = db.history.find()
+
     for result in cursor:
         result.pop("_id")
-        while tagstart <= tagend:
-            num1 = 1
-            while num1 <= num2:
-                timetrackdata = result["Tag" + str(tagstart)][num1 - 1]["pos"]
-                configl.append(timetrackdata)
-                num1 += 1
-            config.append(configl)
-            configl = []
-            tagstart += 1
-            
-        return json.dumps(config)
+        historytrack = result["historytrack"]
+        print(historytrack)
+        while num < len(historytrack):
+            posdata.append(historytrack[num]['pos'][0])
+            posdata.append(historytrack[num]['pos'][1])
+            num = num + 1
+            posdata1.append(posdata)
+            posdata = []
+        posdata2.append(posdata1)
+        posdata1 = []
+        num =0
+        print(posdata2)
+    return json.dumps(posdata2) 
 
 
 @app.route("/upload", methods=["POST"])
