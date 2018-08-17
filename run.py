@@ -16,13 +16,21 @@ from flask import Flask, render_template
 from flask import request
 from flask import send_from_directory
 
-
 # Type of image
 VALID_IMG_EXT = ["jpg", "png"]
 
 # MongoDB client URL and port
 DEFAULT_URL = "mongodb://localhost:27017"
 
+# create Orion-specific directory in user's home
+# orion_dir = os.path.expanduser(r"C:\Users\Administrator\Desktop\orion-frontend-v4.0\webapp\.orion")
+# if not os.path.isdir(orion_dir):
+#    os.mkdir(orion_dir)
+
+# configuration and latest positioning paths
+# .opf = Orion Positioning Result file
+# cfg_path = os.path.join(orion_dir, "config.json")
+# pos_path = os.path.join(orion_dir, "latest.txt")
 
 # Flask instance webapp
 # http://flask.pocoo.org/docs/latest/patterns/packages/
@@ -36,7 +44,15 @@ client = pymongo.MongoClient(DEFAULT_URL)
 db = client['orion']
 
 
+# user.insert({'username': "aaa"})
+
+
 ################################ STATIC ROUTES ################################
+
+# @app.route("/")
+# def home():
+#     return render_template("home.html")
+
 
 @app.route("/")
 def index():
@@ -56,42 +72,35 @@ def getconf():
     for result in cursor:
         result.pop("_id")
     tagname = json.dumps(result)
-    
+
     return tagname
 
 
 @app.route("/setconf", methods=["POST"])
-def setconf():  
+def setconf():
     data = request.get_json()
+    print(data)
     db.config.save(data, check_keys=False)
-    
     return json.dumps({"status": 1})
 
 
 @app.route("/positions")
-def positions():  
+def positions():
     num = 0
-    num1 = 0
     posdata = []
     posdata1 = []
-    posdata2 = []
     cursor = db.history.find()
-
     for result in cursor:
         result.pop("_id")
         historytrack = result["historytrack"]
-        print(historytrack)
         while num < len(historytrack):
-            posdata.append(historytrack[num]['pos'][0])
-            posdata.append(historytrack[num]['pos'][1])
+            posdata.append(historytrack[num]['pos'])
             num = num + 1
             posdata1.append(posdata)
             posdata = []
-        posdata2.append(posdata1)
-        posdata1 = []
-        num =0
-        print(posdata2)
-    return json.dumps(posdata2) 
+        num = 0
+        print(posdata1)
+    return json.dumps(posdata1)
 
 
 @app.route("/upload", methods=["POST"])
@@ -122,8 +131,7 @@ def history():
     print(timedata)
     raise NotImplementedError()
 
-    
-    
+
 @app.route("/history_track", methods=["POST"])
 def history_track():
     timedata = request.get_data()
@@ -134,7 +142,6 @@ def history_track():
     posdata1 = []
     posdata2 = []
     cursor = db.history.find()
-
     for result in cursor:
         result.pop("_id")
         historytrack = result["historytrack"]
@@ -147,11 +154,9 @@ def history_track():
             posdata = []
         posdata2.append(posdata1)
         posdata1 = []
-        num =0
+        num = 0
         print(posdata2)
     return json.dumps(posdata2)  # history_track needs to change
-
-
 
 
 ################################# DEBUG PAGES #################################
