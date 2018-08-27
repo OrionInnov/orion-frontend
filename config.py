@@ -9,11 +9,6 @@ client = pymongo.MongoClient(DEFAULT_URL)
 db = client['orion']
 
 
-
-
-
-
-
 def save_history(totallist):
     num = 0
     time1 = time.time()
@@ -50,5 +45,3 @@ def load_config():
     for result in cursor:
         result.pop("_id")
     return result
-
-
