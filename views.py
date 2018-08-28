@@ -70,11 +70,9 @@ def positions():
     posdata1 = []
     posdata2 = []
     cursor = db.history.find()
-
     for result in cursor:
         result.pop("_id")
         historytrack = result["historytrack"]
-        print(historytrack)
         while num < len(historytrack):
             posdata.append(historytrack[num]['pos'][0])
             posdata.append(historytrack[num]['pos'][1])
@@ -84,7 +82,6 @@ def positions():
         posdata2.append(posdata1)
         posdata1 = []
         num =0
-        print(posdata2)
     return json.dumps(posdata2)
 
 
@@ -113,7 +110,6 @@ def upload():
 def history():
     # TODO(fzliu): get this working
     timedata = request.get_data()
-    print(timedata)
     raise NotImplementedError()
 
 
@@ -132,7 +128,6 @@ def history_track():
     for result in cursor:
         result.pop("_id")
         historytrack = result["historytrack"]
-        print(historytrack)
         while num < len(historytrack):
             posdata.append(historytrack[num]['pos'][0])
             posdata.append(historytrack[num]['pos'][1])
@@ -142,7 +137,6 @@ def history_track():
         posdata2.append(posdata1)
         posdata1 = []
         num =0
-        print(posdata2)
     return json.dumps(posdata2)  # history_track needs to change
 
 
