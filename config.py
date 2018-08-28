@@ -9,6 +9,7 @@ client = pymongo.MongoClient(DEFAULT_URL)
 db = client['orion']
 
 
+
 def create_history():
     create_time = time.time()
     num = 0
@@ -26,6 +27,7 @@ def create_history():
             num = num + 1
         dic_all["historytrack"] = list_historytrack
     db.history.insert(dic_all, check_keys=False)
+
 
 
 def save_history(totallist):
