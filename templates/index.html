@@ -42,9 +42,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#" class="smoothScroll">系统介绍</a></li>
 
-                <li class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" ><a href="#" class="smoothScroll">使用说明</a></li>
+                <li class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="true"><a href="#" class="smoothScroll">使用说明</a></li>
                 <div id="dropmenu" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a id="homeButton"  href="#">校准地图</a></li>
+                    <li><a id="homeButton" href="#">校准地图</a></li>
                     <li><a id="fixButton" href="#">定位</a></li>
                 </div>
                 <li><a href="#" class="smoothScroll">注意事项</a></li>
@@ -159,7 +160,6 @@
 </div>
 
 
-
 <!--定位-->
 <div id="page-fixP">
     <div id="fixPH" class="header">
@@ -260,21 +260,27 @@
                         <button id="multiple" type="button" class="btn btn-default col-xs-6">
                             <span class="">重置</span>
                         </button>
-                        <button id="between" type="button" class="btn btn-default col-xs-12">
+                        <button id="between" type="button" class="btn btn-default col-xs-6">
                             <span class="">区间选择</span>
                         </button>
-
+                        <button id="calculate" type="button" class="btn btn-default col-xs-6">
+                            <span class="">计算</span>
+                        </button>
                     </div>
                 </form>
+
+
                 <div class="panel overf borderRadiusBottom">
                     <div class="panel-body">
                         <div id="select" style='white-space: nowrap'>
-                            <form class="form-inline">
+                            <form class="form-inline" method="post" action="/cal">
                                 <div id="selectAdd"></div>
                             </form>
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
 
@@ -284,26 +290,23 @@
 
 <!-- 版权 -->
 <section id="copyright">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 col-sm-12">
-				<h3>ORION-FRONTEND</h3>
-				<p>© 2018  浙江奥新智能科技(金华)有限公司 版权所有</p>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <h3>ORION-FRONTEND</h3>
+                <p>© 2018 浙江奥新智能科技(金华)有限公司 版权所有</p>
+            </div>
+        </div>
+    </div>
 </section>
-
 
 <script type=text/javascript>
     POSITION_IMG_URL = "{{ url_for('static', filename='img/position.png') }}";
     MARKER_IMG_URL = "{{ url_for('static', filename='img/marker.png') }}";
-</script>
-<script type="text/javascript">
-
 </script>
 <script src="{{ url_for('static', filename='js/myjs/set.js') }}"></script>
 <script src="{{ url_for('static', filename='js/myjs/index.js') }}"></script>
 <script src="{{ url_for('static', filename='js/myjs/main.js') }}"></script>
 </body>
 </html>
+

@@ -378,7 +378,6 @@ function stopOverwrite1() {
 function stopOverwrite2() {
     clearInterval(overwrite2);
 }
-
 //DrawTrack
 function drawTrack(ctx, fromX, fromY, toX, toY, width, color) {
     ctx.save();
@@ -397,7 +396,6 @@ function drawTrack(ctx, fromX, fromY, toX, toY, width, color) {
     ctx.closePath();
     ctx.restore();
 }
-
 //Draw arrows
 function drawArrow(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
     var theta = theta || 30,
@@ -452,7 +450,6 @@ window.onscroll = function () {
         select.css("position", "static");
     }
 };
-
 window.onload = function () {
     function adjust() {
         var map1 = $("#map1"),
@@ -465,7 +462,6 @@ window.onload = function () {
     adjust();
     window.onresize = adjust;
 };
-
 //Binding events.
 (function () {
     $("#orionEnglish").click(function () {
@@ -593,7 +589,6 @@ window.onload = function () {
         }
         myRotate();
     });
-
     $("#counterclockwise").click(function () {
         myIndex = myIndex - 90;
         if (myIndex == -360) {
@@ -602,7 +597,6 @@ window.onload = function () {
         console.log(myIndex);
         myRotate();
     });
-
     $("#historyTrackB").click(function () {
         jumpC("#myCanvas3", "#myCanvas1", "#myCanvas2");
         historyTrack();
@@ -647,6 +641,31 @@ window.onload = function () {
         }
         console.log("区间选择成功");
     });
+
+    $("#calculate").on("click",function(){
+        console.log("开始计算");
+        var checkID = [];
+        $("input[name='tag']:checked").each(function(i){
+            checkID[i] = $(this).val();
+        })
+        console.log(checkID);
+        var data = {
+            data:JSON.stringify({
+                  'checkID':checkID
+            }),
+        };
+        console.log(data);
+        $.ajax({
+            url:"http://localhost:8000/cal",
+            type:'POST',
+            data:data,
+            dataType:'json',
+            //contentType: 'application/json; charset=UTF-8',
+            success:function (msg) {
+                console.log("成功")
+            }
+        })
+    })
 })();
 
 (function () {
