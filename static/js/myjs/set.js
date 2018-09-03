@@ -38,6 +38,8 @@ var configSet, calibrationC = [[NaN, NaN], [NaN, NaN]];
   canvasSize9.height = canvasSizeHeight;
 })();
 
+
+
 function getTagNameset() {
   $.ajax ({
     type: "GET",
@@ -56,7 +58,7 @@ function getTagNameset() {
           return "<option value='" + tagNames[i].name + "' class='selecta'>" + tagNames[i].name + "</option>";
         });
         $("#selectAdd").append(function() {
-          return "<input id='tag" + i + "' type='checkbox' class='selecta' style='white-space: nowrap'>" + tagNames[i].name + "<br/>";
+          return "<input name='tag' value='tag" + i + "'  id='tag" + i + "' type='checkbox' class='selecta' style='white-space: nowrap'>" + tagNames[i].name + "<br/>";
         });
       }
     },
@@ -66,6 +68,7 @@ function getTagNameset() {
   });
 }
 getTagNameset();
+
 function changeTagName() {
   $("#confirmN").on ("click", function() {
     //console.log(configSet);
@@ -92,7 +95,7 @@ function changeTagName() {
                 return "<option value='" + tagNames[i].name + "' class='selecta'>" + tagNames[i].name + "</option>";
               });
               $("#selectAdd").append(function() {
-                return "<input id='tag" + i + "' type='checkbox' class='selecta'>" + tagNames[i].name + "<br/>";
+                return "<input name='tag' value='tag" + i + "' id='tag" + i + "' type='checkbox' class='selecta'>" + tagNames[i].name + "<br/>";
               });
             }
             //console.log("");

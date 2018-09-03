@@ -18,13 +18,11 @@ from flask import send_from_directory
 
 from . import app
 
-
 # Type of image
 VALID_IMG_EXT = ["jpg", "png"]
 
 # MongoDB client URL and port
 DEFAULT_URL = "mongodb://localhost:27017"
-
 
 client = pymongo.MongoClient(DEFAULT_URL)
 db = client["orion"]
@@ -43,6 +41,19 @@ def static_fonts():
 
 
 ################################ DYNAMIC PAGES ################################
+
+
+@app.route("/cal", methods=['GET',"POST"])
+def cal():
+    checkid = request.form.get('checkID')
+    print(checkid)
+    print("122")
+    return "test"
+
+
+
+
+
 
 @app.route("/getconf")
 def getconf():
@@ -81,7 +92,7 @@ def positions():
             posdata = []
         posdata2.append(posdata1)
         posdata1 = []
-        num =0
+        num = 0
     return json.dumps(posdata2)
 
 
@@ -113,7 +124,6 @@ def history():
     raise NotImplementedError()
 
 
-
 @app.route("/history_track", methods=["POST"])
 def history_track():
     timedata = request.get_data()
@@ -136,13 +146,12 @@ def history_track():
             posdata = []
         posdata2.append(posdata1)
         posdata1 = []
-        num =0
+        num = 0
     return json.dumps(posdata2)  # history_track needs to change
 
 
-
-
 ################################# DEBUG PAGES #################################
+
 
 import numpy as np
 

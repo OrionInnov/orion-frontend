@@ -63,6 +63,7 @@ function jumpFixP() {
     $("#page-wrapper").css("display", "none");
     $("#page-fixP").css("display", "block");
     $("#page-rollC").css("display", "none");
+    $("#page-set").css("display", "none");
 }
 
 function jumpRollC() {
@@ -206,6 +207,7 @@ function canvasRestore() {
 
 function fixPositionF() {
     var pauseStatus = true;
+
     function fixPosition() {
         var c1 = $("#myCanvas1"),
             num = configSet.tags.length,
@@ -322,6 +324,7 @@ function track() {
         });
         dataURL2 = c2.get(0).toDataURL();
     }
+
     overwrite2 = setInterval(delay, 2000);
 }
 
@@ -367,6 +370,7 @@ function historyTrack() {
             })();
         }
     }
+
     var draw = setTimeout(drawHistoryPosition, 100);
 }
 
@@ -428,6 +432,7 @@ function drawArrow(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
     ctx.stroke();
     ctx.restore();
 }
+
 //onscroll
 window.onscroll = function () {
     var topScroll = document.documentElement.scrollTop || document.body.scrollTop,
@@ -452,7 +457,6 @@ window.onscroll = function () {
         select.css("position", "static");
     }
 };
-
 window.onload = function () {
     function adjust() {
         var map1 = $("#map1"),
@@ -462,10 +466,10 @@ window.onload = function () {
         w = w - ws - 45;
         map1.width(w);
     }
+
     adjust();
     window.onresize = adjust;
 };
-
 //Binding events.
 (function () {
     $("#orionEnglish").click(function () {
@@ -593,7 +597,6 @@ window.onload = function () {
         }
         myRotate();
     });
-
     $("#counterclockwise").click(function () {
         myIndex = myIndex - 90;
         if (myIndex == -360) {
@@ -602,7 +605,6 @@ window.onload = function () {
         console.log(myIndex);
         myRotate();
     });
-
     $("#historyTrackB").click(function () {
         jumpC("#myCanvas3", "#myCanvas1", "#myCanvas2");
         historyTrack();
@@ -647,6 +649,31 @@ window.onload = function () {
         }
         console.log("区间选择成功");
     });
+
+    $("#calculate").on("click", function () {
+        console.log("开始计算");
+        var checkID = [];
+        $("input[name='tag']:checked").each(function (i) {
+            checkID[i] = $(this).val();
+        })
+        console.log(checkID);
+        var data = {
+            data: JSON.stringify({
+                'checkID': checkID
+            }),
+        };
+        console.log(data);
+        $.ajax({
+            url: "http://localhost:8000/cal",
+            type: 'POST',
+            data: data,
+            dataType: 'json',
+            //contentType: 'application/json; charset=UTF-8',
+            success: function (msg) {
+                console.log("成功")
+            }
+        })
+    })
 })();
 
 (function () {

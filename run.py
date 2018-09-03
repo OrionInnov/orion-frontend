@@ -1,4 +1,3 @@
-
 # from . import app
 
 
@@ -61,6 +60,23 @@ def static_fonts():
 
 
 ################################ DYNAMIC PAGES ################################
+
+@app.route("/cal", methods=['GET', "POST"])
+def cal():
+    data = json.loads(request.form.get('data'))
+    print(data)
+    print(data['checkID'])
+    cursor = db.calculate.find()
+    for result in cursor:
+        result.pop("_id")
+        for tagid in result.keys():
+            for tagid1 in data['checkID']:
+                if tagid == tagid1:
+                    db.calculate.update({tagid: 0}, {
+                        "$set": {tagid: 1}
+                    })
+    return "test"
+
 
 @app.route("/getconf")
 def getconf():
@@ -179,7 +195,6 @@ def _positions():
     pos_data = DEBUG_TAG_POS + np.random.random((DEBUG_NUM_TAGS, 2))
     pos_repr = np.array(40 * pos_data, dtype=np.int32).tolist()
     return json.dumps(pos_repr)
-
 
 
 app.run("0.0.0.0", 8000, debug=False)
