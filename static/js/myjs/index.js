@@ -242,11 +242,11 @@ function fixPositionF() {
                             ctx.fillText(configSet.tags[i].name, 0, 0);
                             console.log("执行90");
                         } else if (myIndex == 180 || myIndex == -180) {
-                            ctx.rotate(Math.PI)
-                            ctx.fillText(configSet.tags[i].name, 20, -20);
+                            ctx.rotate(Math.PI);
+                            ctx.fillText(configSet.tags[i].name, 0, -20);
                             console.log("执行180");
                         } else if (myIndex == 270 || myIndex == -90) {
-                            ctx.rotate(Math.PI / 2)
+                            ctx.rotate(Math.PI / 2);
                             ctx.fillText(configSet.tags[i].name, 20, -20);
                             console.log("执行270");
                         } else {
