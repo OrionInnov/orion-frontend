@@ -63,6 +63,7 @@ function jumpFixP() {
     $("#page-wrapper").css("display", "none");
     $("#page-fixP").css("display", "block");
     $("#page-rollC").css("display", "none");
+    $("#page-set").css("display", "none");
 }
 
 function jumpRollC() {
@@ -206,6 +207,7 @@ function canvasRestore() {
 
 function fixPositionF() {
     var pauseStatus = true;
+
     function fixPosition() {
         var c1 = $("#myCanvas1"),
             num = configSet.tags.length,
@@ -322,6 +324,7 @@ function track() {
         });
         dataURL2 = c2.get(0).toDataURL();
     }
+
     overwrite2 = setInterval(delay, 2000);
 }
 
@@ -367,6 +370,7 @@ function historyTrack() {
             })();
         }
     }
+
     var draw = setTimeout(drawHistoryPosition, 100);
 }
 
@@ -378,6 +382,7 @@ function stopOverwrite1() {
 function stopOverwrite2() {
     clearInterval(overwrite2);
 }
+
 //DrawTrack
 function drawTrack(ctx, fromX, fromY, toX, toY, width, color) {
     ctx.save();
@@ -396,6 +401,7 @@ function drawTrack(ctx, fromX, fromY, toX, toY, width, color) {
     ctx.closePath();
     ctx.restore();
 }
+
 //Draw arrows
 function drawArrow(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
     var theta = theta || 30,
@@ -426,6 +432,7 @@ function drawArrow(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
     ctx.stroke();
     ctx.restore();
 }
+
 //onscroll
 window.onscroll = function () {
     var topScroll = document.documentElement.scrollTop || document.body.scrollTop,
@@ -459,6 +466,7 @@ window.onload = function () {
         w = w - ws - 45;
         map1.width(w);
     }
+
     adjust();
     window.onresize = adjust;
 };
@@ -642,26 +650,26 @@ window.onload = function () {
         console.log("区间选择成功");
     });
 
-    $("#calculate").on("click",function(){
+    $("#calculate").on("click", function () {
         console.log("开始计算");
         var checkID = [];
-        $("input[name='tag']:checked").each(function(i){
+        $("input[name='tag']:checked").each(function (i) {
             checkID[i] = $(this).val();
         })
         console.log(checkID);
         var data = {
-            data:JSON.stringify({
-                  'checkID':checkID
+            data: JSON.stringify({
+                'checkID': checkID
             }),
         };
         console.log(data);
         $.ajax({
-            url:"http://localhost:8000/cal",
-            type:'POST',
-            data:data,
-            dataType:'json',
+            url: "http://localhost:8000/cal",
+            type: 'POST',
+            data: data,
+            dataType: 'json',
             //contentType: 'application/json; charset=UTF-8',
-            success:function (msg) {
+            success: function (msg) {
                 console.log("成功")
             }
         })
