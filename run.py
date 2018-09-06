@@ -103,10 +103,8 @@ def positions():
     #posdata1 = []
     cursor = db.history.find()
     for result in cursor:
-        print(result)
         result.pop("_id")
         historytrack = result["historytrack"]
-        print(historytrack)
         while num < len(historytrack):
             posdata.append(historytrack[num]['pos'])
             num = num + 1

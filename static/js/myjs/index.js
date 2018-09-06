@@ -225,8 +225,8 @@ function fixPositionF() {
       x[k] = positions[k][0] - 10;
       y[k] = positions[k][1] - 10;
     }
-    console.log(x);
-    console.log(y);
+    //console.log(x);
+    //console.log(y);
     myImage.src = MARKER_IMG_URL;
     ctx.fillStyle = "#00F";
     ctx.globalCompositeOperation = "copy";

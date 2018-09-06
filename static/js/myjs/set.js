@@ -52,7 +52,7 @@ function getTagNameset() {
       configSet = result;
       var tagNames = result.tags;
       calibrationC = configSet.system.calib;
-      canvasInit();
+      //canvasInit();
       for (var i = 0; i < tagNames.length; i++) {
         $("#selectI").append(function() {
           return "<option value='" + tagNames[i].name + "' class='selecta'>" + tagNames[i].name + "</option>";
