@@ -69,6 +69,25 @@ function getTagNameset() {
 }
 getTagNameset();
 
+function getCalibrationC() {
+  $.ajax ({
+    type: "GET",
+    url: "http://localhost:8000/getconf",
+    //url: "http://192.168.100.6:8000/_config",
+    dataType: "json",
+    //async: false,
+    success: function(result) {
+      canvasInit();
+      console.log(result);
+      configSet = result;
+      calibrationC = configSet.system.calib;
+    },
+    error: function(result) {
+      //console.log("");
+    }
+  });
+}
+
 function changeTagName() {
   $("#confirmN").on ("click", function() {
     //console.log(configSet);

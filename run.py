@@ -91,6 +91,7 @@ def getconf():
 @app.route("/setconf", methods=["POST"])
 def setconf():
     data = json.loads(request.get_data())
+    db.config.remove()
     db.config.save(data, check_keys=False)
     return json.dumps({"status": 1})
 
@@ -99,19 +100,21 @@ def setconf():
 def positions():
     num = 0
     posdata = []
-    posdata1 = []
+    #posdata1 = []
     cursor = db.history.find()
     for result in cursor:
+        print(result)
         result.pop("_id")
         historytrack = result["historytrack"]
+        print(historytrack)
         while num < len(historytrack):
             posdata.append(historytrack[num]['pos'])
             num = num + 1
-            posdata1.append(posdata)
-            posdata = []
+            #posdata1.append(posdata)
+            #posdata = []
         num = 0
-        print(posdata1)
-    return json.dumps(posdata1)
+        #print(posdata)
+    return json.dumps(posdata)
 
 
 @app.route("/upload", methods=["POST"])
