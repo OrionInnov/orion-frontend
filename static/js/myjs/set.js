@@ -77,6 +77,7 @@ function getCalibrationC() {
     dataType: "json",
     //async: false,
     success: function(result) {
+      canvasRestore();
       canvasInit();
       console.log(result);
       configSet = result;
@@ -208,7 +209,7 @@ function drawPoint() {
       //async: false,
       data: JSON.stringify(configSet),
       success: function(result) {
-        canvasInit();
+        //canvasInit();
         //console.log("");
       },
       error: function(result) {

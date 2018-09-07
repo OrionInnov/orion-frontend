@@ -69,11 +69,19 @@ def cal():
     cursor = db.calculate.find()
     for result in cursor:
         result.pop("_id")
+        for tagid0 in result.keys():
+            db.calculate.update({tagid0: 1}, {
+                "$set": {tagid0: 0}
+            })
         for tagid in result.keys():
             for tagid1 in data['checkID']:
                 if tagid == tagid1:
                     db.calculate.update({tagid: 0}, {
                         "$set": {tagid: 1}
+                    })
+                else:
+                    db.calculate.update({tagid: 0}, {
+                        "$set": {tagid: 0}
                     })
     return "test"
 
@@ -84,7 +92,7 @@ def getconf():
     for result in cursor:
         result.pop("_id")
     tagname = json.dumps(result)
-
+    print (tagname)
     return tagname
 
 

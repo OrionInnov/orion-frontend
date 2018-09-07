@@ -195,6 +195,7 @@ function canvasInit() {
   ctx1.translate(calibrationC[1][0], calibrationC[1][1]);
   ctx2.translate(calibrationC[1][0], calibrationC[1][1]);
   ctx3.translate(calibrationC[1][0], calibrationC[1][1]);
+  console.log(calibrationC);
 }
 
 function canvasRestore() {
