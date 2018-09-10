@@ -94,36 +94,45 @@ function changeTagName() {
     //console.log(configSet);
     var tagNames = configSet.tags,
         tagName = $("#selectI").val(),
-        name  = $("#nameT").val();
+        name  = $("#nameT").val(),
+        enable = true;
     for (var i = 0; i < tagNames.length; i++) {
-      if (tagNames[i].name == tagName) {
-        tagNames[i].name = name;
-        $.ajax ({
-          type: "POST",
-          url: "http://localhost:8000/setconf",
+      if (name == tagNames[i].name) {
+        enable = false;
+        alert("错误：" + name + "已存在！");
+      }
+    }
+    if (enable) {
+      for (var i = 0; i < tagNames.length; i++) {
+        if (tagNames[i].name == tagName) {
+          tagNames[i].name = name;
+          $.ajax ({
+            type: "POST",
+            url: "http://localhost:8000/setconf",
             contentType:'application/json;charset=UTF-8',
-          //url: "http://192.168.100.6:8000/_config",
-          dataType: "json",
-          //async: false,
-          data: JSON.stringify(configSet),
-          success: function() {
-            console.log(configSet);
-            $("#selectI").empty();
-            $("#selectAdd").empty();
-            for (var i = 0; i < tagNames.length; i++) {
-              $("#selectI").append(function() {
-                return "<option value='" + tagNames[i].name + "' class='selecta'>" + tagNames[i].name + "</option>";
-              });
-              $("#selectAdd").append(function() {
-                return "<input name='tag' value='tag" + i + "' id='tag" + i + "' type='checkbox' class='selecta'>" + tagNames[i].name + "<br/>";
-              });
+            //url: "http://192.168.100.6:8000/_config",
+            dataType: "json",
+            //async: false,
+            data: JSON.stringify(configSet),
+            success: function() {
+              console.log(configSet);
+              $("#selectI").empty();
+              $("#selectAdd").empty();
+              for (var i = 0; i < tagNames.length; i++) {
+                $("#selectI").append(function() {
+                  return "<option value='" + tagNames[i].name + "' class='selecta'>" + tagNames[i].name + "</option>";
+                });
+                $("#selectAdd").append(function() {
+                  return "<input name='tag' value='tag" + i + "' id='tag" + i + "' type='checkbox' class='selecta'>" + tagNames[i].name + "<br/>";
+                });
+              }
+              //console.log("");
+            },
+            error: function(result) {
+              //console.log("");
             }
-            //console.log("");
-          },
-          error: function(result) {
-            //console.log("");
-          }
-        });
+          });
+        }
       }
     }
   });
