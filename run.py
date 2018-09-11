@@ -131,10 +131,10 @@ def upload():
     ext = img.filename.split(".")[-1].lower()
     if ext not in VALID_IMG_EXT:
         return json.dumps({"status": 0})
-
+    else:
     # save the image
-    fname = "position." + ext
-    img.save(os.path.join(app.root_path, "static", "img", fname))
+        fname = "position.png"
+        img.save(os.path.join(app.root_path, "static", "img", fname))
 
     # create base64-encoded image
     img.seek(0)
