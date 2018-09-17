@@ -481,9 +481,9 @@ window.onload = function () {
 //Binding events.
 (function() {
   $("#orionEnglish").click(function () {
-    $("#navHead1").html("SYSTEM");
-    $("#navHead2").html("INSTRUCTIONS");
-    $("#navHead3").html("PRECAUTIONS");
+    $("#navHead1").html("INSTRUCTIONS");
+    $("#navHead2").html("OPTION");
+    $("#navHead3").html("ABOUT");
     $("#navHead4").html("ABOUT");
     $("#navHead5").html("CONTACT");
     $("#preparationsHead").html("Preparations <small>Please confirm reference points and bind tags.</small>");
@@ -502,14 +502,14 @@ window.onload = function () {
     $("#backgroundSubmit").html("Submit");
     $("#setB").html("<span class='glyphicon glyphicon-exclamation-sign'><nobr class='open-sans'>Calibration</nobr></span>");
     $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>INDOORSYSTEM</strong></a></div>");
-    $("#homeButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHome");
-    $("#fixButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspFix position");
+    $("#homeButton").html("Preparations");
+    $("#fixButton").html("Fix position");
     $("#fixPH").html("<h1 class='page-header'>Fix position <small>Positioning tags.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Fix position</li></ol>");
     $("#positionsB").html("<span class='glyphicon glyphicon-play'><nobr class='open-sans'>Startposition</nobr></span>");
     $("#pauseB").html("<span class='glyphicon glyphicon-pause'><nobr class='open-sans'>Pause</nobr></span>");
     $("#trackB").html("<span class='glyphicon glyphicon-circle-arrow-right'><nobr class='open-sans'>Track</nobr></span>");
-    $("#clockwise").html("<span class='glyphicon gglyphicon-menu-right'><nobr class='open-sans'>clockwise</nobr></span>");
-    $("#counterclockwise").html("<span class='glyphicon glyphicon-menu-left'><nobr class='open-sans'>counterclockwise</nobr></span>");
+    $("#clockwise").html("<span class='glyphicon glyphicon-menu-right'><nobr class='open-sans'>Clockwise</nobr></span>");
+    $("#counterclockwise").html("<span class='glyphicon glyphicon-menu-left'><nobr class='open-sans'>Counterclockwise</nobr></span>");
     $("#zoomB1").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoomposition</nobr></span>");
     $("#zoomB2").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoomtrack&nbsp</nobr></span>");
     $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'><nobr class='open-sans'>Historytrack</nobr></span>");
@@ -517,11 +517,12 @@ window.onload = function () {
     $("#radio").html("<span class=''>ALL</span>");
     $("#multiple").html("<span class=''>CLR</span>");
     $("#between").html("<span class=''>Interval</span>")
+    $("#calculate").html("<span class=''>Calculate</span>")
   });
   $("#orionChinese").click(function () {
     $("#navHead1").html("系统介绍");
-    $("#navHead2").html("使用说明");
-    $("#navHead3").html("注意事项");
+    $("#navHead2").html("定位选项");
+    $("#navHead3").html("关于奥新");
     $("#navHead4").html("关于奥新");
     $("#navHead5").html("联系我们");
     $("#preparationsHead").html("准备工作 <small>请确定参照点以及绑定标签</small>");
@@ -540,13 +541,13 @@ window.onload = function () {
     $("#backgroundSubmit").html("提交");
     $("#setB").html("<span class='glyphicon glyphicon-exclamation-sign'>校准地图</span>");
     $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>室内定位系统</strong></a></div>");
-    $("#homeButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp首页");
-    $("#fixButton").html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp定位");
+    $("#homeButton").html("准备工作");
+    $("#fixButton").html("定位");
     $("#fixPH").html("<h1 class='page-header'>定位<small>为多个标签定位.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>首页</a></li>&nbsp<li class='active'>定位</li></ol>");
     $("#positionsB").html("<span class='glyphicon glyphicon-play'>开始定位</span>");
     $("#pauseB").html("<span class='glyphicon glyphicon-pause'>暂停</span>");
     $("#trackB").html("<span class='glyphicon glyphicon-circle-arrow-right'>显示轨迹</span>");
-    $("#clockwise").html("<span class='glyphicon gglyphicon-menu-right'><nobr class='open-sans'>顺时针旋转</nobr></span>");
+    $("#clockwise").html("<span class='glyphicon glyphicon-menu-right'><nobr class='open-sans'>顺时针旋转</nobr></span>");
     $("#counterclockwise").html("<span class='glyphicon glyphicon-menu-left'><nobr class='open-sans'>逆时针旋转</nobr></span>");
     $("#zoomB1").html("<span class='glyphicon glyphicon-resize-full'>定位缩放</span>");
     $("#zoomB2").html("<span class='glyphicon glyphicon-resize-full'>轨迹缩放</span>");
@@ -555,6 +556,7 @@ window.onload = function () {
     $("#radio").html("<span class=''>全选</span>");
     $("#multiple").html("<span class=''>重置</span>");
     $("#between").html("<span class=''>区间选择</span>")
+    $("#calculate").html("<span class=''>计算</span>")
   });
   $("#setB").click(function () {
     jumpSetP();
