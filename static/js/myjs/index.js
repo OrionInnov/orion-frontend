@@ -516,7 +516,7 @@ window.onload = function () {
     $("#positionHead").html("Map<div id='zoomN' style='position: relative; float: right'></div>");
     $("#radio").html("<span class=''>ALL</span>");
     $("#multiple").html("<span class=''>CLR</span>");
-    $("#between").html("<span class=''>Interval selection</span>")
+    $("#between").html("<span class=''>Interval</span>")
   });
   $("#orionChinese").click(function () {
     $("#navHead1").html("系统介绍");
