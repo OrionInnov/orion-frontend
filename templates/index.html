@@ -11,6 +11,7 @@
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.actual.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-hover-dropdown.js') }}"></script>
     <script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/moment-with-locales.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}"></script>
@@ -38,26 +39,56 @@
           <a href="#" class="navbar-brand">ORIONTECH</a>
         </div>
         <div class="collapse navbar-collapse dropdown">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" id="navHead1" class="smoothScroll">系统介绍</a></li>
-
-            <li class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+          <ul class="dropdown nav navbar-nav navbar-right">
+            <li class="dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="true"><a href="#" id="navHead4" class="smoothScroll">关于奥新</a></li>
+            <ul id="dropmenu4" class="dropdown-menu" aria-labelledby="dropdownMenu4">
+              <li><a id="homeButton3" href="#">公司介绍</a></li>
+              <li><a id="fixButton3" href="#">联系我们</a></li>
+            </ul>
+            <!--<div class="empty">
+            </div>-->
+          </ul>
+          <ul class="dropdown nav navbar-nav navbar-right">
+            <li class="dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true"
+              aria-expanded="true"><a href="#" id="navHead3" class="smoothScroll">配置选项</a></li>
+            <ul id="dropmenu3" class="dropdown-menu" aria-labelledby="dropdownMenu3">
+              <li><a id="homeButton2" href="#">高级设置</a></li>
+              <!--<li class="divider"></li>-->
+              <li class="dropdown-submenu">
+                <a id="fixButton2" href="#" tabindex="-1">语言</a>
+                <ul class="dropdown-menu">
+                  <li><a id="orionChinese" class="selecta" tabindex="-1">中文</a></li>
+                  <li><a id="orionEnglish" class="selecta" tabindex="-1">English</a></li>
+                </ul>
+              </li>
+            </ul>
+          </ul>
+          <ul class="dropdown nav navbar-nav navbar-right">
+            <li class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="true"><a href="#" id="navHead2" class="smoothScroll">定位选项</a></li>
-            <div id="dropmenu" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li class="dropdown-toggle selecta" type="button" id="dropdownMenu2a"><a class="smoothScroll">定位选项</a></li>
+            <div id="dropmenu2" class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><a id="positionsB" class="glyphicon glyphicon-play selecta">开始定位</a></li>
+              <li><a id="pauseB" class="glyphicon glyphicon-pause selecta">暂停</a></li>
+              <li><a id="trackB" class="glyphicon glyphicon-circle-arrow-right selecta">显示轨迹</a></li>
+              <li><a id="zoomB1" class="glyphicon glyphicon-resize-full selecta">定位缩放</a></li>
+              <li><a id="zoomB2" class="glyphicon glyphicon-resize-full selecta">轨迹缩放</a></li>
+            </div>
+          </ul>
+          <ul class="dropdown nav navbar-nav navbar-right">
+            <li class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="true"><a href="#" id="navHead1" class="smoothScroll">功能页面</a></li>
+            <div id="dropmenu1" class="dropdown-menu" aria-labelledby="dropdownMenu1">
               <li><a id="homeButton" href="#">准备工作</a></li>
               <li><a id="fixButton" href="#">定位</a></li>
             </div>
-            <li><a href="#" id="navHead3" class="smoothScroll">关于奥新</a></li>
-            <li>
-              <div class="empty">
-              </div>
-            </li>
           </ul>
         </div>
       </div>
-      <div class="languageB">
-        <a id="orionChinese" class="selecta">中文</a>&nbsp;&nbsp;<a id="orionEnglish" class="selecta">English</a>
-      </div>
+      <!--<div class="languageB">
+        &nbsp;&nbsp;
+      </div>-->
     </section>
     <!--头部通栏-->
     <section id="banner">
@@ -87,7 +118,21 @@
             <button id="backgroundSubmit" type="button" class="btn btn-default fileinput-button">提交</button>
           </div>&nbsp;&nbsp;&nbsp;
           <button id="setB" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-exclamation-sign">校准地图</span>
+            <!--<span class="glyphicon glyphicon-exclamation-sign">校准地图</span>-->
+            校准地图
+          </button>
+        </form>
+      </div>
+      <div class="header">
+        <form id="f1" class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label id="inputNameEn" for="exampleInputEmail2">输入姓名</label>
+            <input type="text" class="form-control" style="width: 120px" id="nameT">
+          </div>
+          <select id="selectI" name="">
+          </select>
+          <button id="confirmN" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-ok">绑定</span>
           </button>
         </form>
       </div>
@@ -122,15 +167,6 @@
           <button id="confirmF" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-ok">确定</span>
           </button>&nbsp;&nbsp;&nbsp;
-          <div class="form-group">
-            <label id="inputNameEn" for="exampleInputEmail2">输入姓名</label>
-            <input type="text" class="form-control" style="width: 120px" id="nameT">
-          </div>
-          <select id="selectI" name="">
-          </select>
-          <button id="confirmN" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-ok">绑定</span>
-          </button>
           <button id="leaveS" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-share-alt">返回</span>
           </button>
@@ -177,26 +213,11 @@
       </div>
       <div class="header">
         <form class="form-inline panel panel-heading">
-          <button id="positionsB" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-play">开始定位</span>
-          </button>
-          <button id="pauseB" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-pause">暂停</span>
-          </button>
-          <button id="trackB" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-circle-arrow-right">显示轨迹</span>
-          </button>
           <button id="clockwise" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon glyphicon-menu-right">顺时针旋转</span>
           </button>
           <button id="counterclockwise" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon glyphicon-menu-left">逆时针旋转</span>
-          </button>
-          <button id="zoomB1" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-resize-full">定位缩放</span>
-          </button>
-          <button id="zoomB2" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-resize-full">轨迹缩放</span>
           </button>
           <div class="input-group date" id="datetimePicker1">
             <input id="datetimeP1" type="text" class="form-control" style="width: 155px"/>

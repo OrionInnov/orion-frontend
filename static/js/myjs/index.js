@@ -25,6 +25,7 @@ function pageDefine() {
   $("#page-rollC").css("display", "none");
   $("#zoomN").css("display", "none");
   $("#page-set").css("display", "none");
+  disableFixbutton();
 }
 
 pageDefine();
@@ -36,6 +37,7 @@ function jumpSetP() {
   $("#page-wrapper").css("display", "none");
   $("#page-fixP").css("display", "none");
   $("#page-rollC").css("display", "none");
+  disableFixbutton();
 }
 
 function leaveSetP() {
@@ -56,6 +58,7 @@ function jumpHomeP() {
   $("#page-rollC").css("display", "none");
   stopOverwrite1();
   stopOverwrite2();
+  disableFixbutton();
 }
 
 function jumpFixP() {
@@ -66,6 +69,7 @@ function jumpFixP() {
   $("#page-fixP").css("display", "block");
   $("#page-rollC").css("display", "none");
   $("#page-set").css("display", "none");
+  enbleFixbutton();
 }
 
 function jumpRollC() {
@@ -75,6 +79,17 @@ function jumpRollC() {
   $("#page-wrapper").css("display", "none");
   $("#page-fixP").css("display", "none");
   $("#page-rollC").css("display", "block");
+  disableFixbutton();
+}
+
+function enbleFixbutton() {
+  $('#dropdownMenu2').css("display", "block");
+  $('#dropdownMenu2a').css("display", "none");
+}
+
+function disableFixbutton() {
+  $('#dropdownMenu2').css("display", "none");
+  $('#dropdownMenu2a').css("display", "block");
 }
 
 //FixPosition and track switch.
@@ -168,6 +183,7 @@ function uploadImg() {
 //Fix position.
 var dataURL0 = 0, dataURL1 = 0, dataURL2 = 0;
 var myIndex = 0;
+var pauseStatus = 0;
 
 function drawBackground() {
   var myBackground = new Image(),
@@ -211,7 +227,7 @@ function canvasRestore() {
 }
 
 function fixPositionF() {
-  var pauseStatus = true;
+  pauseStatus = 1;
 
   function fixPosition() {
     var c1 = $("#myCanvas1"),
@@ -265,16 +281,52 @@ function fixPositionF() {
       }
       dataURL1 = c1.get(0).toDataURL();
     };
-    if (pauseStatus == false) {
+    if (pauseStatus == 0) {
       stopOverwrite1();
     }
   }
 
   $("#pauseB").click(function () {
-    pauseStatus = false;
+    pauseStatus = 0;
   });
   overwrite1 = setInterval(fixPosition, 500);
 }
+
+/*$("#fixButton2").mouseover(function(){
+    $("#lan").css("display","block");
+});
+$("#fixButton2").mouseleave(function(){
+  setTimeout(function () {
+    if ($("#fuck").css("background-color") !== "#e8e8e8") {
+      console.log($("#fuck").css("background-color"));
+      $("#lan").css("display","none");
+    }
+  }, 1000);
+});
+$("#lan").mouseleave(function(){
+  $("#lan").css("display","none");
+});*/
+document.onkeydown = function(event) {
+  var e = event || window.event || arguments.callee.caller.arguments[0];
+  var disFix = $("#myCanvas1").css("display");
+  if (event.keyCode == 32) {
+    event.preventDefault();
+  }
+  if (disFix == "block") {
+    if (e && e.keyCode == 32) {
+      console.log(pauseStatus);
+      if (pauseStatus == 0) {
+        jumpC("#myCanvas1", "#myCanvas2", "#myCanvas3");
+        fixPositionF();
+        console.log("开始定位");
+      } else if (pauseStatus == 1) {
+        //console.log(pauseStatus);
+        pauseStatus = 0;
+        //console.log(pauseStatus);
+      };
+    }
+  }
+};
 
 //Track.
 function track() {
