@@ -135,20 +135,16 @@ function getPosition() {
   $.ajax({
     type: "GET",
     url: "http://localhost:8000/positions",
-    //url: "http://192.168.100.6:8000/_positions",
     dataType: "json",
     async: false,
     success: function (result) {
       positions = result;
-      //console.log(calibrationC[1][0]);
       for (var i = 0; i < positions.length; i++) {
         positions[i][0] = calibrationC[0][0] * parseFloat(positions[i][0]);
         positions[i][1] = calibrationC[0][1] * parseFloat(positions[i][1]);
       }
-      //console.log(calibrationC[1][1]);
     },
     error: function (result) {
-      //console.log("");
     }
   });
   return positions;
@@ -161,21 +157,17 @@ function uploadImg() {
   $.ajax({
     type: "POST",
     url: "http://localhost:8000/upload",
-    //url: "http://192.168.100.6:8000/_positions",
     data: form,
     cache: false,
     processData: false,
     contentType: false,
     success: function (result) {
-        //console.log("upload" + result)
         var imgBase64 = JSON.parse(result)
         POSITION_IMG_URL = imgBase64.img;
         drawBackground();
         drawBackground1();
-        //console.log("");
     },
     error: function (result) {
-        //console.log("");
     }
   });
 }
@@ -236,14 +228,11 @@ function fixPositionF() {
         positions = getPosition(),
         x = [],
         y = [];
-        //console.log(positions);
     var ctx = c1.get(0).getContext("2d");
     for (var k = 0; k < num; k++) {
       x[k] = positions[k][0] - 10;
       y[k] = positions[k][1] - 10;
     }
-    //console.log(x);
-    //console.log(y);
     myImage.src = MARKER_IMG_URL;
     ctx.fillStyle = "#00F";
     ctx.globalCompositeOperation = "copy";
@@ -256,24 +245,19 @@ function fixPositionF() {
             ctx.save();
             ctx.translate(x[i], y[i]);
             ctx.drawImage(myImage, 0, 0, 20, 20);
-            //console.log(myIndex);
             if (myIndex == 0) {
               ctx.fillText(configSet.tags[i].name, 20, 0);
-              //console.log("执行0");
             } else if (myIndex == 90 || myIndex == -270) {
               ctx.rotate(-Math.PI / 2);
               ctx.fillText(configSet.tags[i].name, 0, 0);
-              //console.log("执行90");
             } else if (myIndex == 180 || myIndex == -180) {
               ctx.rotate(Math.PI)
               ctx.fillText(configSet.tags[i].name, 0, -20);
-              //console.log("执行180");
             } else if (myIndex == 270 || myIndex == -90) {
               ctx.rotate(Math.PI / 2)
               ctx.fillText(configSet.tags[i].name, 20, -20);
-              //console.log("执行270");
             } else {
-              //console.log("错误");
+              console.log("错误");
             }
             ctx.restore();
           }
@@ -292,20 +276,6 @@ function fixPositionF() {
   overwrite1 = setInterval(fixPosition, 500);
 }
 
-/*$("#fixButton2").mouseover(function(){
-    $("#lan").css("display","block");
-});
-$("#fixButton2").mouseleave(function(){
-  setTimeout(function () {
-    if ($("#fuck").css("background-color") !== "#e8e8e8") {
-      console.log($("#fuck").css("background-color"));
-      $("#lan").css("display","none");
-    }
-  }, 1000);
-});
-$("#lan").mouseleave(function(){
-  $("#lan").css("display","none");
-});*/
 document.onkeydown = function(event) {
   var e = event || window.event || arguments.callee.caller.arguments[0];
   var disFix = $("#myCanvas1").css("display");
@@ -314,15 +284,11 @@ document.onkeydown = function(event) {
   }
   if (disFix == "block") {
     if (e && e.keyCode == 32) {
-      console.log(pauseStatus);
       if (pauseStatus == 0) {
         jumpC("#myCanvas1", "#myCanvas2", "#myCanvas3");
         fixPositionF();
-        console.log("开始定位");
       } else if (pauseStatus == 1) {
-        //console.log(pauseStatus);
         pauseStatus = 0;
-        //console.log(pauseStatus);
       };
     }
   }
@@ -360,7 +326,6 @@ function track() {
         }
       })();
     }
-    //console.log(positions1);
   }
 
   function point2() {
@@ -374,7 +339,6 @@ function track() {
         }
       })();
     }
-    //console.log(positions2);
   }
 
   function delay() {
@@ -412,7 +376,6 @@ function historyTrack() {
       console.log(result);
     },
     error: function (result) {
-      console.log("");
     }
   });
   var c = $("#myCanvas3");
@@ -495,6 +458,7 @@ function drawArrow(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
 }
 
 //onscroll
+
 window.onscroll = function () {
   var topScroll = document.documentElement.scrollTop || document.body.scrollTop,
       select = $("#selectA");
@@ -533,37 +497,42 @@ window.onload = function () {
 //Binding events.
 (function() {
   $("#orionEnglish").click(function () {
-    $("#navHead1").html("INSTRUCTIONS");
-    $("#navHead2").html("OPTION");
-    $("#navHead3").html("ABOUT");
+    $("#navHead1").html("PAGES");
+    $("#navHead2").html("LBSOPTION");
+    $("#navHead2a").html("LBSOPTION");
+    $("#navHead3").html("CONFIG");
+    $("#languageHead").html("Language");
     $("#navHead4").html("ABOUT");
+    $("#introduceHead").html("Introduction");
+    $("#contactHead").html("Contact");
     $("#navHead5").html("CONTACT");
-    $("#preparationsHead").html("Preparations <small>Please confirm reference points and bind tags.</small>");
+
+    $("#preparationsHead").html("Preparations <small>Please confirm reference points.</small>");
     $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>First&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</nobr></span>");
     $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>Second</nobr></span>");
     $("#confirmF").html("<span class='glyphicon glyphicon-ok'><nobr class='open-sans'>Confirm</nobr></span>");
     $("#inputNameEn").html("<nobr class='open-sans'>Name</nobr>");
     $("#preparationsP").html("<nobr class='open-sans'>Map</nobr>");
-    $("#confirmN").html("<span class='glyphicon glysphicon-ok'><nobr class='open-sans'>&nbsp&nbspBind&nbsp&nbsp</nobr></span>");
+    $("#confirmN").html("<span class='glyphicon glyphicon-ok'><nobr class='open-sans'>&nbsp&nbspBind&nbsp&nbsp</nobr></span>");
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'><nobr class='open-sans'>Back</nobr></span>");
-    $("#homeH").html("<h1 class='page-header'>Indoor Localization System<small>Please upload map.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Preparations</li></ol>");
+    $("#homeH").html("<h1 class='page-header'>Indoor Localization System<small>Please upload map or bind tags.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Preparations</li></ol>");
     $("#uploadB").html("Upload");
     if ($("#fileBackground").val() == "") {
       $("#fileName").html("no files");
     }
     $("#backgroundSubmit").html("Submit");
-    $("#setB").html("<span class='glyphicon glyphicon-exclamation-sign'><nobr class='open-sans'>Calibration</nobr></span>");
+    $("#setB").html("Calibration");
     $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>INDOORSYSTEM</strong></a></div>");
     $("#homeButton").html("Preparations");
     $("#fixButton").html("Fix position");
     $("#fixPH").html("<h1 class='page-header'>Fix position <small>Positioning tags.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Fix position</li></ol>");
-    $("#positionsB").html("<span class='glyphicon glyphicon-play'><nobr class='open-sans'>Startposition</nobr></span>");
-    $("#pauseB").html("<span class='glyphicon glyphicon-pause'><nobr class='open-sans'>Pause</nobr></span>");
-    $("#trackB").html("<span class='glyphicon glyphicon-circle-arrow-right'><nobr class='open-sans'>Track</nobr></span>");
+    $("#positionsB").html("Startposition");
+    $("#pauseB").html("Pause");
+    $("#trackB").html("Track");
     $("#clockwise").html("<span class='glyphicon glyphicon-menu-right'><nobr class='open-sans'>Clockwise</nobr></span>");
     $("#counterclockwise").html("<span class='glyphicon glyphicon-menu-left'><nobr class='open-sans'>Counterclockwise</nobr></span>");
-    $("#zoomB1").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoomposition</nobr></span>");
-    $("#zoomB2").html("<span class='glyphicon glyphicon-resize-full'><nobr class='open-sans'>Zoomtrack&nbsp</nobr></span>");
+    $("#zoomB1").html("Zoomposition");
+    $("#zoomB2").html("Zoomtrack&nbsp");
     $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'><nobr class='open-sans'>Historytrack</nobr></span>");
     $("#positionHead").html("Map<div id='zoomN' style='position: relative; float: right'></div>");
     $("#radio").html("<span class=''>ALL</span>");
@@ -572,37 +541,41 @@ window.onload = function () {
     $("#calculate").html("<span class=''>Calculate</span>")
   });
   $("#orionChinese").click(function () {
-    $("#navHead1").html("系统介绍");
+    $("#navHead1").html("功能页面");
     $("#navHead2").html("定位选项");
-    $("#navHead3").html("关于奥新");
+    $("#navHead2a").html("定位选项");
+    $("#navHead3").html("配置选项");
+    $("#languageHead").html("语言");
     $("#navHead4").html("关于奥新");
+    $("#introduceHead").html("公司介绍");
+    $("#contactHead").html("联系我们");
     $("#navHead5").html("联系我们");
-    $("#preparationsHead").html("准备工作 <small>请确定参照点以及绑定标签</small>");
+    $("#preparationsHead").html("准备工作<small>请确定参照点</small>");
     $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'>第一点</span>");
     $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'>第二点</span>");
     $("#confirmF").html("<span class='glyphicon glyphicon-ok'>确定</span>");
     $("#inputNameEn").html("输入姓名");
     $("#preparationsP").html("地图");
-    $("#confirmN").html("<span class='glyphicon glysphicon-ok'>绑定</span>");
+    $("#confirmN").html("<span class='glyphicon glyphicon-ok'>绑定</span>");
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'>返回</span>");
-    $("#homeH").html("<h1 class='page-header'>室内定位系统<small>请上传地图</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>首页</a></li>&nbsp<li class='active'>准备工作</li></ol>");
+    $("#homeH").html("<h1 class='page-header'>室内定位系统<small>请上传地图或绑定标签</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>首页</a></li>&nbsp<li class='active'>准备工作</li></ol>");
     $("#uploadB").html("上传");
     if ($("#fileBackground").val() == "") {
       $("#fileName").html("未上传文件");
     }
     $("#backgroundSubmit").html("提交");
-    $("#setB").html("<span class='glyphicon glyphicon-exclamation-sign'>校准地图</span>");
+    $("#setB").html("校准地图");
     $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>室内定位系统</strong></a></div>");
     $("#homeButton").html("准备工作");
     $("#fixButton").html("定位");
     $("#fixPH").html("<h1 class='page-header'>定位<small>为多个标签定位.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>首页</a></li>&nbsp<li class='active'>定位</li></ol>");
-    $("#positionsB").html("<span class='glyphicon glyphicon-play'>开始定位</span>");
-    $("#pauseB").html("<span class='glyphicon glyphicon-pause'>暂停</span>");
-    $("#trackB").html("<span class='glyphicon glyphicon-circle-arrow-right'>显示轨迹</span>");
+    $("#positionsB").html("开始定位");
+    $("#pauseB").html("暂停");
+    $("#trackB").html("显示轨迹");
     $("#clockwise").html("<span class='glyphicon glyphicon-menu-right'><nobr class='open-sans'>顺时针旋转</nobr></span>");
     $("#counterclockwise").html("<span class='glyphicon glyphicon-menu-left'><nobr class='open-sans'>逆时针旋转</nobr></span>");
-    $("#zoomB1").html("<span class='glyphicon glyphicon-resize-full'>定位缩放</span>");
-    $("#zoomB2").html("<span class='glyphicon glyphicon-resize-full'>轨迹缩放</span>");
+    $("#zoomB1").html("定位缩放");
+    $("#zoomB2").html("轨迹缩放");
     $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'>历史轨迹</span>");
     $("#positionHead").html("地图<div id='zoomN' style='position: relative; float: right'></div>");
     $("#radio").html("<span class=''>全选</span>");

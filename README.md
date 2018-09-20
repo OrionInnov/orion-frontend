@@ -1,3 +1,5 @@
 # orion-frontend
+cd frontend
+mv ./tools/run.py ..
 cd .. 
-python -m orion-frontend.run
+python -m run
