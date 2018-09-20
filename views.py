@@ -34,6 +34,9 @@ db = client["orion"]
 def index():
     return render_template("index.html")
 
+@app.route("/home")
+def home():
+    return render_template("home.html")
 
 @app.route("/fonts/<path:path>")
 def static_fonts():
@@ -42,17 +45,27 @@ def static_fonts():
 
 ################################ DYNAMIC PAGES ################################
 
-
-@app.route("/cal", methods=['GET',"POST"])
+@app.route("/cal", methods=['GET', "POST"])
 def cal():
-    checkid = request.form.get('checkID')
-    print(checkid)
-    print("122")
+    data = json.loads(request.form.get('data'))
+    cursor = db.calculate.find()
+    for result in cursor:
+        result.pop("_id")
+        for tagid0 in result.keys():
+            db.calculate.update({tagid0: 1}, {
+                "$set": {tagid0: 0}
+            })
+        for tagid in result.keys():
+            for tagid1 in data['checkID']:
+                if tagid == tagid1:
+                    db.calculate.update({tagid: 0}, {
+                        "$set": {tagid: 1}
+                    })
+                else:
+                    db.calculate.update({tagid: 0}, {
+                        "$set": {tagid: 0}
+                    })
     return "test"
-
-
-
-
 
 
 @app.route("/getconf")
@@ -61,39 +74,34 @@ def getconf():
     for result in cursor:
         result.pop("_id")
     tagname = json.dumps(result)
-
     return tagname
 
 
 @app.route("/setconf", methods=["POST"])
 def setconf():
-    data = request.get_json()
+    data = json.loads(request.get_data())
+    db.config.remove()
     db.config.save(data, check_keys=False)
-
     return json.dumps({"status": 1})
 
 
 @app.route("/positions")
 def positions():
     num = 0
-    num1 = 0
     posdata = []
-    posdata1 = []
-    posdata2 = []
+    #posdata1 = []
     cursor = db.history.find()
     for result in cursor:
         result.pop("_id")
         historytrack = result["historytrack"]
         while num < len(historytrack):
-            posdata.append(historytrack[num]['pos'][0])
-            posdata.append(historytrack[num]['pos'][1])
+            posdata.append(historytrack[num]['pos'])
             num = num + 1
-            posdata1.append(posdata)
-            posdata = []
-        posdata2.append(posdata1)
-        posdata1 = []
+            #posdata1.append(posdata)
+            #posdata = []
         num = 0
-    return json.dumps(posdata2)
+        #print(posdata)
+    return json.dumps(posdata)
 
 
 @app.route("/upload", methods=["POST"])
@@ -104,10 +112,10 @@ def upload():
     ext = img.filename.split(".")[-1].lower()
     if ext not in VALID_IMG_EXT:
         return json.dumps({"status": 0})
-
+    else:
     # save the image
-    fname = "position." + ext
-    img.save(os.path.join(app.root_path, "static", "img", fname))
+        fname = "position.png"
+        img.save(os.path.join(app.root_path, "static", "img", fname))
 
     # create base64-encoded image
     img.seek(0)
@@ -134,7 +142,6 @@ def history_track():
     posdata1 = []
     posdata2 = []
     cursor = db.history.find()
-
     for result in cursor:
         result.pop("_id")
         historytrack = result["historytrack"]
@@ -151,7 +158,6 @@ def history_track():
 
 
 ################################# DEBUG PAGES #################################
-
 
 import numpy as np
 

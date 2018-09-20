@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>室内定位系统</title>
@@ -11,6 +11,7 @@
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.actual.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-hover-dropdown.js') }}"></script>
     <script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/moment-with-locales.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}"></script>
@@ -24,288 +25,308 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mycss/mycss.css') }}">
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
-</head>
-<body>
-<!--头部导航-->
-<section class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+  </head>
+  <body>
+    <!--头部导航-->
+    <section class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
         <div class="navbar-header">
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon icon-bar"></span>
-                <span class="icon icon-bar"></span>
-                <span class="icon icon-bar"></span>
-            </button>
-            <a href="#" class="navbar-brand">ORION-FRONTEND</a>
+          <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon icon-bar"></span>
+            <span class="icon icon-bar"></span>
+            <span class="icon icon-bar"></span>
+          </button>
+          <a href="#" class="navbar-brand">ORIONTECH</a>
         </div>
         <div class="collapse navbar-collapse dropdown">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" class="smoothScroll">系统介绍</a></li>
-
-                <li class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="true"><a href="#" class="smoothScroll">使用说明</a></li>
-                <div id="dropmenu" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a id="homeButton" href="#">校准地图</a></li>
-                    <li><a id="fixButton" href="#">定位</a></li>
-                </div>
-                <li><a href="#" class="smoothScroll">注意事项</a></li>
-                <li><a href="#" class="smoothScroll">关于澳新</a></li>
-                <li><a href="#contact" class="smoothScroll">联系我们</a></li>
+          <ul class="dropdown nav navbar-nav navbar-right">
+            <li class="dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="true"><a href="#" id="navHead4" class="smoothScroll">关于奥新</a></li>
+            <ul id="dropmenu4" class="dropdown-menu" aria-labelledby="dropdownMenu4">
+              <li><a id="introduceHead" href="#">公司介绍</a></li>
+              <li><a id="contactHead" href="#">联系我们</a></li>
             </ul>
+            <!--<div class="empty">
+            </div>-->
+          </ul>
+          <ul class="dropdown nav navbar-nav navbar-right">
+            <li class="dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true"
+              aria-expanded="true"><a href="#" id="navHead3" class="smoothScroll">配置选项</a></li>
+            <ul id="dropmenu3" class="dropdown-menu" aria-labelledby="dropdownMenu3">
+              <!--<li><a id="homeButton2" href="#">高级设置</a></li>-->
+              <!--<li class="divider"></li>-->
+              <li class="dropdown-submenu">
+                <a id="languageHead" href="#" tabindex="-1">语言</a>
+                <ul class="dropdown-menu">
+                  <li><a id="orionChinese" class="selecta" tabindex="-1">中文</a></li>
+                  <li><a id="orionEnglish" class="selecta" tabindex="-1">English</a></li>
+                </ul>
+              </li>
+            </ul>
+          </ul>
+          <ul class="dropdown nav navbar-nav navbar-right">
+            <li class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="true"><a href="#" id="navHead2" class="smoothScroll">定位选项</a></li>
+            <li class="dropdown-toggle selecta" type="button" id="dropdownMenu2a"><a class="smoothScroll" id="navHead2a">定位选项</a></li>
+            <div id="dropmenu2" class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><a id="positionsB" class="glyphicon glyphicon-play selecta">开始定位</a></li>
+              <li><a id="pauseB" class="glyphicon glyphicon-pause selecta">暂停</a></li>
+              <li><a id="trackB" class="glyphicon glyphicon-circle-arrow-right selecta">显示轨迹</a></li>
+              <li><a id="zoomB1" class="glyphicon glyphicon-resize-full selecta">定位缩放</a></li>
+              <li><a id="zoomB2" class="glyphicon glyphicon-resize-full selecta">轨迹缩放</a></li>
+            </div>
+          </ul>
+          <ul class="dropdown nav navbar-nav navbar-right">
+            <li class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="true"><a href="#" id="navHead1" class="smoothScroll">功能页面</a></li>
+            <div id="dropmenu1" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a id="homeButton" href="#">准备工作</a></li>
+              <li><a id="fixButton" href="#">定位</a></li>
+            </div>
+          </ul>
         </div>
-    </div>
-</section>
-<!--头部通栏-->
-<section id="banner">
-</section>
-<!--首页-->
-<div id="page-wrapper">
-    <div id="homeH" class="header">
+      </div>
+      <!--<div class="languageB">
+        &nbsp;&nbsp;
+      </div>-->
+    </section>
+    <!--头部通栏-->
+    <section id="banner">
+    </section>
+    <!--首页-->
+    <div id="page-wrapper">
+      <div id="homeH" class="header">
         <h1 class="page-header">
-            室内定位系统
-            <small>请上传地图</small>
+          室内定位系统<small>请上传地图或绑定标签</small>
         </h1>
         <ol id="" class="breadcrumb borderRadiusHead">
-            <li><a>首页</a></li>
-            <li class="active">准备工作</li>
+          <li><a>首页</a></li>
+          <li class="active">准备工作</li>
         </ol>
-    </div>
-    <div class="header">
+      </div>
+      <div class="header">
         <form id="f1" class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
-            <div class="file-container"
-                 style="display:inline-block;position:relative;overflow: hidden;vertical-align:middle">
-                <button id="uploadB" class="btn btn-default fileinput-button" type="button">上传</button>
-                <input id="fileBackground" type="file" name="file" onchange="loadFile(this.files[0])"
-                       style="width: 210px; position:absolute;top:0;left:0;font-size:34px; opacity:0">
-            </div>
-            <span id="fileName" style="vertical-align: middle">未上传文件</span>
-            <div class="form-group">
-                <button id="backgroundSubmit" type="button" class="btn btn-default fileinput-button">提交</button>
-            </div>&nbsp;&nbsp;&nbsp;
-            <button id="setB" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-exclamation-sign">校准地图</span>
-            </button>
+          <div class="file-container"
+            style="display:inline-block;position:relative;overflow: hidden;vertical-align:middle">
+            <button id="uploadB" class="btn btn-default fileinput-button" type="button">上传</button>
+            <input id="fileBackground" type="file" name="file" onchange="loadFile(this.files[0])"
+              style="width: 210px; position:absolute;top:0;left:0;font-size:34px; opacity:0">
+          </div>
+          <span id="fileName" style="vertical-align: middle">未上传文件</span>
+          <div class="form-group">
+            <button id="backgroundSubmit" type="button" class="btn btn-default fileinput-button">提交</button>
+          </div>&nbsp;&nbsp;&nbsp;
+          <button id="setB" type="button" class="btn btn-default">
+            <!--<span class="glyphicon glyphicon-exclamation-sign">校准地图</span>-->
+            校准地图
+          </button>
         </form>
-    </div>
-    <div class="page-inner">
+      </div>
+      <div class="header">
+        <form id="f1" class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label id="inputNameEn" for="exampleInputEmail2">输入姓名</label>
+            <input type="text" class="form-control" style="width: 120px" id="nameT">
+          </div>
+          <select id="selectI" name="">
+          </select>
+          <button id="confirmN" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-ok">绑定</span>
+          </button>
+        </form>
+      </div>
+      <div class="page-inner">
 
+      </div>
     </div>
-</div>
-<!--校准地图-->
-<div id="page-set">
-    <div class="header">
+    <!--校准地图-->
+    <div id="page-set">
+      <div class="header">
         <h1 id="preparationsHead" class="page-header">
-            准备工作
-            <small>请确定参照点以及绑定标签</small>
+          准备工作<small>请确定参照点</small>
         </h1>
-    </div>
-    <div class="header">
+      </div>
+      <div class="header">
         <form class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="exampleInputName2">x</label>
-                <input type="text" class="form-control" style="width: 100px" id="xA">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail2">y</label>
-                <input type="text" class="form-control" style="width: 100px" id="yA">
-            </div>
-            <button id="confirmP1" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-screenshot">第一点</span>
-            </button>
-            <button id="confirmP2" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-screenshot">第二点</span>
-            </button>
-            <button id="confirmF" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-ok">确定</span>
-            </button>&nbsp;&nbsp;&nbsp;
-            <div class="form-group">
-                <label id="inputNameEn" for="exampleInputEmail2">输入姓名</label>
-                <input type="text" class="form-control" style="width: 120px" id="nameT">
-            </div>
-            <select id="selectI" name="">
-            </select>
-            <button id="confirmN" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-ok">绑定</span>
-            </button>
-            <button id="leaveS" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-share-alt">返回</span>
-            </button>
+          <div class="form-group">
+            <label for="exampleInputName2">x</label>
+            <input type="text" class="form-control" style="width: 100px" id="xA">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail2">y</label>
+            <input type="text" class="form-control" style="width: 100px" id="yA">
+          </div>
+          <button id="confirmP1" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-screenshot">第一点</span>
+          </button>
+          <button id="confirmP2" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-screenshot">第二点</span>
+          </button>
+          <button id="confirmF" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-ok">确定</span>
+          </button>&nbsp;&nbsp;&nbsp;
+          <button id="leaveS" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-share-alt">返回</span>
+          </button>
         </form>
-    </div>
-    <div class="page-inner">
+      </div>
+      <div class="page-inner">
         <div class="row">
-            <div class="col-md-12">
-                <!-- Advanced Tables -->
-                <div class="panel panel-default">
-                    <div id="preparationsP" class="panel-heading">
-                        地图
-                    </div>
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <div class="relative center-block">
-                                <canvas id="canvasSet" class="canvasBackground0">Your browser does't support canvas.
-                                </canvas>
-                                <canvas id="canvasPoint" class="canvasBackground0"
-                                        style="z-index: 1000;cursor: crosshair;">Your browser does't support canvas.
-                                </canvas>
-                            </div>
-                        </div>
-                    </div>
+          <div class="col-md-12">
+              <!-- Advanced Tables -->
+            <div class="panel panel-default">
+              <div id="preparationsP" class="panel-heading">
+                地图
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <div class="relative center-block">
+                    <canvas id="canvasSet" class="canvasBackground0">Your browser does't support canvas.
+                    </canvas>
+                    <canvas id="canvasPoint" class="canvasBackground0"style="z-index: 1000;cursor: crosshair;">
+                      Your browser does't support canvas.
+                    </canvas>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+
     </div>
 
 
-</div>
-
-
-<!--定位-->
-<div id="page-fixP">
-    <div id="fixPH" class="header">
+    <!--定位-->
+    <div id="page-fixP">
+      <div id="fixPH" class="header">
         <h1 class="page-header">
-            定位
-            <small>为多个标签定位</small>
+          定位<small>为多个标签定位</small>
         </h1>
         <ol class="breadcrumb borderRadiusHead">
-            <li><a>首页</a></li>
-            <li class="active">定位</li>
+          <li><a>首页</a></li>
+          <li class="active">定位</li>
         </ol>
-    </div>
-    <div class="header">
+      </div>
+      <div class="header">
         <form class="form-inline panel panel-heading">
-            <button id="positionsB" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-play">开始定位</span>
-            </button>
-            <button id="pauseB" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-pause">暂停</span>
-            </button>
-            <button id="trackB" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-circle-arrow-right">显示轨迹</span>
-            </button>
-            <button id="clockwise" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon glyphicon-menu-right">顺时针旋转</span>
-            </button>
-            <button id="counterclockwise" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon glyphicon-menu-left">逆时针旋转</span>
-            </button>
-            <button id="zoomB1" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-resize-full">定位缩放</span>
-            </button>
-            <button id="zoomB2" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-resize-full">轨迹缩放</span>
-            </button>
-            <div class="input-group date" id="datetimePicker1">
-                <input id="datetimeP1" type="text" class="form-control" style="width: 155px"/>
-                <span class="input-group-addon">
+          <button id="clockwise" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon glyphicon-menu-right">顺时针旋转</span>
+          </button>
+          <button id="counterclockwise" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon glyphicon-menu-left">逆时针旋转</span>
+          </button>
+          <div class="input-group date" id="datetimePicker1">
+            <input id="datetimeP1" type="text" class="form-control" style="width: 155px"/>
+            <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
-            </div>
-            <span class="glyphicon glyphicon-sort"></span>
-            <div class="input-group date" id="datetimePicker2">
-                <input id="datetimeP2" type="text" class="form-control" style="width: 155px"/>
-                <span class="input-group-addon">
+          </div>
+          <span class="glyphicon glyphicon-sort"></span>
+          <div class="input-group date" id="datetimePicker2">
+            <input id="datetimeP2" type="text" class="form-control" style="width: 155px"/>
+            <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
-            </div>
-            <button id="historyTrackB" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-repeat">历史轨迹</span>
-            </button>
+          </div>
+          <button id="historyTrackB" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-repeat">历史轨迹</span>
+          </button>
         </form>
-    </div>
+      </div>
 
-    <div class="page-inner">
+      <div class="page-inner">
         <div id="page-inner1" class="row">
-            <div id="map1">
-                <!-- Advanced Tables -->
-                <div class="panel panel-default borderRadius">
-                    <div id="positionHead" class="panel-heading borderRadiusTop">
-                        地图
-                        <div id="zoomN" style="position: relative; float: right"></div>
-                    </div>
-                    <div class="panel-body">
-                        <div id="wrapper" class="table-responsive">
-                            <div class="relative center-block" id="myImg">
-                                <canvas id="canvas0" class="canvasBackground0">Your browser does't support canvas.
-                                </canvas>
-                                <canvas id="canvas1" class="canvasBackground1">Your browser does't support canvas.
-                                </canvas>
-                                <canvas id="canvas2" class="canvasBackground2">Your browser does't support canvas.
-                                </canvas>
-                                <canvas id="canvas" class="canvasBackground">Your browser does't support canvas.
-                                </canvas>
-                                <canvas id="myCanvas0" class="fixPosition center-block">Your browser does't support
-                                    canvas.
-                                </canvas>
-                                <canvas id="myCanvas1" class="fixPosition center-block">Your browser does't support
-                                    canvas.
-                                </canvas>
-                                <canvas id="myCanvas2" class="fixPosition center-block">Your browser does't support
-                                    canvas.
-                                </canvas>
-                                <canvas id="myCanvas3" class="fixPosition center-block">Your browser does't support
-                                    canvas.
-                                </canvas>
-                            </div>
-                        </div>
-                    </div>
+          <div id="map1">
+              <!-- Advanced Tables -->
+            <div class="panel panel-default borderRadius">
+              <div id="positionHead" class="panel-heading borderRadiusTop">
+                  地图
+                <div id="zoomN" style="position: relative; float: right"></div>
+              </div>
+              <div class="panel-body">
+                <div id="wrapper" class="table-responsive">
+                  <div class="relative center-block" id="myImg">
+                    <canvas id="canvas0" class="canvasBackground0">Your browser does't support canvas.
+                    </canvas>
+                    <canvas id="canvas1" class="canvasBackground1">Your browser does't support canvas.
+                    </canvas>
+                    <canvas id="canvas2" class="canvasBackground2">Your browser does't support canvas.
+                    </canvas>
+                    <canvas id="canvas" class="canvasBackground">Your browser does't support canvas.
+                    </canvas>
+                    <canvas id="myCanvas0" class="fixPosition center-block">Your browser does't support
+                      canvas.
+                    </canvas>
+                    <canvas id="myCanvas1" class="fixPosition center-block">Your browser does't support
+                      canvas.
+                    </canvas>
+                    <canvas id="myCanvas2" class="fixPosition center-block">Your browser does't support
+                      canvas.
+                    </canvas>
+                    <canvas id="myCanvas3" class="fixPosition center-block">Your browser does't support
+                      canvas.
+                    </canvas>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div id="selectA">
-                <form>
-                    <div class="row" style="padding: 0px 15px">
-                        <button id="radio" type="button" class="btn btn-default col-xs-6">
-                            <span class="">全选</span>
-                        </button>
-                        <button id="multiple" type="button" class="btn btn-default col-xs-6">
-                            <span class="">重置</span>
-                        </button>
-                        <button id="between" type="button" class="btn btn-default col-xs-6">
-                            <span class="">区间选择</span>
-                        </button>
-                        <button id="calculate" type="button" class="btn btn-default col-xs-6">
-                            <span class="">计算</span>
-                        </button>
-                    </div>
-                </form>
+          </div>
+          <div id="selectA">
+            <form>
+              <div class="row" style="padding: 0px 15px">
+                <button id="radio" type="button" class="btn btn-default col-xs-6">
+                  <span class="">全选</span>
+                </button>
+                <button id="multiple" type="button" class="btn btn-default col-xs-6">
+                  <span class="">重置</span>
+                </button>
+                <button id="between" type="button" class="btn btn-default col-xs-6">
+                  <span class="">区间选择</span>
+                </button>
+                <button id="calculate" type="button" class="btn btn-default col-xs-6">
+                  <span class="">计算</span>
+                </button>
+              </div>
+            </form>
 
-
-                <div class="panel overf borderRadiusBottom">
-                    <div class="panel-body">
-                        <div id="select" style='white-space: nowrap'>
-                            <form class="form-inline" method="post" action="/cal">
-                                <div id="selectAdd"></div>
-                            </form>
-                        </div>
-                    </div>
+            <div class="panel overf borderRadiusBottom">
+              <div class="panel-body">
+                <div id="select" style='white-space: nowrap'>
+                  <form class="form-inline" method="post" action="/cal">
+                    <div id="selectAdd"></div>
+                  </form>
                 </div>
-
-
+              </div>
             </div>
+
+          </div>
         </div>
 
+      </div>
     </div>
-</div>
 
 
-<!-- 版权 -->
-<section id="copyright">
-    <div class="container">
+    <!-- 版权 -->
+    <section id="copyright">
+      <div class="container">
         <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <h3>ORION-FRONTEND</h3>
-                <p>© 2018 浙江奥新智能科技(金华)有限公司 版权所有</p>
-            </div>
+          <div class="col-md-12 col-sm-12">
+            <h3>ORIONTECH</h3>
+            <p>© 2018 浙江奥新智能科技(金华)有限公司 版权所有</p>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<script type=text/javascript>
-    POSITION_IMG_URL = "{{ url_for('static', filename='img/position.png') }}";
-    MARKER_IMG_URL = "{{ url_for('static', filename='img/marker.png') }}";
-</script>
-<script src="{{ url_for('static', filename='js/myjs/set.js') }}"></script>
-<script src="{{ url_for('static', filename='js/myjs/index.js') }}"></script>
-<script src="{{ url_for('static', filename='js/myjs/main.js') }}"></script>
-</body>
+    <script type=text/javascript>
+      POSITION_IMG_URL = "{{ url_for('static', filename='img/position.png') }}";
+      MARKER_IMG_URL = "{{ url_for('static', filename='img/marker.png') }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/myjs/set.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/myjs/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/myjs/main.js') }}"></script>
+
+  </body>
+
 </html>
-

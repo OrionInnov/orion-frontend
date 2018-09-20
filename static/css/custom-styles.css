@@ -838,12 +838,18 @@ ul.dropdown-menu.dropdown-messages li a div {
     line-height: 1.428571429;
 }
 
+.empty {
+    width: 190px;
+    padding-top: 18px;
+}
+
 .languageB {
-    width: 150px;
-    top: 20px;
-    position: fixed;
-    right: 0px;
-    z-index: 600;
+  width: 150px;
+  top: 20px;
+  position: absolute;
+  right: 0px;
+  z-index: 600;
+  font-size: 12px;
 }
 
 .top-head {
@@ -941,10 +947,6 @@ ul.dropdown-menu.dropdown-messages li a div {
         width: 100%;
         position: relative;
 
-    }
-
-    .languageB {
-        position: absolute;
     }
 
     .top-head {
@@ -1082,18 +1084,20 @@ ul li {
     list-style-type: none;
 }
 
+section a:hover {
+  text-decoration: none;
+}
+
 .selecta {
     cursor: pointer;
 }
 
 #selectA {
     position:static !important;
-    top: 0px !important;
-    right: 0px !important;
-    /*padding-right: 15px;*/
+    padding-right: 15px;
     /*right: 0px;top: 0px;*/
     /*z-index: 500;*/
-    /*width: 200px;*/
+    width: 200px;
     float: right;
 }
 
