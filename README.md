@@ -1,6 +1,8 @@
 # orion-frontend
+'''
 mv ./orion-frontend frontend
 cd frontend
 mv ./tools/run.py ..
-cd .. 
+cd ..
 python -m run
+'''
