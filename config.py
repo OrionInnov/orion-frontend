@@ -63,8 +63,8 @@ def change_pos(data):
     save_history(totallist)
 
 
-def load_config(DEBUG_CONFIG=True):
-    if DEBUG_CONFIG:
+def load_config(debug_config=True):
+    if debug_config:
         path = os.path.join(app.root_path, "config_test.json")
         with open(path, "r") as f:
             result = json.load(f)[0]

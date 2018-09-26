@@ -27,7 +27,7 @@ DEFAULT_URL = "mongodb://localhost:27017"
 client = pymongo.MongoClient(DEFAULT_URL)
 db = client["orion"]
 
-DEBUG_CONFIG = True
+debug_config = True
 
 ################################ STATIC ROUTES ################################
 
@@ -79,7 +79,7 @@ def cal():
 
 @app.route("/getconf")
 def getconf():
-    if DEBUG_CONFIG:
+    if debug_config:
         path = os.path.join(app.root_path, "config_test.json")
         with open(path, "r") as f:
             result = json.load(f)[0]
@@ -105,24 +105,21 @@ def setconf():
 def positions():
     num = 0
     posdata = []
-    if DEBUG_CONFIG:
+    if debug_config:
         path = os.path.join(app.root_path, "pos_test.json")
         with open(path, "r") as f:
             result = json.load(f)
         result.pop("_id")
         historytrack = result["historytrack"]
-        while num < len(historytrack):
-            posdata.append(historytrack[num]['pos'])
-            num = num + 1
+        for pos_list in historytrack:
+            posdata.append(pos_list['pos'])
     else:
         cursor = db.history.find()
         for result in cursor:
             result.pop("_id")
             historytrack = result["historytrack"]
-            while num < len(historytrack):
-                posdata.append(historytrack[num]['pos'])
-                num = num + 1
-            num = 0
+            for pos_list in historytrack:
+                posdata.append(pos_list['pos'])
     return json.dumps(posdata)
 
 
