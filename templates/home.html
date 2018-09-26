@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/nivo-lightbox.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/nivo_themes/default/default.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/myfont.css') }}">
 </head>
 <body>
 
@@ -32,14 +32,13 @@
 				<span class="icon icon-bar"></span>
 				<span class="icon icon-bar"></span>
 			</button>
-			<a href="#" class="navbar-brand">ORION-FRONTEND</a>
+			<a href="#" class="navbar-brand">ORIONTECH</a>
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="{{ url_for('home') }}" class="smoothScroll">系统介绍</a></li>
-				<li><a href="{{ url_for('index') }}" class="smoothScroll">使用说明</a></li>
-				<li><a href="#" class="smoothScroll">注意事项</a></li>
-				<li><a href="#" class="smoothScroll">关于奥新</a></li>
+				<li><a href="#gallery" class="smoothScroll">公司介绍</a></li>
+				<li><a href="{{ url_for('index') }}" class="smoothScroll">定位系统</a></li>
+				<li><a href="#gallery" class="smoothScroll">关于奥新</a></li>
 				<li><a href="#contact" class="smoothScroll">联系我们</a></li>
 			</ul>
 		</div>
@@ -66,21 +65,20 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-offset-2 col-md-8 col-sm-12 text-center">
-				<h1 class="heading">系统介绍</h1>
+				<h1 class="heading">公司介绍</h1>
 				<hr>
 			</div>
 			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.3s">
-				<a href="#" data-lightbox-gallery="zenda-gallery"><img src="{{ url_for('static', filename='images/gallery-img1.jpg') }}" alt="gallery img"></a>
+				<a href="{{ url_for('product') }}" data-lightbox-gallery="zenda-gallery"><img src="{{ url_for('static', filename='img/gallery-img1.jpg') }}" alt="gallery img"></a>
 				<div>
-					<h3>工厂人员定位</h3>
-					<span>高精度室内定位智能系统的技术研发</span>
+					<h3>解决方案</h3>
+					<!--<span>高精度室内定位智能系统</span>-->
 				</div>
 			</div>
 			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
-				<a href="#" data-lightbox-gallery="zenda-gallery"><img src="{{ url_for('static', filename='images/gallery-img2.jpg') }}" alt="gallery img"></a>
+				<a href="{{ url_for('about') }}" data-lightbox-gallery="zenda-gallery"><img src="{{ url_for('static', filename='img/gallery-img2.jpg') }}" alt="gallery img"></a>
 				<div>
-					<h3>监狱看守所定位</h3>
-					<span>高精度室内定位智能系统的技术研发</span>
+					<h4>关于我们</h4>
 				</div>
 			</div>
 
@@ -90,7 +88,7 @@
 
 
 <!-- 联系我们板块 -->
-<!-- <section id="contact" class="parallax-section">
+<section id="contact" class="parallax-section">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10 col-sm-12 text-center">
@@ -116,11 +114,11 @@
 			<div class="col-md-2 col-sm-1"></div>
 		</div>
 	</div>
-</section>-->
+</section>
 
 
 <!-- 底部栏目 -->
-<!--<footer class="parallax-section">
+<footer class="parallax-section">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
@@ -131,7 +129,7 @@
 				</div>
 				<div class="address">
 					<p><i class="fa fa-map-marker"></i>位置</p>
-					<h4>浙江 金华 婺城区 新华街301号信息大厦</h4>
+					<h4>浙江省 金华市 婺城区 婺江西路28号 时代商务中心 10层 1003室</h4>
 				</div>
 			</div>
 			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
@@ -151,7 +149,7 @@
 			</div>
 		</div>
 	</div>
-</footer>-->
+</footer>
 
 
 <!-- 版权 -->
@@ -159,8 +157,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
-				<h3>ORION-FRONTEND</h3>
-				<p>© 2017  浙江奥新智能科技(金华)有限公司 版权所有</p>
+				<h3>ORIONTECH</h3>
+				<p>© 2018  浙江奥新智能科技(金华)有限公司 版权所有</p>
 			</div>
 		</div>
 	</div>

@@ -63,11 +63,14 @@ def change_pos(data):
     save_history(totallist)
 
 
-def load_config():
-    cursor = db.config.find()
-    for result in cursor:
-        result.pop("_id")
+def load_config(DEBUG_CONFIG=True):
+    if DEBUG_CONFIG:
+        path = os.path.join(app.root_path, "config_test.json")
+        with open(path, "r") as f:
+            result = json.load(f)[0]
+    else:
+        cursor = db.config.find()
+        for result in cursor:
+            result.pop("_id")
+
     return result
-
-
-
