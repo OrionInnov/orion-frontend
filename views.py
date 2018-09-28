@@ -27,6 +27,7 @@ DEFAULT_URL = "mongodb://localhost:27017"
 client = pymongo.MongoClient(DEFAULT_URL)
 db = client["orion"]
 
+debug_config = True
 
 ################################ STATIC ROUTES ################################
 
@@ -37,6 +38,14 @@ def index():
 @app.route("/home")
 def home():
     return render_template("home.html")
+
+@app.route("/product")
+def product():
+    return render_template("product.html")
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 @app.route("/fonts/<path:path>")
 def static_fonts():
@@ -70,10 +79,17 @@ def cal():
 
 @app.route("/getconf")
 def getconf():
-    cursor = db.config.find()
-    for result in cursor:
-        result.pop("_id")
-    tagname = json.dumps(result)
+    if debug_config:
+        path = os.path.join(app.root_path, "config_test.json")
+        with open(path, "r") as f:
+            result = json.load(f)[0]
+            tagname = json.dumps(result)
+    else:
+        cursor = db.config.find()
+        for result in cursor:
+            result.pop("_id")
+        tagname = json.dumps(result)
+
     return tagname
 
 
@@ -89,18 +105,21 @@ def setconf():
 def positions():
     num = 0
     posdata = []
-    #posdata1 = []
-    cursor = db.history.find()
-    for result in cursor:
+    if debug_config:
+        path = os.path.join(app.root_path, "pos_test.json")
+        with open(path, "r") as f:
+            result = json.load(f)
         result.pop("_id")
         historytrack = result["historytrack"]
-        while num < len(historytrack):
-            posdata.append(historytrack[num]['pos'])
-            num = num + 1
-            #posdata1.append(posdata)
-            #posdata = []
-        num = 0
-        #print(posdata)
+        for pos_list in historytrack:
+            posdata.append(pos_list['pos'])
+    else:
+        cursor = db.history.find()
+        for result in cursor:
+            result.pop("_id")
+            historytrack = result["historytrack"]
+            for pos_list in historytrack:
+                posdata.append(pos_list['pos'])
     return json.dumps(posdata)
 
 

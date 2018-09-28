@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>室内定位系统</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/nivo-lightbox.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/nivo_themes/default/default.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style type="text/css">
+    .fontp {
+      font-size: 20px;
+      margin: 0px;
+      text-indent: 50px;
+      letter-spacing: 5px;
+      line-height: 200%;
+      font-family: "YouYuan";
+      color: black;
+    }
+    .fonth {
+      font-family: "YouYuan";
+      color: black;
+    }
+    .marginp {
+      margin: 150px;
+    }
+  </style>
+</head>
+<body>
+  <div class="marginp">
+    <h1 class="fonth">解决方案</h1>
+    <p class="text-left fontp">
+      目前的室内定位和导航解决方案由于其可靠性差，分辨率有限或尺寸大而无法提供小于1米的精确度，
+      这使得它们无法实现广泛的商业用途。GPS和LTE技术由于室内环境中信号接收的限制以及信号本身质量问题
+      而不再可靠。专门针对室内环境（如WiFi，BLE，RFID）的技术已经证明可以达到3米到10米的精度，
+      但仍然需要大量的基础设施和部署开销。UWB位于频谱的另一端，可以实现高精度定位，但通常成本过高。
+    </p>
+    <p class="text-left fontp">
+      我们的解决方案弥补了以上两个技术的不足，实现了准确，廉价且易于部署的本地化室内定位系统。我们系统的
+      核心是通过中等（20MHz基带）带宽的无线电信号（可以使用2.4GHz和5GHz ISM频段）来实现定位的3D无线定位系统。
+      一组具有已知位置的固定集线器接收来自每个有效标签发送的信号。每个集线器集成了高速数据采集和
+      信号调节技术，结合这两项技术可以获得参考时差（TDOA）值。该系统非常灵活，能够支持数百个标签，平均精度约
+      为1米（仓库环境中的最新测试精度达到0.85米，标准偏差为0.18米）。
+    </p>
+  </div>
+
+
+<!-- JS -->
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.parallax.js') }}"></script>
+<script src="{{ url_for('static', filename='js/smoothscroll.js') }}"></script>
+<script src="{{ url_for('static', filename='js/nivo-lightbox.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+</body>
+</html>
