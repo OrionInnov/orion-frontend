@@ -4,14 +4,14 @@ import time
 import os
 
 from flask import request
-from . import app
+
 
 # MongoDB client URL and port
 DEFAULT_URL = "mongodb://localhost:27017"
 
+# connect to MongoDB instance
 client = pymongo.MongoClient(DEFAULT_URL)
-db = client['orion']
-
+db = client["orion"]
 
 
 def create_history():
@@ -29,7 +29,6 @@ def create_history():
             dic_part = {}
         dic_all["historytrack"] = list_historytrack
     db.history.insert(dic_all, check_keys=False)
-
 
 
 def save_history(totallist):
@@ -52,21 +51,15 @@ def change_pos(data):
     cursor = db.history.find()
     for result in cursor:
         result.pop("_id")
-    for num < range(len(result['historytrack'])):
+    for num in range(len(result['historytrack'])):
         poslist = result['historytrack'][num]['pos']
         totallist.append(poslist)
     totallist[data["tag"]] = data["location"]
     save_history(totallist)
 
 
-def load_config(debug_config=True):
-    if debug_config:
-        path = os.path.join(app.root_path, "config_test.json")
-        with open(path, "r") as f:
-            result = json.load(f)[0]
-    else:
-        cursor = db.config.find()
-        for result in cursor:
-            result.pop("_id")
-
+def load_config():
+    cursor = db.config.find()
+    for result in cursor:
+        result.pop("_id")
     return result

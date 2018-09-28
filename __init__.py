@@ -7,7 +7,6 @@ from .config import change_pos
 from .config import load_config
 from .config import save_history
 
-
 # Flask instance webapp
 # http://flask.pocoo.org/docs/latest/patterns/packages/
 if getattr(sys, "frozen", False):
@@ -15,6 +14,5 @@ if getattr(sys, "frozen", False):
     app = Flask(__name__, template_folder=template_folder)
 else:
     app = Flask(__name__)
-
 
 from . import views
