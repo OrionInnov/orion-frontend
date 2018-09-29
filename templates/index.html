@@ -40,7 +40,7 @@
         </div>
         <div class="collapse navbar-collapse dropdown">
           <ul class="dropdown nav navbar-nav navbar-right">
-            <li class="dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true"
+            <li class="dropdown-toggle selecta" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="true"><a id="navHead4" class="smoothScroll">关于奥新</a></li>
             <ul id="dropmenu4" class="dropdown-menu" aria-labelledby="dropdownMenu4">
               <li><a id="introduceHead" href="{{ url_for('home') }}">公司介绍</a></li>
@@ -50,7 +50,7 @@
             </div>-->
           </ul>
           <ul class="dropdown nav navbar-nav navbar-right">
-            <li class="dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true"
+            <li class="dropdown-toggle selecta" type="button" id="dropdownMenu3" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true"
               aria-expanded="true"><a id="navHead3" class="smoothScroll">配置选项</a></li>
             <ul id="dropmenu3" class="dropdown-menu" aria-labelledby="dropdownMenu3">
               <!--<li><a id="homeButton2">高级设置</a></li>-->
@@ -65,19 +65,21 @@
             </ul>
           </ul>
           <ul class="dropdown nav navbar-nav navbar-right">
-            <li class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+            <li class="dropdown-toggle selecta" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="true"><a id="navHead2" class="smoothScroll">定位选项</a></li>
             <li class="dropdown-toggle selecta" type="button" id="dropdownMenu2a"><a class="smoothScroll" id="navHead2a">定位选项</a></li>
             <div id="dropmenu2" class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <li><a class="glyphicon glyphicon-play selecta"><span id="positionsB" style="font-family:'Roboto',sans-serif">开始定位</span></a></li>
-              <li><a class="glyphicon glyphicon-pause selecta"><span id="pauseB" style="font-family:'Roboto',sans-serif">暂停</span></a></li>
-              <li><a class="glyphicon glyphicon-circle-arrow-right selecta"><span id="trackB" style="font-family:'Roboto',sans-serif">显示轨迹</span></a></li>
-              <li><a class="glyphicon glyphicon-resize-full selecta"><span id="zoomB1" style="font-family:'Roboto',sans-serif">定位缩放</span></a></li>
-              <li><a class="glyphicon glyphicon-resize-full selecta"><span id="zoomB2" style="font-family:'Roboto',sans-serif">轨迹缩放</span></a></li>
+              <li><a id="positionsB" class="glyphicon glyphicon-play selecta"><span class="roboto">开始定位</span></a></li>
+              <li><a id="pauseB" class="glyphicon glyphicon-pause selecta"><span class="roboto">暂停</span></a></li>
+              <li><a id="trackB" class="glyphicon glyphicon-circle-arrow-right selecta"><span class="roboto">显示轨迹</span></a></li>
+              <li><a id="zoomB1" class="glyphicon glyphicon-resize-full selecta"><span class="roboto">定位缩放</span></a></li>
+              <li><a id="zoomB2" class="glyphicon glyphicon-resize-full selecta"><span class="roboto">轨迹缩放</span></a></li>
+              <li><a id="clockwise" class="glyphicon glyphicon-menu-right selecta"><span class="roboto">顺时针旋转</span></a></li>
+              <li><a id="counterclockwise" class="glyphicon glyphicon-menu-left selecta"><span class="roboto">逆时针旋转</span></a></li>
             </div>
           </ul>
           <ul class="dropdown nav navbar-nav navbar-right">
-            <li class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+            <li class="dropdown-toggle selecta" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="true"><a id="navHead1" class="smoothScroll">功能页面</a></li>
             <div id="dropmenu1" class="dropdown-menu" aria-labelledby="dropdownMenu1">
               <li><a id="homeButton">准备工作</a></li>
@@ -123,7 +125,7 @@
         </form>
       </div>
       <div class="header">
-        <form id="f1" class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
+        <form class="form-inline panel panel-heading" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label id="inputNameEn" for="exampleInputEmail2">输入姓名</label>
             <input type="text" class="form-control" style="width: 120px" id="nameT">
@@ -208,14 +210,8 @@
           <li class="active">定位</li>
         </ol>
       </div>
-      <div class="header">
+      <!--<div class="header">
         <form class="form-inline panel panel-heading">
-          <button id="clockwise" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon glyphicon-menu-right">顺时针旋转</span>
-          </button>
-          <button id="counterclockwise" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon glyphicon-menu-left">逆时针旋转</span>
-          </button>
           <div class="input-group date" id="datetimePicker1">
             <input id="datetimeP1" type="text" class="form-control" style="width: 155px"/>
             <span class="input-group-addon">
@@ -233,7 +229,7 @@
             <span class="glyphicon glyphicon-repeat">历史轨迹</span>
           </button>
         </form>
-      </div>
+      </div>-->
 
       <div class="page-inner">
         <div id="page-inner1" class="row">
