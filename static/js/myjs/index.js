@@ -203,7 +203,6 @@ function canvasInit() {
   ctx1.translate(calibrationC[1][0], calibrationC[1][1]);
   ctx2.translate(calibrationC[1][0], calibrationC[1][1]);
   ctx3.translate(calibrationC[1][0], calibrationC[1][1]);
-  console.log(calibrationC);
 }
 
 function canvasRestore() {
@@ -357,7 +356,6 @@ function track() {
 
 //myRotate
 function myRotate() {
-  console.log("myRotate" + myIndex);
   $("#myImg").css("transform", "rotate(" + myIndex + "deg)");
 }
 
@@ -373,7 +371,6 @@ function historyTrack() {
     data: JSON.stringify(timedata),
     success: function (result) {
       positionH = result;
-      console.log(result);
     },
     error: function (result) {
     }
@@ -526,13 +523,13 @@ window.onload = function () {
     $("#homeButton").html("Preparations");
     $("#fixButton").html("Fix position");
     $("#fixPH").html("<h1 class='page-header'>Fix position <small>Positioning tags.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Fix position</li></ol>");
-    $("#positionsB").html("Startposition");
-    $("#pauseB").html("Pause");
-    $("#trackB").html("Track");
-    $("#clockwise").html("<span class='glyphicon glyphicon-menu-right'><nobr class='open-sans'>Clockwise</nobr></span>");
-    $("#counterclockwise").html("<span class='glyphicon glyphicon-menu-left'><nobr class='open-sans'>Counterclockwise</nobr></span>");
-    $("#zoomB1").html("Zoomposition");
-    $("#zoomB2").html("Zoomtrack&nbsp");
+    $("#positionsB").html("<span class='roboto'>Startposition</span>");
+    $("#pauseB").html("<span class='roboto'>Pause</span>");
+    $("#trackB").html("<span class='roboto'>Track</span>");
+    $("#clockwise").html("<span class='roboto'>Clockwise</span>");
+    $("#counterclockwise").html("<span class='roboto'>Counterclockwise</span>");
+    $("#zoomB1").html("<span class='roboto'>Zoomposition</span>");
+    $("#zoomB2").html("<span class='roboto'>Zoomtrack&nbsp</span>");
     $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'><nobr class='open-sans'>Historytrack</nobr></span>");
     $("#positionHead").html("Map<div id='zoomN' style='position: relative; float: right'></div>");
     $("#radio").html("<span class=''>ALL</span>");
@@ -569,13 +566,13 @@ window.onload = function () {
     $("#homeButton").html("准备工作");
     $("#fixButton").html("定位");
     $("#fixPH").html("<h1 class='page-header'>定位<small>为多个标签定位.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>首页</a></li>&nbsp<li class='active'>定位</li></ol>");
-    $("#positionsB").html("开始定位");
-    $("#pauseB").html("暂停");
-    $("#trackB").html("显示轨迹");
-    $("#clockwise").html("<span class='glyphicon glyphicon-menu-right'><nobr class='open-sans'>顺时针旋转</nobr></span>");
-    $("#counterclockwise").html("<span class='glyphicon glyphicon-menu-left'><nobr class='open-sans'>逆时针旋转</nobr></span>");
-    $("#zoomB1").html("定位缩放");
-    $("#zoomB2").html("轨迹缩放");
+    $("#positionsB").html("<span class='roboto'>开始定位</span>");
+    $("#pauseB").html("<span class='roboto'>暂停</span>");
+    $("#trackB").html("<span class='roboto'>显示轨迹</span>");
+    $("#clockwise").html("<span class='roboto'>顺时针旋转</span>");
+    $("#counterclockwise").html("<span class='roboto'>逆时针旋转</span>");
+    $("#zoomB1").html("<span class='roboto'>定位缩放</span>");
+    $("#zoomB2").html("<span class='roboto'>轨迹缩放</span>");
     $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'>历史轨迹</span>");
     $("#positionHead").html("地图<div id='zoomN' style='position: relative; float: right'></div>");
     $("#radio").html("<span class=''>全选</span>");
@@ -627,7 +624,6 @@ window.onload = function () {
   });
   $("#clockwise").click(function () {
     myIndex = myIndex + 90;
-    console.log("点击顺时针" + myIndex);
     if (myIndex == 360) {
       myIndex = 0;
     }
@@ -638,7 +634,6 @@ window.onload = function () {
     if (myIndex == -360) {
       myIndex = 0;
     }
-    console.log(myIndex);
     myRotate();
   });
   $("#historyTrackB").click(function () {
@@ -683,31 +678,24 @@ window.onload = function () {
         $n("input")[j].checked = true;
       }
     }
-    console.log("区间选择成功");
   });
 
   $("#calculate").on("click", function () {
-    console.log("开始计算");
     var checkID = [];
     $("input[name='tag']:checked").each(function (i) {
       checkID[i] = $(this).val();
     })
-    console.log(checkID);
     var data = {
       data: JSON.stringify({
         'checkID': checkID
       }),
     };
-    console.log(data);
     $.ajax({
       url: "http://localhost:8000/cal",
       type: 'POST',
       data: data,
       dataType: 'json',
       //contentType: 'application/json; charset=UTF-8',
-      success: function (msg) {
-        console.log("成功")
-      }
     })
   })
 })();

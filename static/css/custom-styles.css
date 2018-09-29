@@ -7,6 +7,9 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+.roboto {
+    font-family: 'Roboto', sans-serif;
+}
 .open-sans {
     font-family: 'Open Sans', sans-serif;
 }

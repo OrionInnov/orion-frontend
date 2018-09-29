@@ -48,7 +48,6 @@ function getTagNameset() {
     dataType: "json",
     //async: false,
     success: function(result) {
-      console.log(result);
       configSet = result;
       var tagNames = result.tags;
       calibrationC = configSet.system.calib;
@@ -62,9 +61,7 @@ function getTagNameset() {
         });
       }
     },
-    error: function(result) {
-      //console.log("");
-    }
+    error: function(result) {}
   });
 }
 getTagNameset();
@@ -79,19 +76,15 @@ function getCalibrationC() {
     success: function(result) {
       canvasRestore();
       canvasInit();
-      console.log(result);
       configSet = result;
       calibrationC = configSet.system.calib;
     },
-    error: function(result) {
-      //console.log("");
-    }
+    error: function(result) {}
   });
 }
 
 function changeTagName() {
   $("#confirmN").on ("click", function() {
-    //console.log(configSet);
     var tagNames = configSet.tags,
         tagName = $("#selectI").val(),
         name  = $("#nameT").val(),
@@ -115,7 +108,6 @@ function changeTagName() {
             //async: false,
             data: JSON.stringify(configSet),
             success: function() {
-              console.log(configSet);
               $("#selectI").empty();
               $("#selectAdd").empty();
               for (var i = 0; i < tagNames.length; i++) {
@@ -126,11 +118,8 @@ function changeTagName() {
                   return "<input name='tag' value='tag" + i + "' id='tag" + i + "' type='checkbox' class='selecta'>" + tagNames[i].name + "<br/>";
                 });
               }
-              //console.log("");
             },
-            error: function(result) {
-              //console.log("");
-            }
+            error: function(result) {}
           });
         }
       }
@@ -205,25 +194,21 @@ function drawPoint() {
     var x0 = x1 - xa1 * xScale,
         y0 = y1 - ya1 * yScale;
     calibrationC = [[xScale, yScale], [x0, y0]];
-    console.log(calibrationC[0][0]);
-    console.log(calibrationC[0][1]);
-    console.log(calibrationC[1][0]);
-    console.log(calibrationC[1][1]);
+    //console.log(calibrationC[0][0]);
+    //console.log(calibrationC[0][1]);
+    //console.log(calibrationC[1][0]);
+    //console.log(calibrationC[1][1]);
     configSet.system.calib = calibrationC;
     $.ajax ({
       type: "POST",
       url: "http://localhost:8000/setconf",
-      //url: "http://192.168.100.6:8000/_config",
       dataType: "json",
       //async: false,
       data: JSON.stringify(configSet),
       success: function(result) {
         //canvasInit();
-        //console.log("");
       },
-      error: function(result) {
-        //console.log("");
-      }
+      error: function(result) {}
     });
   };
 }
