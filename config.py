@@ -63,3 +63,8 @@ def load_config():
     for result in cursor:
         result.pop("_id")
     return result
+
+
+def save_config(config):
+    db.config.remove()
+    db.config.save(config, check_keys=False)

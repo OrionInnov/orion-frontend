@@ -18,8 +18,11 @@ from flask import send_from_directory
 
 from . import app
 from .config import db
+from .config import load_config
+from .config import save_config
 
-# Type of image
+
+# valid image extensions
 VALID_IMG_EXT = ["jpg", "png"]
 
 
@@ -73,27 +76,22 @@ def cal():
 
 @app.route("/getconf")
 def getconf():
-    cursor = db.config.find()
-    for result in cursor:
-        result.pop("_id")
-    tagname = json.dumps(result)
-    return tagname
+    return json.dumps(load_config())
 
 
 @app.route("/setconf", methods=["POST"])
 def setconf():
     data = json.loads(request.get_data())
-    db.config.remove()
-    db.config.save(data, check_keys=False)
+    save_config(data)
     return json.dumps({"status": 1})
 
 
 @app.route("/positions")
 def positions():
     num = 0
-    posdata = []
     cursor = db.history.find()
     for result in cursor:
+        posdata = []
         result.pop("_id")
         historytrack = result["historytrack"]
         for pos_list in historytrack:
