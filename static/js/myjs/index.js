@@ -203,7 +203,6 @@ function canvasInit() {
   ctx1.translate(calibrationC[1][0], calibrationC[1][1]);
   ctx2.translate(calibrationC[1][0], calibrationC[1][1]);
   ctx3.translate(calibrationC[1][0], calibrationC[1][1]);
-  console.log(calibrationC);
 }
 
 function canvasRestore() {
@@ -357,7 +356,6 @@ function track() {
 
 //myRotate
 function myRotate() {
-  console.log("myRotate" + myIndex);
   $("#myImg").css("transform", "rotate(" + myIndex + "deg)");
 }
 
@@ -373,7 +371,6 @@ function historyTrack() {
     data: JSON.stringify(timedata),
     success: function (result) {
       positionH = result;
-      console.log(result);
     },
     error: function (result) {
     }
@@ -627,7 +624,6 @@ window.onload = function () {
   });
   $("#clockwise").click(function () {
     myIndex = myIndex + 90;
-    console.log("点击顺时针" + myIndex);
     if (myIndex == 360) {
       myIndex = 0;
     }
@@ -638,7 +634,6 @@ window.onload = function () {
     if (myIndex == -360) {
       myIndex = 0;
     }
-    console.log(myIndex);
     myRotate();
   });
   $("#historyTrackB").click(function () {
@@ -683,31 +678,24 @@ window.onload = function () {
         $n("input")[j].checked = true;
       }
     }
-    console.log("区间选择成功");
   });
 
   $("#calculate").on("click", function () {
-    console.log("开始计算");
     var checkID = [];
     $("input[name='tag']:checked").each(function (i) {
       checkID[i] = $(this).val();
     })
-    console.log(checkID);
     var data = {
       data: JSON.stringify({
         'checkID': checkID
       }),
     };
-    console.log(data);
     $.ajax({
       url: "http://localhost:8000/cal",
       type: 'POST',
       data: data,
       dataType: 'json',
       //contentType: 'application/json; charset=UTF-8',
-      success: function (msg) {
-        console.log("成功")
-      }
     })
   })
 })();

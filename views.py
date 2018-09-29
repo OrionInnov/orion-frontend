@@ -17,17 +17,14 @@ from flask import request
 from flask import send_from_directory
 
 from . import app
+from .config import db
+from .config import load_config
+from .config import save_config
 
-# Type of image
+
+# valid image extensions
 VALID_IMG_EXT = ["jpg", "png"]
 
-# MongoDB client URL and port
-DEFAULT_URL = "mongodb://localhost:27017"
-
-client = pymongo.MongoClient(DEFAULT_URL)
-db = client["orion"]
-
-debug_config = True
 
 ################################ STATIC ROUTES ################################
 
@@ -79,47 +76,26 @@ def cal():
 
 @app.route("/getconf")
 def getconf():
-    if debug_config:
-        path = os.path.join(app.root_path, "config_test.json")
-        with open(path, "r") as f:
-            result = json.load(f)[0]
-            tagname = json.dumps(result)
-    else:
-        cursor = db.config.find()
-        for result in cursor:
-            result.pop("_id")
-        tagname = json.dumps(result)
-
-    return tagname
+    return json.dumps(load_config())
 
 
 @app.route("/setconf", methods=["POST"])
 def setconf():
     data = json.loads(request.get_data())
-    db.config.remove()
-    db.config.save(data, check_keys=False)
+    save_config(data)
     return json.dumps({"status": 1})
 
 
 @app.route("/positions")
 def positions():
     num = 0
-    posdata = []
-    if debug_config:
-        path = os.path.join(app.root_path, "pos_test.json")
-        with open(path, "r") as f:
-            result = json.load(f)
+    cursor = db.history.find()
+    for result in cursor:
+        posdata = []
         result.pop("_id")
         historytrack = result["historytrack"]
         for pos_list in historytrack:
             posdata.append(pos_list['pos'])
-    else:
-        cursor = db.history.find()
-        for result in cursor:
-            result.pop("_id")
-            historytrack = result["historytrack"]
-            for pos_list in historytrack:
-                posdata.append(pos_list['pos'])
     return json.dumps(posdata)
 
 
@@ -142,13 +118,6 @@ def upload():
     img_b64 = "data:image/{0};base64,".format(ext) + img_b64
 
     return json.dumps({"status": 1, "img": img_b64})
-
-
-@app.route("/history", methods=["POST"])
-def history():
-    # TODO(fzliu): get this working
-    timedata = request.get_data()
-    raise NotImplementedError()
 
 
 @app.route("/history_track", methods=["POST"])
@@ -174,34 +143,3 @@ def history_track():
         posdata1 = []
         num = 0
     return json.dumps(posdata2)  # history_track needs to change
-
-
-################################# DEBUG PAGES #################################
-
-import numpy as np
-
-# debug parameters
-DEBUG_NUM_TAGS = 10
-DEBUG_ROOM_SIZE = 25
-DEBUG_TAG_NAMES = ["Tag" + str(n) for n in range(DEBUG_NUM_TAGS)]
-DEBUG_TAG_POS = np.random.random((DEBUG_NUM_TAGS, 2)) * DEBUG_ROOM_SIZE
-
-
-@app.route("/_getconf")
-def _config():
-    config = {
-        "num_tags": DEBUG_NUM_TAGS,
-        "tag_names": DEBUG_TAG_NAMES
-    }
-    return json.dumps(config)
-
-
-@app.route("/_positions")
-def _positions():
-    pos_data = DEBUG_TAG_POS + np.random.random((DEBUG_NUM_TAGS, 2))
-    pos_repr = np.array(40 * pos_data, dtype=np.int32).tolist()
-    return json.dumps(pos_repr)
-
-
-if __name__ == "__main__":
-    app.run("0.0.0.0", 8000, debug=True)
