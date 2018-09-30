@@ -90,14 +90,14 @@ function changeTagName() {
         name  = $("#nameT").val(),
         enable = true;
     for (var i = 0; i < tagNames.length; i++) {
-      if (name == tagNames[i].name) {
+      if (name === tagNames[i].name) {
         enable = false;
         alert("错误：" + name + "已存在！");
       }
     }
     if (enable) {
       for (var i = 0; i < tagNames.length; i++) {
-        if (tagNames[i].name == tagName) {
+        if (tagNames[i].name === tagName) {
           tagNames[i].name = name;
           $.ajax ({
             type: "POST",
@@ -181,8 +181,8 @@ function drawPoint() {
     }
   };
   $("#confirmF").get(0).onmousedown = function() {
-    if (x1 == x2 || y1 == y2 || xa1 == xa2 || ya1 == ya2) {
-      if ($("#inputNameEn").html() == "输入姓名") {
+    if (x1 === x2 || y1 === y2 || xa1 === xa2 || ya1 === ya2) {
+      if ($("#inputNameEn").html() === "输入姓名") {
         alert("错误：参照点坐标值相同，无法校准坐标！");
       } else {
         alert("Error：the coordinate value of reference points are equal!");
