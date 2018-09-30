@@ -3,9 +3,8 @@ import sys
 
 from flask import Flask
 
-from .config import change_pos
-from .config import load_config
-from .config import save_history
+from .db_iface import load_config
+from .db_iface import db_update
 
 # Flask instance webapp
 # http://flask.pocoo.org/docs/latest/patterns/packages/
