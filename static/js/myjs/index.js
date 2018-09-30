@@ -245,15 +245,15 @@ function fixPositionF() {
               ctx.save();
               ctx.translate(x[i], y[i]);
               ctx.drawImage(myImage, 0, 0, 20, 20);
-              if (myIndex == 0) {
+              if (myIndex === 0) {
                 ctx.fillText(configSet.tags[i].name, 20, 0);
-              } else if (myIndex == 90 || myIndex == -270) {
+              } else if (myIndex === 90 || myIndex === -270) {
                 ctx.rotate(-Math.PI / 2);
                 ctx.fillText(configSet.tags[i].name, 0, 0);
-              } else if (myIndex == 180 || myIndex == -180) {
+              } else if (myIndex === 180 || myIndex === -180) {
                 ctx.rotate(Math.PI)
                 ctx.fillText(configSet.tags[i].name, 0, -20);
-              } else if (myIndex == 270 || myIndex == -90) {
+              } else if (myIndex === 270 || myIndex === -90) {
                 ctx.rotate(Math.PI / 2)
                 ctx.fillText(configSet.tags[i].name, 20, -20);
               } else {
@@ -266,7 +266,7 @@ function fixPositionF() {
       }
       dataURL1 = c1.get(0).toDataURL();
     };
-    if (pauseStatus == 0) {
+    if (pauseStatus === 0) {
       stopOverwrite1();
     }
   }
@@ -281,25 +281,25 @@ document.onkeydown = function(event) {
   var e = event || window.event || arguments.callee.caller.arguments[0];
   var disFix = $("#myCanvas1").css("display");
   var disTrack = $("#myCanvas2").css("display");
-  if (event.keyCode == 32) {
+  if (event.keyCode === 32) {
     event.preventDefault();
   }
-  if (disFix == "block") {
-    if (e && e.keyCode == 32) {
-      if (pauseStatus == 0) {
+  if (disFix === "block") {
+    if (e && e.keyCode === 32) {
+      if (pauseStatus === 0) {
         jumpC("#myCanvas1", "#myCanvas2", "#myCanvas3");
         fixPositionF();
-      } else if (pauseStatus == 1) {
+      } else if (pauseStatus === 1) {
         pauseStatus = 0;
       };
     }
   }
-  if (disTrack == "block") {
-    if (e && e.keyCode == 32) {
-      if (pauseStatus == 0) {
+  if (disTrack === "block") {
+    if (e && e.keyCode === 32) {
+      if (pauseStatus === 0) {
         jumpC("#myCanvas2", "#myCanvas1", "#myCanvas3");
         track();
-      } else if (pauseStatus == 1) {
+      } else if (pauseStatus === 1) {
         pauseStatus = 0;
       };
     }
@@ -362,7 +362,7 @@ function track() {
       clearTimeout(p2);
     });
     dataURL2 = c2.get(0).toDataURL();
-    if (pauseStatus == 0) {
+    if (pauseStatus === 0) {
       stopOverwrite2();
     }
   }
@@ -533,7 +533,7 @@ window.onload = function () {
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'><nobr class='open-sans'>Back</nobr></span>");
     $("#homeH").html("<h1 class='page-header'>Indoor Localization System<small>Please upload map or bind tags.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Preparations</li></ol>");
     $("#uploadB").html("Upload");
-    if ($("#fileBackground").val() == "") {
+    if ($("#fileBackground").val() === "") {
       $("#fileName").html("no files");
     }
     $("#backgroundSubmit").html("Submit");
@@ -575,7 +575,7 @@ window.onload = function () {
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'>返回</span>");
     $("#homeH").html("<h1 class='page-header'>室内定位系统<small>请上传地图或绑定标签</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>首页</a></li>&nbsp<li class='active'>准备工作</li></ol>");
     $("#uploadB").html("上传");
-    if ($("#fileBackground").val() == "") {
+    if ($("#fileBackground").val() === "") {
       $("#fileName").html("未上传文件");
     }
     $("#backgroundSubmit").html("提交");
@@ -602,8 +602,8 @@ window.onload = function () {
     canvasRestore();
   });
   $("#backgroundSubmit").click(function () {
-    if ($("#fileBackground").val() == "") {
-      if ($("#uploadB").html() == "上传") {
+    if ($("#fileBackground").val() === "") {
+      if ($("#uploadB").html() === "上传") {
         alert("请上传图片！");
       } else {
         alert("Please upload map!");
@@ -614,7 +614,7 @@ window.onload = function () {
       var file = $("#fileBackground");
       file.after(file.clone().val(""));
       file.remove();
-      if ($("#uploadB").html() == "上传") {
+      if ($("#uploadB").html() === "上传") {
         $("#fileName").html("未上传文件");
       } else {
         $("#fileName").html("no files");
@@ -641,14 +641,14 @@ window.onload = function () {
   });
   $("#clockwise").click(function () {
     myIndex = myIndex + 90;
-    if (myIndex == 360) {
+    if (myIndex === 360) {
       myIndex = 0;
     }
     myRotate();
   });
   $("#counterclockwise").click(function () {
     myIndex = myIndex - 90;
-    if (myIndex == -360) {
+    if (myIndex === -360) {
       myIndex = 0;
     }
     myRotate();
