@@ -1,10 +1,9 @@
 """
 db_iface: MongoDB interface functions.
 """
-import json
+
 import pymongo
 import time
-import os
 
 from flask import request
 
@@ -44,6 +43,8 @@ def load_positions():
 
     cursor = db.history.find()
     count = db.history.count()
+    if count == 0:
+        return None
 
     # extract raw positions from historical data
     pos_data = cursor[count-1]["historytrack"]
