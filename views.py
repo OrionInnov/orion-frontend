@@ -17,9 +17,10 @@ from flask import request
 from flask import send_from_directory
 
 from . import app
-from .config import db
-from .config import load_config
-from .config import save_config
+from .db_iface import db
+from .db_iface import load_config
+from .db_iface import save_config
+from .db_iface import load_positions
 
 
 # valid image extensions
@@ -81,22 +82,13 @@ def getconf():
 
 @app.route("/setconf", methods=["POST"])
 def setconf():
-    data = json.loads(request.get_data())
-    save_config(data)
+    save_config(json.loads(request.get_data()))
     return json.dumps({"status": 1})
 
 
 @app.route("/positions")
 def positions():
-    num = 0
-    cursor = db.history.find()
-    for result in cursor:
-        posdata = []
-        result.pop("_id")
-        historytrack = result["historytrack"]
-        for pos_list in historytrack:
-            posdata.append(pos_list['pos'])
-    return json.dumps(posdata)
+    return json.dumps(load_positions())
 
 
 @app.route("/upload", methods=["POST"])
