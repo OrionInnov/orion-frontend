@@ -239,28 +239,30 @@ function fixPositionF() {
     myImage.onload = function () {
       ctx.globalCompositeOperation = "source-over";
       for (var i = 0; i < num; i++) {
-        (function () {
-          if ($("#tag" + i).get(0).checked == true) {
-            ctx.save();
-            ctx.translate(x[i], y[i]);
-            ctx.drawImage(myImage, 0, 0, 20, 20);
-            if (myIndex == 0) {
-              ctx.fillText(configSet.tags[i].name, 20, 0);
-            } else if (myIndex == 90 || myIndex == -270) {
-              ctx.rotate(-Math.PI / 2);
-              ctx.fillText(configSet.tags[i].name, 0, 0);
-            } else if (myIndex == 180 || myIndex == -180) {
-              ctx.rotate(Math.PI)
-              ctx.fillText(configSet.tags[i].name, 0, -20);
-            } else if (myIndex == 270 || myIndex == -90) {
-              ctx.rotate(Math.PI / 2)
-              ctx.fillText(configSet.tags[i].name, 20, -20);
-            } else {
-              console.log("错误");
+        if (!(isNaN(x[i]) || isNaN(y[i]))) {
+          (function () {
+            if ($("#tag" + i).get(0).checked == true) {
+              ctx.save();
+              ctx.translate(x[i], y[i]);
+              ctx.drawImage(myImage, 0, 0, 20, 20);
+              if (myIndex == 0) {
+                ctx.fillText(configSet.tags[i].name, 20, 0);
+              } else if (myIndex == 90 || myIndex == -270) {
+                ctx.rotate(-Math.PI / 2);
+                ctx.fillText(configSet.tags[i].name, 0, 0);
+              } else if (myIndex == 180 || myIndex == -180) {
+                ctx.rotate(Math.PI)
+                ctx.fillText(configSet.tags[i].name, 0, -20);
+              } else if (myIndex == 270 || myIndex == -90) {
+                ctx.rotate(Math.PI / 2)
+                ctx.fillText(configSet.tags[i].name, 20, -20);
+              } else {
+                console.log("错误");
+              }
+              ctx.restore();
             }
-            ctx.restore();
-          }
-        })();
+          })();
+        }
       }
       dataURL1 = c1.get(0).toDataURL();
     };
@@ -278,6 +280,7 @@ function fixPositionF() {
 document.onkeydown = function(event) {
   var e = event || window.event || arguments.callee.caller.arguments[0];
   var disFix = $("#myCanvas1").css("display");
+  var disTrack = $("#myCanvas2").css("display");
   if (event.keyCode == 32) {
     event.preventDefault();
   }
@@ -291,10 +294,21 @@ document.onkeydown = function(event) {
       };
     }
   }
+  if (disTrack == "block") {
+    if (e && e.keyCode == 32) {
+      if (pauseStatus == 0) {
+        jumpC("#myCanvas2", "#myCanvas1", "#myCanvas3");
+        track();
+      } else if (pauseStatus == 1) {
+        pauseStatus = 0;
+      };
+    }
+  }
 };
 
 //Track.
 function track() {
+  pauseStatus = 1;
   var a = [],
       b = [],
       c = [],
@@ -348,8 +362,13 @@ function track() {
       clearTimeout(p2);
     });
     dataURL2 = c2.get(0).toDataURL();
+    if (pauseStatus == 0) {
+      stopOverwrite2();
+    }
   }
-
+  $("#pauseB").click(function () {
+    pauseStatus = 0;
+  });
   overwrite2 = setInterval(delay, 2000);
 }
 
@@ -534,8 +553,7 @@ window.onload = function () {
     $("#positionHead").html("Map<div id='zoomN' style='position: relative; float: right'></div>");
     $("#radio").html("<span class=''>ALL</span>");
     $("#multiple").html("<span class=''>CLR</span>");
-    $("#between").html("<span class=''>Interval</span>")
-    $("#calculate").html("<span class=''>Calculate</span>")
+    $("#between").html("<span class=''>Interval</span>");
   });
   $("#orionChinese").click(function () {
     $("#navHead1").html("功能页面");
@@ -577,8 +595,7 @@ window.onload = function () {
     $("#positionHead").html("地图<div id='zoomN' style='position: relative; float: right'></div>");
     $("#radio").html("<span class=''>全选</span>");
     $("#multiple").html("<span class=''>重置</span>");
-    $("#between").html("<span class=''>区间选择</span>")
-    $("#calculate").html("<span class=''>计算</span>")
+    $("#between").html("<span class=''>区间选择</span>");
   });
   $("#setB").click(function () {
     jumpSetP();
@@ -679,8 +696,7 @@ window.onload = function () {
       }
     }
   });
-
-  $("#calculate").on("click", function () {
+  function checkTag() {
     var checkID = [];
     $("input[name='tag']:checked").each(function (i) {
       checkID[i] = $(this).val();
@@ -697,6 +713,14 @@ window.onload = function () {
       dataType: 'json',
       //contentType: 'application/json; charset=UTF-8',
     })
+  }
+  $("input[name='tag']").each(function (n) {
+    $(this).on("click", function () {
+      checkTag();
+    })
+  })
+  $("#radio,#multiple,#between").on("click", function () {
+    checkTag();
   })
 })();
 
