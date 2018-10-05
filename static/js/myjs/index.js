@@ -541,7 +541,7 @@ window.onload = function () {
     $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>INDOORSYSTEM</strong></a></div>");
     $("#homeButton").html("Configuration");
     $("#fixButton").html("Localization");
-    $("#fixPH").html("<h1 class='page-header'>Localization <small>Positioning tags.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Localization</li></ol>");
+    $("#fixPH").html("<h1 class='page-header'>Localization <small>Multi-tag positioning results.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Localization</li></ol>");
     $("#positionsB").html("<span class='roboto'>Start</span>");
     $("#pauseB").html("<span class='roboto'>Pause</span>");
     $("#trackB").html("<span class='roboto'>Track</span>");
