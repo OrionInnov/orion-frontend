@@ -714,6 +714,7 @@ window.onload = function () {
       //contentType: 'application/json; charset=UTF-8',
     })
   }
+  checkTag();
   $("input[name='tag']").each(function (n) {
     $(this).on("click", function () {
       checkTag();
