@@ -513,46 +513,46 @@ window.onload = function () {
 //Binding events.
 (function() {
   $("#orionEnglish").click(function () {
-    $("#navHead1").html("PAGES");
-    $("#navHead2").html("LBSOPTION");
-    $("#navHead2a").html("LBSOPTION");
-    $("#navHead3").html("CONFIG");
+    $("#navHead1").html("Main");
+    $("#navHead2").html("Control");
+    $("#navHead2a").html("Control");
+    $("#navHead3").html("Options");
     $("#languageHead").html("Language");
-    $("#navHead4").html("ABOUT");
+    $("#navHead4").html("About");
     $("#introduceHead").html("Introduction");
     $("#contactHead").html("Contact");
-    $("#navHead5").html("CONTACT");
+    $("#navHead5").html("Contact");
 
-    $("#preparationsHead").html("Preparations <small>Please confirm reference points.</small>");
+    $("#preparationsHead").html("Input reference coordinates");
     $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>First&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</nobr></span>");
     $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>Second</nobr></span>");
     $("#confirmF").html("<span class='glyphicon glyphicon-ok'><nobr class='open-sans'>Confirm</nobr></span>");
     $("#inputNameEn").html("<nobr class='open-sans'>Name</nobr>");
     $("#preparationsP").html("<nobr class='open-sans'>Map</nobr>");
     $("#confirmN").html("<span class='glyphicon glyphicon-ok'><nobr class='open-sans'>&nbsp&nbspBind&nbsp&nbsp</nobr></span>");
-    $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'><nobr class='open-sans'>Back</nobr></span>");
-    $("#homeH").html("<h1 class='page-header'>Indoor Localization System<small>Please upload map or bind tags.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Preparations</li></ol>");
+    $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'><nobr class='open-sans'>&nbspBack</nobr></span>");
+    $("#homeH").html("<h1 class='page-header'>Welcome<small>Please upload map and/or update tag names.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Configuration</li></ol>");
     $("#uploadB").html("Upload");
     if ($("#fileBackground").val() === "") {
       $("#fileName").html("no files");
     }
     $("#backgroundSubmit").html("Submit");
-    $("#setB").html("Calibration");
+    $("#setB").html("Calibrate");
     $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>INDOORSYSTEM</strong></a></div>");
-    $("#homeButton").html("Preparations");
-    $("#fixButton").html("Fix position");
-    $("#fixPH").html("<h1 class='page-header'>Fix position <small>Positioning tags.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Fix position</li></ol>");
-    $("#positionsB").html("<span class='roboto'>Startposition</span>");
+    $("#homeButton").html("Configuration");
+    $("#fixButton").html("Localization");
+    $("#fixPH").html("<h1 class='page-header'>Localization <small>Multi-tag positioning results.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Localization</li></ol>");
+    $("#positionsB").html("<span class='roboto'>Start</span>");
     $("#pauseB").html("<span class='roboto'>Pause</span>");
     $("#trackB").html("<span class='roboto'>Track</span>");
-    $("#clockwise").html("<span class='roboto'>Clockwise</span>");
-    $("#counterclockwise").html("<span class='roboto'>Counterclockwise</span>");
-    $("#zoomB1").html("<span class='roboto'>Zoomposition</span>");
-    $("#zoomB2").html("<span class='roboto'>Zoomtrack&nbsp</span>");
+    $("#clockwise").html("<span class='roboto'>Rotate (CW)</span>");
+    $("#counterclockwise").html("<span class='roboto'>Rotate (CCW)</span>");
+    $("#zoomB1").html("<span class='roboto'>Zoom</span>");
+    $("#zoomB2").html("<span class='roboto'>Zoom (trajectory)</span>");
     $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'><nobr class='open-sans'>Historytrack</nobr></span>");
     $("#positionHead").html("Map<div id='zoomN' style='position: relative; float: right'></div>");
     $("#radio").html("<span class=''>ALL</span>");
-    $("#multiple").html("<span class=''>CLR</span>");
+    $("#multiple").html("<span class=''>NONE</span>");
     $("#between").html("<span class=''>Interval</span>");
   });
   $("#orionChinese").click(function () {
@@ -573,7 +573,7 @@ window.onload = function () {
     $("#preparationsP").html("地图");
     $("#confirmN").html("<span class='glyphicon glyphicon-ok'>绑定</span>");
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'>返回</span>");
-    $("#homeH").html("<h1 class='page-header'>室内定位系统<small>请上传地图或绑定标签</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>首页</a></li>&nbsp<li class='active'>准备工作</li></ol>");
+    $("#homeH").html("<h1 class='page-header'>欢迎<small>请上传地图或绑定标签</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>首页</a></li>&nbsp<li class='active'>准备工作</li></ol>");
     $("#uploadB").html("上传");
     if ($("#fileBackground").val() === "") {
       $("#fileName").html("未上传文件");
@@ -606,7 +606,7 @@ window.onload = function () {
       if ($("#uploadB").html() === "上传") {
         alert("请上传图片！");
       } else {
-        alert("Please upload map!");
+        alert("Please upload an image!");
       }
       return false;
     } else {
