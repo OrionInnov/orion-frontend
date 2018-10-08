@@ -54,10 +54,10 @@ function getTagNameset() {
       //canvasInit();
       for (var i = 0; i < tagNames.length; i++) {
         $("#selectI").append(function() {
-          return "<option value='" + tagNames[i].name + "' class='selecta'>" + tagNames[i].name + "</option>";
+          return "<option value='" + tagNames[i].name + "' class='selecta'>" + "(" + i + ") " + tagNames[i].name + "</option>";
         });
         $("#selectAdd").append(function() {
-          return "<input name='tag' value='tag" + i + "'  id='tag" + i + "' type='checkbox' class='selecta' style='white-space: nowrap'>" + tagNames[i].name + "<br/>";
+          return "<input name='tag' value='tag" + i + "'  id='tag" + i + "' type='checkbox' class='selecta' style='white-space: nowrap'>" + "(" + i + ") " + tagNames[i].name + "<br/>";
         });
       }
     },
@@ -90,7 +90,7 @@ function changeTagName() {
         name  = $("#nameT").val(),
         enable = true;
     for (var i = 0; i < tagNames.length; i++) {
-      if (name === tagNames[i].name) {
+      if (name === "(" + i + ") " + tagNames[i].name) {
         enable = false;
         alert("错误：" + name + "已存在！");
       }
@@ -112,10 +112,10 @@ function changeTagName() {
               $("#selectAdd").empty();
               for (var i = 0; i < tagNames.length; i++) {
                 $("#selectI").append(function() {
-                  return "<option value='" + tagNames[i].name + "' class='selecta'>" + tagNames[i].name + "</option>";
+                  return "<option value='" + tagNames[i].name + "' class='selecta'>" + "(" + i + ") " + tagNames[i].name + "</option>";
                 });
                 $("#selectAdd").append(function() {
-                  return "<input name='tag' value='tag" + i + "' id='tag" + i + "' type='checkbox' class='selecta'>" + tagNames[i].name + "<br/>";
+                  return "<input name='tag' value='tag" + i + "' id='tag" + i + "' type='checkbox' class='selecta'>" + "(" + i + ") " + tagNames[i].name + "<br/>";
                 });
               }
             },
