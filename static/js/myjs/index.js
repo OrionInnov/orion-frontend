@@ -134,7 +134,7 @@ function getPosition() {
   var positions;
   $.ajax({
     type: "GET",
-    url: "http://localhost:8000/positions",
+    url: url0 + "positions",
     dataType: "json",
     async: false,
     success: function (result) {
@@ -156,7 +156,7 @@ function uploadImg() {
   var form = new FormData($("#f1")[0]);
   $.ajax({
     type: "POST",
-    url: "http://localhost:8000/upload",
+    url: url0 + "upload",
     data: form,
     cache: false,
     processData: false,
@@ -384,7 +384,7 @@ function historyTrack() {
       timedata = [$("#datetimeP1").val(), $("#datetimeP2").val()];
   $.ajax({
     type: "POST",
-    url: "http://localhost:8000/history_track",
+    url: url0 + "history_track",
     dataType: "json",
     async: false,
     data: JSON.stringify(timedata),
@@ -523,7 +523,7 @@ window.onload = function () {
     $("#contactHead").html("Contact");
     $("#navHead5").html("Contact");
 
-    $("#preparationsHead").html("Input reference coordinates");
+    $("#preparationsHead").html("Configuration<small>Input reference coordinates</small>");
     $("#confirmP1").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>First&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</nobr></span>");
     $("#confirmP2").html("<span class='glyphicon glyphicon-screenshot'><nobr class='open-sans'>Second</nobr></span>");
     $("#confirmF").html("<span class='glyphicon glyphicon-ok'><nobr class='open-sans'>Confirm</nobr></span>");
@@ -531,7 +531,7 @@ window.onload = function () {
     $("#preparationsP").html("<nobr class='open-sans'>Map</nobr>");
     $("#confirmN").html("<span class='glyphicon glyphicon-ok'><nobr class='open-sans'>&nbsp&nbspBind&nbsp&nbsp</nobr></span>");
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'><nobr class='open-sans'>&nbspBack</nobr></span>");
-    $("#homeH").html("<h1 class='page-header'>Welcome<small>Please upload map and/or update tag names.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Configuration</li></ol>");
+    $("#homeH").html("<h1 class='page-header'>Welcome<small>Please upload map and/or update tag names</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Configuration</li></ol>");
     $("#uploadB").html("Upload");
     if ($("#fileBackground").val() === "") {
       $("#fileName").html("no files");
@@ -541,7 +541,7 @@ window.onload = function () {
     $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>INDOORSYSTEM</strong></a></div>");
     $("#homeButton").html("Configuration");
     $("#fixButton").html("Localization");
-    $("#fixPH").html("<h1 class='page-header'>Localization <small>Multi-tag positioning results.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Localization</li></ol>");
+    $("#fixPH").html("<h1 class='page-header'>Localization <small>Multi-tag positioning results</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Localization</li></ol>");
     $("#positionsB").html("<span class='roboto'>Start</span>");
     $("#pauseB").html("<span class='roboto'>Pause</span>");
     $("#trackB").html("<span class='roboto'>Track</span>");
@@ -707,7 +707,7 @@ window.onload = function () {
       }),
     };
     $.ajax({
-      url: "http://localhost:8000/cal",
+      url: url0 + "cal",
       type: 'POST',
       data: data,
       dataType: 'json',
