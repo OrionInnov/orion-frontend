@@ -134,7 +134,7 @@ function getPosition() {
   var positions;
   $.ajax({
     type: "GET",
-    url: url0 + "positions",
+    url: "/positions",
     dataType: "json",
     async: false,
     success: function (result) {
@@ -156,7 +156,7 @@ function uploadImg() {
   var form = new FormData($("#f1")[0]);
   $.ajax({
     type: "POST",
-    url: url0 + "upload",
+    url: "/upload",
     data: form,
     cache: false,
     processData: false,
@@ -384,7 +384,7 @@ function historyTrack() {
       timedata = [$("#datetimeP1").val(), $("#datetimeP2").val()];
   $.ajax({
     type: "POST",
-    url: url0 + "history_track",
+    url: "/history_track",
     dataType: "json",
     async: false,
     data: JSON.stringify(timedata),
@@ -554,6 +554,7 @@ window.onload = function () {
     $("#radio").html("<span class=''>ALL</span>");
     $("#multiple").html("<span class=''>NONE</span>");
     $("#between").html("<span class=''>Interval</span>");
+    $("#section0").html("© 2018 浙江奥新智能科技(金华)有限公司 版权所有");
   });
   $("#orionChinese").click(function () {
     $("#navHead1").html("功能页面");
@@ -596,6 +597,7 @@ window.onload = function () {
     $("#radio").html("<span class=''>全选</span>");
     $("#multiple").html("<span class=''>重置</span>");
     $("#between").html("<span class=''>区间选择</span>");
+    $("#section0").html("© 2018 Power by Orion(JinHua)");
   });
   $("#setB").click(function () {
     jumpSetP();
@@ -707,7 +709,7 @@ window.onload = function () {
       }),
     };
     $.ajax({
-      url: url0 + "cal",
+      url: "/cal",
       type: 'POST',
       data: data,
       dataType: 'json',

@@ -38,17 +38,10 @@ var configSet, calibrationC = [[NaN, NaN], [NaN, NaN]];
   canvasSize9.height = canvasSizeHeight;
 })();
 
-function getRootPath(){
-  var curPageUrl = window.document.location.href;
-  return curPageUrl;
-}
-
-var url0 = getRootPath();
-
 function getTagNameset() {
   $.ajax ({
     type: "GET",
-    url: url0 + "getconf",
+    url: "/getconf",
     dataType: "json",
     //async: false,
     success: function(result) {
@@ -73,7 +66,7 @@ getTagNameset();
 function getCalibrationC() {
   $.ajax ({
     type: "GET",
-    url: url0 + "getconf",
+    url: "/getconf",
     dataType: "json",
     //async: false,
     success: function(result) {
@@ -104,7 +97,7 @@ function changeTagName() {
           tagNames[i].name = name;
           $.ajax ({
             type: "POST",
-            url: url0 + "setconf",
+            url: "/setconf",
             contentType:'application/json;charset=UTF-8',
             dataType: "json",
             //async: false,
@@ -203,7 +196,7 @@ function drawPoint() {
     configSet.system.calib = calibrationC;
     $.ajax ({
       type: "POST",
-      url: url0 + "setconf",
+      url: "/setconf",
       dataType: "json",
       //async: false,
       data: JSON.stringify(configSet),
