@@ -54,7 +54,7 @@ function getTagNameset() {
           return "<option value='" + tagNames[i].name + "' class='selecta'>" + "(" + i + ") " + tagNames[i].name + "</option>";
         });
         $("#selectAdd").append(function() {
-          return "<input name='tag' value='tag" + i + "'  id='tag" + i + "' type='checkbox' class='selecta' style='white-space: nowrap'>" + "(" + i + ") " + tagNames[i].name + "<br/>";
+          return "<input name='tag' value='tag" + i + "'  id='tag" + i + "' type='checkbox' class='selecta' style='white-space: nowrap'>" + "&nbsp;" + tagNames[i].name + "<br/>";
         });
       }
     },
@@ -110,7 +110,7 @@ function changeTagName() {
                   return "<option value='" + tagNames[i].name + "' class='selecta'>" + "(" + i + ") " + tagNames[i].name + "</option>";
                 });
                 $("#selectAdd").append(function() {
-                  return "<input name='tag' value='tag" + i + "' id='tag" + i + "' type='checkbox' class='selecta'>" + "(" + i + ") " + tagNames[i].name + "<br/>";
+                  return "<input name='tag' value='tag" + i + "' id='tag" + i + "' type='checkbox' class='selecta'>" + "&nbsp;" + tagNames[i].name + "<br/>";
                 });
               }
             },
