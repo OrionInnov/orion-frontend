@@ -38,13 +38,10 @@ var configSet, calibrationC = [[NaN, NaN], [NaN, NaN]];
   canvasSize9.height = canvasSizeHeight;
 })();
 
-
-
 function getTagNameset() {
   $.ajax ({
     type: "GET",
-    url: "http://localhost:8000/getconf",
-    //url: "http://192.168.100.6:8000/_config",
+    url: "/getconf",
     dataType: "json",
     //async: false,
     success: function(result) {
@@ -69,8 +66,7 @@ getTagNameset();
 function getCalibrationC() {
   $.ajax ({
     type: "GET",
-    url: "http://localhost:8000/getconf",
-    //url: "http://192.168.100.6:8000/_config",
+    url: "/getconf",
     dataType: "json",
     //async: false,
     success: function(result) {
@@ -101,9 +97,8 @@ function changeTagName() {
           tagNames[i].name = name;
           $.ajax ({
             type: "POST",
-            url: "http://localhost:8000/setconf",
+            url: "/setconf",
             contentType:'application/json;charset=UTF-8',
-            //url: "http://192.168.100.6:8000/_config",
             dataType: "json",
             //async: false,
             data: JSON.stringify(configSet),
@@ -201,7 +196,7 @@ function drawPoint() {
     configSet.system.calib = calibrationC;
     $.ajax ({
       type: "POST",
-      url: "http://localhost:8000/setconf",
+      url: "/setconf",
       dataType: "json",
       //async: false,
       data: JSON.stringify(configSet),

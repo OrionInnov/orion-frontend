@@ -3,7 +3,7 @@
 ------------------------------------------------*/
 body {
     font-family: 'Open Sans', sans-serif;
-    background: #3E3E3E;
+    background: #000000;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -17,20 +17,25 @@ body {
 #page-wrapper {
     padding: 15px 15px;
     min-height: 600px;
-    background: rgba(232, 232, 232, 0.89);
+    background-image: url("../img/home-bg.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 #page-fixP {
     padding: 15px 15px;
     min-height: 600px;
-    background: rgba(232, 232, 232, 0.89);
+    background-image: url("../img/home-bg.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 #page-set {
     z-index: 2000;
     padding: 15px 15px;
-    min-height: 600px;
-    background: rgba(232, 232, 232, 0.89);
+    background-image: url("../img/home-bg.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 #page-rollC {
@@ -57,6 +62,12 @@ body {
 
 .no-boder {
     border: 0px solid #f3f3f3;
+}
+
+.canvasborder {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #e6e6e6;
 }
 
 h1, .h1, h2, .h2, h3, .h3 {
@@ -229,7 +240,7 @@ p {
     text-align: left;
     background-color: EDEDEDE6;
     padding: 32px 22px 32px 0;
-    color: #323232;
+    color: #FFFFFF;
 }
 
 .panel-left {
@@ -304,7 +315,7 @@ p {
 }
 
 h1.page-header small {
-    color: #000000;
+    color: #FFFFFF;
     margin-left: 15px;
     font-size: 20px;
 }
@@ -984,8 +995,8 @@ ul.dropdown-menu.dropdown-messages li a div {
 
 .relative {
     position: relative;
-    width: 840px;
-    height: 840px;
+    width: 842px;
+    height: 842px;
 }
 
 .canvasBackground {
@@ -1105,7 +1116,7 @@ section a:hover {
 }
 
 .overf {
-    height: 300px;
+    height: 600px;
     overflow: auto;
 }
 
