@@ -13,7 +13,14 @@ body {
 .open-sans {
     font-family: 'Open Sans', sans-serif;
 }
-
+.z-index0 {
+    z-index: 2000;
+    position: relative;
+}
+.z-index1 {
+    z-index: -1;
+    position: relative;
+}
 #page-wrapper {
     padding: 15px 15px;
     min-height: 600px;
