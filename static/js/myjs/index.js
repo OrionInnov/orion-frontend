@@ -245,6 +245,7 @@ function fixPositionF() {
               ctx.save();
               ctx.translate(x[i], y[i]);
               ctx.drawImage(myImage, 0, 0, 20, 20);
+              ctx.font = "15px Arial";
               if (myIndex === 0) {
                 ctx.fillText(configSet.tags[i].name, 20, 0);
               } else if (myIndex === 90 || myIndex === -270) {
@@ -531,7 +532,7 @@ window.onload = function () {
     $("#preparationsP").html("<nobr class='open-sans'>Map</nobr>");
     $("#confirmN").html("<span class='glyphicon glyphicon-ok'><nobr class='open-sans'>&nbsp&nbspBind&nbsp&nbsp</nobr></span>");
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'><nobr class='open-sans'>&nbspBack</nobr></span>");
-    $("#homeH").html("<h1 class='page-header'>Welcome<small>Please upload map and/or update tag names</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Configuration</li></ol>");
+    $("#homeH").html("<h1 class='page-header'>Welcome<small>Please upload map and/or update tag names</small></h1><ol class='breadcrumb borderRadiusHead'><li><a href='/home'>Home</a></li>&nbsp<li class='active'>Configuration</li></ol>");
     $("#uploadB").html("Upload");
     if ($("#fileBackground").val() === "") {
       $("#fileName").html("no files");
@@ -541,7 +542,7 @@ window.onload = function () {
     $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>INDOORSYSTEM</strong></a></div>");
     $("#homeButton").html("Configuration");
     $("#fixButton").html("Localization");
-    $("#fixPH").html("<h1 class='page-header'>Localization <small>Multi-tag positioning results</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>Home</a></li>&nbsp<li class='active'>Localization</li></ol>");
+    $("#fixPH").html("<h1 class='page-header'>Localization <small>Multi-tag positioning results</small></h1><ol class='breadcrumb borderRadiusHead'><li><a href='/home'>Home</a></li>&nbsp<li class='active'>Localization</li></ol>");
     $("#positionsB").html("<span class='roboto'>Start</span>");
     $("#pauseB").html("<span class='roboto'>Pause</span>");
     $("#trackB").html("<span class='roboto'>Track</span>");
@@ -574,7 +575,7 @@ window.onload = function () {
     $("#preparationsP").html("地图");
     $("#confirmN").html("<span class='glyphicon glyphicon-ok'>绑定</span>");
     $("#leaveS").html("<span class='glyphicon glyphicon-share-alt'>返回</span>");
-    $("#homeH").html("<h1 class='page-header'>欢迎<small>请上传地图或绑定标签</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>首页</a></li>&nbsp<li class='active'>准备工作</li></ol>");
+    $("#homeH").html("<h1 class='page-header'>欢迎<small>请上传地图或绑定标签</small></h1><ol class='breadcrumb borderRadiusHead'><li><a href='/home'>首页</a></li>&nbsp<li class='active'>准备工作</li></ol>");
     $("#uploadB").html("上传");
     if ($("#fileBackground").val() === "") {
       $("#fileName").html("未上传文件");
@@ -584,7 +585,7 @@ window.onload = function () {
     $("#nav1").html("<div class='navbar-header'><a class='navbar-brand'><strong>室内定位系统</strong></a></div>");
     $("#homeButton").html("准备工作");
     $("#fixButton").html("定位");
-    $("#fixPH").html("<h1 class='page-header'>定位<small>为多个标签定位.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a>首页</a></li>&nbsp<li class='active'>定位</li></ol>");
+    $("#fixPH").html("<h1 class='page-header'>定位<small>为多个标签定位.</small></h1><ol class='breadcrumb borderRadiusHead'><li><a href='/home'>首页</a></li>&nbsp<li class='active'>定位</li></ol>");
     $("#positionsB").html("<span class='roboto'>开始定位</span>");
     $("#pauseB").html("<span class='roboto'>暂停</span>");
     $("#trackB").html("<span class='roboto'>显示轨迹</span>");
