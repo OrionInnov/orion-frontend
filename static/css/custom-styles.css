@@ -144,25 +144,25 @@ p {
 
 #page-wrapper {
     position: relative;
-    box-shadow: 0 0 10px #757575;
-    -moz-box-shadow: 0 0 10px #757575;
-    -webkit-box-shadow: 0 0 10px #757575;
+    box-shadow: 0 0 0px #FFFFFF;
+    -moz-box-shadow: 0 0 0px #FFFFFF;
+    -webkit-box-shadow: 0 0 0px #FFFFFF;
 }
 
 #page-fixP {
     position: relative;
-    box-shadow: 0 0 10px #757575;
-    -moz-box-shadow: 0 0 10px #757575;
-    -webkit-box-shadow: 0 0 10px #757575;
+    box-shadow: 0 0 0px #FFFFFF;
+    -moz-box-shadow: 0 0 0px #FFFFFF;
+    -webkit-box-shadow: 0 0 0px #FFFFFF;
 }
 
 #page-set {
     z-index: 2000;
     position: relative;
     top: 0px;
-    box-shadow: 0 0 10px #757575;
-    -moz-box-shadow: 0 0 10px #757575;
-    -webkit-box-shadow: 0 0 10px #757575;
+    box-shadow: 0 0 0px #FFFFFF;
+    -moz-box-shadow: 0 0 0px #FFFFFF;
+    -webkit-box-shadow: 0 0 0px #FFFFFF;
 }
 
 #page-rollC {
@@ -804,15 +804,15 @@ ul.nav.nav-second-level.collapse.in {
 }
 
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-    background-color: #283643;
+    background-color: #ddd;
 }
 
 .navbar-default .navbar-toggle {
-    border-color: #fff;
+    border-color: #ddd;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: #FFF;
+    background-color: #888;
 }
 
 .nav > li > a > i {
@@ -920,85 +920,7 @@ ul.dropdown-menu.dropdown-messages li a div {
 
 }
 
-@media (max-width: 768px) {
-    #sideNav {
-        display: none;
-    }
 
-    #page-wrapper {
-        position: relative;
-        top: 93px;
-    }
-
-    #page-fixP {
-        position: relative;
-        top: 93px;
-    }
-
-    #page-rollC {
-        position: relative;
-        top: 93px;
-    }
-
-    .navbar-side {
-        width: 100%;
-        z-index: 1;
-        position: relative;
-        top: 20px;
-    }
-
-    #page-wrapper {
-        top: 38px;
-    }
-
-    #page-fixP {
-        top: 38px;
-    }
-
-    #page-rollC {
-        top: 38px;
-    }
-
-    .top-navbar {
-        position: relative;
-        background-color: #F35543;
-    }
-
-    .top-navbar .navbar-brand {
-        width: 100%;
-        position: relative;
-
-    }
-
-    .top-head {
-        position: absolute;
-    }
-}
-
-@media (max-width: 480px) {
-    #Spage-wrapper {
-        position: relative;
-        top: 93px;
-    }
-
-    .page-header small {
-        display: block;
-        padding-top: 14px;
-        font-size: 19px;
-    }
-
-    #sideNav {
-        display: none;
-    }
-
-    .panel-left {
-        width: 85px;
-        height: 85px;
-        border-radius: 100%;
-        overflow: hidden;
-        margin: 14px;
-    }
-}
 
 .relative {
     position: relative;

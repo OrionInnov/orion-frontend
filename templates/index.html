@@ -31,9 +31,14 @@
     <section class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
+          <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon icon-bar"></span>
+            <span class="icon icon-bar"></span>
+            <span class="icon icon-bar"></span>
+          </button>
           <a class="navbar-brand z-index0" href="/home">ORION INNOVATIONS</a>
         </div>
-        <div class="collapse navbar-collapse dropdown">
+        <div class="collapse navbar-collapse dropdown" style="overflow-x: hidden">
           <!--<ul class="dropdown nav navbar-nav navbar-right">
             <li class="dropdown-toggle selecta" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="true"><a id="navHead4" class="smoothScroll">关于奥新</a></li>
@@ -44,42 +49,44 @@
             <div class="empty">
             </div>
           </ul>-->
-          <ul class="dropdown nav navbar-nav navbar-right">
-            <li class="dropdown-toggle selecta" type="button" id="dropdownMenu3" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true"
-              aria-expanded="true"><a id="navHead3" class="smoothScroll">配置选项</a></li>
-            <ul id="dropmenu3" class="dropdown-menu" aria-labelledby="dropdownMenu3">
-              <!--<li><a id="homeButton2">高级设置</a></li>-->
-              <!--<li class="divider"></li>-->
-              <li class="dropdown-submenu">
-                <a id="languageHead" tabindex="-1" class="selecta">语言</a>
-                <ul class="dropdown-menu">
-                  <li><a id="orionEnglish" class="selecta" tabindex="-1">English</a></li>
-                  <li><a id="orionChinese" class="selecta" tabindex="-1">中文</a></li>
-                </ul>
-              </li>
+          <ul class=" navbar-nav navbar-right">
+            <ul class="dropdown nav navbar-nav">
+              <li class="dropdown-toggle selecta" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="true"><a id="navHead1" class="smoothScroll">功能页面</a></li>
+              <div id="dropmenu1" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li class="selecta"><a id="homeButton">准备工作</a></li>
+                <li class="selecta"><a id="fixButton">定位</a></li>
+              </div>
             </ul>
-          </ul>
-          <ul class="dropdown nav navbar-nav navbar-right">
-            <li class="dropdown-toggle selecta" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="true"><a id="navHead2" class="smoothScroll">定位选项</a></li>
-            <li class="dropdown-toggle selecta" type="button" id="dropdownMenu2a"><a class="smoothScroll" id="navHead2a">定位选项</a></li>
-            <div id="dropmenu2" class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <li><a id="positionsB" class="glyphicon glyphicon-play selecta"><span class="roboto">开始定位</span></a></li>
-              <li><a id="pauseB" class="glyphicon glyphicon-pause selecta"><span class="roboto">暂停</span></a></li>
-              <!--<li><a id="trackB" class="glyphicon glyphicon-circle-arrow-right selecta"><span class="roboto">显示轨迹</span></a></li>-->
-              <li><a id="zoomB1" class="glyphicon glyphicon-resize-full selecta"><span class="roboto">定位缩放</span></a></li>
-              <!--<li><a id="zoomB2" class="glyphicon glyphicon-resize-full selecta"><span class="roboto">轨迹缩放</span></a></li>-->
-              <li><a id="clockwise" class="glyphicon glyphicon-menu-right selecta"><span class="roboto">顺时针旋转</span></a></li>
-              <li><a id="counterclockwise" class="glyphicon glyphicon-menu-left selecta"><span class="roboto">逆时针旋转</span></a></li>
-            </div>
-          </ul>
-          <ul class="dropdown nav navbar-nav navbar-right">
-            <li class="dropdown-toggle selecta" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="true"><a id="navHead1" class="smoothScroll">功能页面</a></li>
-            <div id="dropmenu1" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li class="selecta"><a id="homeButton">准备工作</a></li>
-              <li class="selecta"><a id="fixButton">定位</a></li>
-            </div>
+            <ul class="dropdown nav navbar-nav">
+              <li class="dropdown-toggle selecta" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="true"><a id="navHead2" class="smoothScroll">定位选项</a></li>
+              <li class="dropdown-toggle selecta" type="button" id="dropdownMenu2a"><a class="smoothScroll" id="navHead2a">定位选项</a></li>
+              <div id="dropmenu2" class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <li><a id="positionsB" class="glyphicon glyphicon-play selecta"><span class="roboto">开始定位</span></a></li>
+                <li><a id="pauseB" class="glyphicon glyphicon-pause selecta"><span class="roboto">暂停</span></a></li>
+                <!--<li><a id="trackB" class="glyphicon glyphicon-circle-arrow-right selecta"><span class="roboto">显示轨迹</span></a></li>-->
+                <li><a id="zoomB1" class="glyphicon glyphicon-resize-full selecta"><span class="roboto">定位缩放</span></a></li>
+                <!--<li><a id="zoomB2" class="glyphicon glyphicon-resize-full selecta"><span class="roboto">轨迹缩放</span></a></li>-->
+                <li><a id="clockwise" class="glyphicon glyphicon-menu-right selecta"><span class="roboto">顺时针旋转</span></a></li>
+                <li><a id="counterclockwise" class="glyphicon glyphicon-menu-left selecta"><span class="roboto">逆时针旋转</span></a></li>
+              </div>
+            </ul>
+            <ul class="dropdown nav navbar-nav">
+              <li class="dropdown-toggle selecta" type="button" id="dropdownMenu3" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true"
+                aria-expanded="true"><a id="navHead3" class="smoothScroll">配置选项</a></li>
+              <ul id="dropmenu3" class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                <!--<li><a id="homeButton2">高级设置</a></li>-->
+                <!--<li class="divider"></li>-->
+                <li class="dropdown-submenu">
+                  <a id="languageHead" tabindex="-1" class="selecta">语言</a>
+                  <ul class="dropdown-menu">
+                    <li><a id="orionEnglish" class="selecta" tabindex="-1">English</a></li>
+                    <li><a id="orionChinese" class="selecta" tabindex="-1">中文</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </ul>
           </ul>
         </div>
       </div>
