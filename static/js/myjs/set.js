@@ -86,9 +86,10 @@ function changeTagName() {
         name  = $("#nameT").val(),
         enable = true;
     for (var i = 0; i < tagNames.length; i++) {
-      if (name === "(" + i + ") " + tagNames[i].name) {
+      if (name === "(" + i + ") " + tagNames[i].name || name === "") {
         enable = false;
         alert("错误：" + name + "已存在！");
+        break;
       }
     }
     if (enable) {
