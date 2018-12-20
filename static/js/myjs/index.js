@@ -275,7 +275,7 @@ function fixPositionF() {
   $("#pauseB").click(function () {
     pauseStatus = 0;
   });
-  overwrite1 = setInterval(fixPosition, 500);
+  overwrite1 = setInterval(fixPosition, 100);
 }
 
 document.onkeydown = function(event) {
