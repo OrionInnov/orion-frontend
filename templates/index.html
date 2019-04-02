@@ -15,6 +15,7 @@
     <script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/moment-with-locales.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="https://cdn.bootcss.com/jcanvas/21.0.1/min/jcanvas.min.js"></script>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
@@ -70,6 +71,13 @@
                 <!--<li><a id="zoomB2" class="glyphicon glyphicon-resize-full selecta"><span class="roboto">轨迹缩放</span></a></li>-->
                 <li><a id="clockwise" class="glyphicon glyphicon-menu-right selecta"><span class="roboto">顺时针旋转</span></a></li>
                 <li><a id="counterclockwise" class="glyphicon glyphicon-menu-left selecta"><span class="roboto">逆时针旋转</span></a></li>
+                <li class="dropdown-submenu">
+                  <a id="fenceHead" tabindex="-1" class="glyphicon glyphicon-unchecked selecta"><span class="roboto">电子围栏</span></a>
+                  <ul class="dropdown-menu">
+                    <li><a id="fenceStart" class="selecta" tabindex="-1">开启</a></li>
+                    <li><a id="fenceClose" class="selecta" tabindex="-1">关闭</a></li>
+                  </ul>
+                </li>
               </div>
             </ul>
             <ul class="dropdown nav navbar-nav">
@@ -265,6 +273,9 @@
                     <canvas id="myCanvas3" class="fixPosition center-block">Your browser does't support
                       canvas.
                     </canvas>
+                    <canvas id="myCanvas4" class="fixPosition center-block" width="840" height="840" style="display: block;">Your browser does't support
+                      canvas.
+                    </canvas>
                   </div>
                 </div>
               </div>
@@ -319,7 +330,9 @@
       MARKER_IMG_URL = "{{ url_for('static', filename='img/marker.png') }}";
     </script>
     <script src="{{ url_for('static', filename='js/myjs/set.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/myjs/fence.js') }}"></script>
     <script src="{{ url_for('static', filename='js/myjs/index.js') }}"></script>
+
     <script src="{{ url_for('static', filename='js/myjs/main.js') }}"></script>
 
   </body>

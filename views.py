@@ -49,6 +49,11 @@ def about():
 def static_fonts():
     return send_from_directory(os.path.join("static", "fonts"))
 
+@app.route("/testgateway", methods=["POST"])
+def testgateway():
+    print (request.get_data())
+    return json.dumps({"status": 1})
+
 
 ################################ DYNAMIC PAGES ################################
 
