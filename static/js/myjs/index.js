@@ -688,6 +688,11 @@ window.onload = function () {
     if (myIndex === 360) {
       myIndex = 0;
     }
+    if (myIndex === 0) {
+      $("#myCanvas4").css("pointer-events", "auto");
+    } else {
+      $("#myCanvas4").css("pointer-events", "none");
+    }
     myRotate();
   });
   $("#counterclockwise").click(function () {
