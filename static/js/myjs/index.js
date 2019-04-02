@@ -20,42 +20,42 @@ var overwrite1, overwrite2;
 
 function pageDefine() {
   $("#homeButton").addClass("active-menu");
-  $("#page-wrapper").css("display", "block");
-  $("#page-fixP").css("display", "none");
-  $("#page-rollC").css("display", "none");
-  $("#zoomN").css("display", "none");
-  $("#page-set").css("display", "none");
+  displayBlock("#page-wrapper");
+  displayNone("#page-fixP");
+  displayNone("#page-rollC");
+  displayNone("#zoomN");
+  displayNone("#page-set");
   disableFixbutton();
 }
 
 pageDefine();
 
 function jumpSetP() {
-  $("#nav1").css("display", "none");
-  $("#nav2").css("display", "none");
-  $("#page-set").css("display", "block");
-  $("#page-wrapper").css("display", "none");
-  $("#page-fixP").css("display", "none");
-  $("#page-rollC").css("display", "none");
+  displayNone("#nav1");
+  displayNone("#nav2");
+  displayBlock("#page-set");
+  displayNone("#page-wrapper");
+  displayNone("#page-fixP");
+  displayNone("#page-rollC");
   disableFixbutton();
 }
 
 function leaveSetP() {
-  $("#nav1").css("display", "block");
-  $("#nav2").css("display", "block");
-  $("#page-set").css("display", "none");
-  $("#page-wrapper").css("display", "block");
-  $("#page-fixP").css("display", "none");
-  $("#page-rollC").css("display", "none");
+  displayBlock("#nav1");
+  displayBlock("#nav2");
+  displayNone("#page-set");
+  displayBlock("#page-wrapper");
+  displayNone("#page-fixP");
+  displayNone("#page-rollC");
 }
 
 function jumpHomeP() {
   $("#homeButton").addClass("active-menu");
   $("#fixButton").removeClass("active-menu");
   $("#rollButton").removeClass("active-menu");
-  $("#page-wrapper").css("display", "block");
-  $("#page-fixP").css("display", "none");
-  $("#page-rollC").css("display", "none");
+  displayBlock("#page-wrapper");
+  displayNone("#page-fixP");
+  displayNone("#page-rollC");
   stopOverwrite1();
   stopOverwrite2();
   disableFixbutton();
@@ -65,10 +65,10 @@ function jumpFixP() {
   $("#homeButton").removeClass("active-menu");
   $("#fixButton").addClass("active-menu");
   $("#rollButton").removeClass("active-menu");
-  $("#page-wrapper").css("display", "none");
-  $("#page-fixP").css("display", "block");
-  $("#page-rollC").css("display", "none");
-  $("#page-set").css("display", "none");
+  displayNone("#page-wrapper");
+  displayBlock("#page-fixP");
+  displayNone("#page-rollC");
+  displayNone("#page-set");
   enbleFixbutton();
 }
 
@@ -76,20 +76,20 @@ function jumpRollC() {
   $("#homeButton").removeClass("active-menu");
   $("#fixButton").removeClass("active-menu");
   $("#rollButton").addClass("active-menu");
-  $("#page-wrapper").css("display", "none");
-  $("#page-fixP").css("display", "none");
-  $("#page-rollC").css("display", "block");
+  displayNone("#page-wrapper");
+  displayNone("#page-fixP");
+  displayBlock("#page-rollC");
   disableFixbutton();
 }
 
 function enbleFixbutton() {
-  $('#dropdownMenu2').css("display", "block");
-  $('#dropdownMenu2a').css("display", "none");
+  displayBlock('#dropdownMenu2');
+  displayNone('#dropdownMenu2a');
 }
 
 function disableFixbutton() {
-  $('#dropdownMenu2').css("display", "none");
-  $('#dropdownMenu2a').css("display", "block");
+  displayNone('#dropdownMenu2');
+  displayBlock('#dropdownMenu2a');
 }
 
 //FixPosition and track switch.
@@ -109,6 +109,7 @@ canvasDefine();
 function displayBlock(c1) {
   $(c1).css("display", "block");
 }
+
 function displayNone(c1) {
   $(c1).css("display", "none");
 }
