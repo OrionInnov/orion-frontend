@@ -1,6 +1,6 @@
 
 var CanvasExt = {
-  drawRect:function(canvasId,penColor,strokeWidth){
+  drawRect: function(canvasId,penColor,strokeWidth) {
     var that = this;
     var width = 0;
     var height = 0;
@@ -106,8 +106,4 @@ function drawPen() {
   var color = "blue";
   var width = 3;
   CanvasExt.drawRect("myCanvas4",color,width);
-  document.onmouseup = function(e) {
-    //console.log(CanvasExt.x);
-    //console.log(CanvasExt.y);
-  }
 }

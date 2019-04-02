@@ -211,8 +211,6 @@ function drawPoint() {
 drawPoint();
 function windowToCanvasJq(canvas,x,y) {
   var bbox = canvas.get(0).getBoundingClientRect();
-  console.log(bbox.left);
-  console.log(bbox.top);
   return {
     x:x - bbox.left - (bbox.width - canvas.get(0).offsetWidth) / 2,
     y:y - bbox.top - (bbox.height - canvas.get(0).offsetHeight) / 2
