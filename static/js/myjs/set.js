@@ -15,7 +15,8 @@ var configSet, calibrationC = [[NaN, NaN], [NaN, NaN]];
       canvasSize6 = document.getElementById("myCanvas0"),
       canvasSize7 = document.getElementById("myCanvas1"),
       canvasSize8 = document.getElementById("myCanvas2"),
-      canvasSize9 = document.getElementById("myCanvas3");
+      canvasSize9 = document.getElementById("myCanvas3"),
+      canvasSize10 = document.getElementById("myCanvas4");
   canvasSize0.width = canvasSizeWidth;
   canvasSize0.height = canvasSizeHeight;
   canvasSize1.width = canvasSizeWidth;
@@ -35,7 +36,8 @@ var configSet, calibrationC = [[NaN, NaN], [NaN, NaN]];
   canvasSize8.width = canvasSizeWidth;
   canvasSize8.height = canvasSizeHeight;
   canvasSize9.width = canvasSizeWidth;
-  canvasSize9.height = canvasSizeHeight;
+  canvasSize10.height = canvasSizeHeight;
+  canvasSize10.width = canvasSizeHeight;
 })();
 
 function getTagNameset() {

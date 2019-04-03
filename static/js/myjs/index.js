@@ -20,42 +20,42 @@ var overwrite1, overwrite2;
 
 function pageDefine() {
   $("#homeButton").addClass("active-menu");
-  $("#page-wrapper").css("display", "block");
-  $("#page-fixP").css("display", "none");
-  $("#page-rollC").css("display", "none");
-  $("#zoomN").css("display", "none");
-  $("#page-set").css("display", "none");
+  displayBlock("#page-wrapper");
+  displayNone("#page-fixP");
+  displayNone("#page-rollC");
+  displayNone("#zoomN");
+  displayNone("#page-set");
   disableFixbutton();
 }
 
 pageDefine();
 
 function jumpSetP() {
-  $("#nav1").css("display", "none");
-  $("#nav2").css("display", "none");
-  $("#page-set").css("display", "block");
-  $("#page-wrapper").css("display", "none");
-  $("#page-fixP").css("display", "none");
-  $("#page-rollC").css("display", "none");
+  displayNone("#nav1");
+  displayNone("#nav2");
+  displayBlock("#page-set");
+  displayNone("#page-wrapper");
+  displayNone("#page-fixP");
+  displayNone("#page-rollC");
   disableFixbutton();
 }
 
 function leaveSetP() {
-  $("#nav1").css("display", "block");
-  $("#nav2").css("display", "block");
-  $("#page-set").css("display", "none");
-  $("#page-wrapper").css("display", "block");
-  $("#page-fixP").css("display", "none");
-  $("#page-rollC").css("display", "none");
+  displayBlock("#nav1");
+  displayBlock("#nav2");
+  displayNone("#page-set");
+  displayBlock("#page-wrapper");
+  displayNone("#page-fixP");
+  displayNone("#page-rollC");
 }
 
 function jumpHomeP() {
   $("#homeButton").addClass("active-menu");
   $("#fixButton").removeClass("active-menu");
   $("#rollButton").removeClass("active-menu");
-  $("#page-wrapper").css("display", "block");
-  $("#page-fixP").css("display", "none");
-  $("#page-rollC").css("display", "none");
+  displayBlock("#page-wrapper");
+  displayNone("#page-fixP");
+  displayNone("#page-rollC");
   stopOverwrite1();
   stopOverwrite2();
   disableFixbutton();
@@ -65,10 +65,10 @@ function jumpFixP() {
   $("#homeButton").removeClass("active-menu");
   $("#fixButton").addClass("active-menu");
   $("#rollButton").removeClass("active-menu");
-  $("#page-wrapper").css("display", "none");
-  $("#page-fixP").css("display", "block");
-  $("#page-rollC").css("display", "none");
-  $("#page-set").css("display", "none");
+  displayNone("#page-wrapper");
+  displayBlock("#page-fixP");
+  displayNone("#page-rollC");
+  displayNone("#page-set");
   enbleFixbutton();
 }
 
@@ -76,54 +76,63 @@ function jumpRollC() {
   $("#homeButton").removeClass("active-menu");
   $("#fixButton").removeClass("active-menu");
   $("#rollButton").addClass("active-menu");
-  $("#page-wrapper").css("display", "none");
-  $("#page-fixP").css("display", "none");
-  $("#page-rollC").css("display", "block");
+  displayNone("#page-wrapper");
+  displayNone("#page-fixP");
+  displayBlock("#page-rollC");
   disableFixbutton();
 }
 
 function enbleFixbutton() {
-  $('#dropdownMenu2').css("display", "block");
-  $('#dropdownMenu2a').css("display", "none");
+  displayBlock('#dropdownMenu2');
+  displayNone('#dropdownMenu2a');
 }
 
 function disableFixbutton() {
-  $('#dropdownMenu2').css("display", "none");
-  $('#dropdownMenu2a').css("display", "block");
+  displayNone('#dropdownMenu2');
+  displayBlock('#dropdownMenu2a');
 }
 
 //FixPosition and track switch.
 function canvasDefine() {
-  $("#myCanvas0").css("display", "block");
-  $("#myCanvas1").css("display", "none");
-  $("#myCanvas2").css("display", "none");
-  $("#myCanvas3").css("display", "none");
-  $("#canvas0").css("display", "none");
-  $("#canvas1").css("display", "none");
-  $("#canvas2").css("display", "none");
+  displayBlock("#myCanvas0");
+  displayNone("#myCanvas1");
+  displayNone("#myCanvas2");
+  displayNone("#myCanvas3");
+  displayNone("#myCanvas4");
+  displayNone("#canvas0");
+  displayNone("#canvas1");
+  displayNone("#canvas2");
 }
 
 canvasDefine();
 
-function jumpC(c1, c2, c3) {
-  $("#myCanvas0").css("display", "block");
+function displayBlock(c1) {
   $(c1).css("display", "block");
-  $(c2).css("display", "none");
-  $(c3).css("display", "none");
-  $("#zoomN").css("display", "none");
+}
+
+function displayNone(c1) {
+  $(c1).css("display", "none");
+}
+
+function jumpC(c1, c2, c3) {
+  displayBlock("#myCanvas0");
+  displayBlock(c1);
+  displayNone(c2);
+  displayNone(c3);
+  displayNone("#zoomN");
   stopOverwrite1();
   stopOverwrite2();
 }
 
 function zoomC(c1, c2) {
-  $("#myCanvas0").css("display", "none");
-  $("#myCanvas1").css("display", "none");
-  $("#myCanvas2").css("display", "none");
-  $("#myCanvas3").css("display", "none");
-  $("#canvas0").css("display", "block");
-  $(c1).css("display", "block");
-  $(c2).css("display", "none");
-  $("#zoomN").css("display", "block");
+  displayNone("#myCanvas0");
+  displayNone("#myCanvas1");
+  displayNone("#myCanvas2");
+  displayNone("#myCanvas3");
+  displayBlock("#canvas0");
+  displayBlock(c1);
+  displayNone(c2);
+  displayBlock("#zoomN");
 }
 
 function loadFile(file) {
@@ -229,8 +238,8 @@ function fixPositionF() {
         y = [];
     var ctx = c1.get(0).getContext("2d");
     for (var k = 0; k < num; k++) {
-      x[k] = positions[k][0] - 10;
-      y[k] = positions[k][1] - 10;
+      x[k] = positions[k][0];
+      y[k] = positions[k][1];
     }
     myImage.src = MARKER_IMG_URL;
     ctx.fillStyle = "#00F";
@@ -242,21 +251,40 @@ function fixPositionF() {
         if (!(isNaN(x[i]) || isNaN(y[i]))) {
           (function () {
             if ($("#tag" + i).get(0).checked == true) {
+              var xAct = x[i] + calibrationC[1][0];
+              var yAct = y[i] + calibrationC[1][1];
               ctx.save();
               ctx.translate(x[i], y[i]);
-              ctx.drawImage(myImage, 0, 0, 20, 20);
+              var xMax = Math.max(canvasFence.x, canvasFence.x + canvasFence.width);
+              var xMin = Math.min(canvasFence.x, canvasFence.x + canvasFence.width);
+              var yMax = Math.max(canvasFence.y, canvasFence.y + canvasFence.height);
+              var yMin = Math.min(canvasFence.y, canvasFence.y + canvasFence.height);
+              if (canvasFence.enable && xAct > xMin && xAct < xMax && yAct > yMin && yAct < yMax) {
+                c1.drawArc({
+                  fillStyle: "red",
+                  x: 0, y: 0,
+                  radius: 10
+                });
+              } else {
+                c1.drawArc({
+                  fillStyle: "blue",
+                  x: 0, y: 0,
+                  radius: 10
+                });
+              }
+              //ctx.drawImage(myImage, 0, 0, 20, 20);
               ctx.font = "15px Arial";
               if (myIndex === 0) {
-                ctx.fillText(configSet.tags[i].name, 20, 0);
+                ctx.fillText(configSet.tags[i].name, 10, -10);
               } else if (myIndex === 90 || myIndex === -270) {
                 ctx.rotate(-Math.PI / 2);
-                ctx.fillText(configSet.tags[i].name, 0, 0);
+                ctx.fillText(configSet.tags[i].name, 10, -10);
               } else if (myIndex === 180 || myIndex === -180) {
                 ctx.rotate(Math.PI)
-                ctx.fillText(configSet.tags[i].name, 0, -20);
+                ctx.fillText(configSet.tags[i].name, 10, -10);
               } else if (myIndex === 270 || myIndex === -90) {
                 ctx.rotate(Math.PI / 2)
-                ctx.fillText(configSet.tags[i].name, 20, -20);
+                ctx.fillText(configSet.tags[i].name, 10, -10);
               } else {
                 console.log("错误");
               }
@@ -551,6 +579,9 @@ window.onload = function () {
     $("#zoomB1").html("<span class='roboto'>Zoom</span>");
     $("#zoomB2").html("<span class='roboto'>Zoom (trajectory)</span>");
     $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'><nobr class='open-sans'>Historytrack</nobr></span>");
+    $("#fenceHead").html("<span class='roboto'>Electronic fence</span>");
+    $("#fenceStart").html("Start");
+    $("#fenceClose").html("Close");
     $("#positionHead").html("Map<div id='zoomN' style='position: relative; float: right'></div>");
     $("#radio").html("<span class=''>ALL</span>");
     $("#multiple").html("<span class=''>NONE</span>");
@@ -594,6 +625,9 @@ window.onload = function () {
     $("#zoomB1").html("<span class='roboto'>定位缩放</span>");
     $("#zoomB2").html("<span class='roboto'>轨迹缩放</span>");
     $("#historyTrackB").html("<span class='glyphicon glyphicon-repeat'>历史轨迹</span>");
+    $("#fenceHead").html("<span class='roboto'>电子围栏</span>");
+    $("#fenceStart").html("开启");
+    $("#fenceClose").html("关闭");
     $("#positionHead").html("地图<div id='zoomN' style='position: relative; float: right'></div>");
     $("#radio").html("<span class=''>全选</span>");
     $("#multiple").html("<span class=''>重置</span>");
@@ -638,6 +672,14 @@ window.onload = function () {
     jumpC("#myCanvas1", "#myCanvas2", "#myCanvas3");
     fixPositionF();
   });
+  $("#fenceStart").click(function () {
+    displayBlock("#myCanvas4");
+    canvasFence.enable = true;
+  });
+  $("#fenceClose").click(function () {
+    displayNone("#myCanvas4");
+    canvasFence.enable = false;
+  });
   $("#trackB").click(function () {
     jumpC("#myCanvas2", "#myCanvas1", "#myCanvas3");
     track();
@@ -646,6 +688,11 @@ window.onload = function () {
     myIndex = myIndex + 90;
     if (myIndex === 360) {
       myIndex = 0;
+    }
+    if (myIndex === 0) {
+      $("#myCanvas4").css("pointer-events", "auto");
+    } else {
+      $("#myCanvas4").css("pointer-events", "none");
     }
     myRotate();
   });
