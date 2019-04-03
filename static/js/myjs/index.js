@@ -255,11 +255,11 @@ function fixPositionF() {
               var yAct = y[i] + calibrationC[1][1];
               ctx.save();
               ctx.translate(x[i], y[i]);
-              var xMax = Math.max(CanvasExt.x, CanvasExt.x + CanvasExt.width);
-              var xMin = Math.min(CanvasExt.x, CanvasExt.x + CanvasExt.width);
-              var yMax = Math.max(CanvasExt.y, CanvasExt.y + CanvasExt.height);
-              var yMin = Math.min(CanvasExt.y, CanvasExt.y + CanvasExt.height);
-              if (CanvasExt.enble && xAct > xMin && xAct < xMax && yAct > yMin && yAct < yMax) {
+              var xMax = Math.max(canvasFence.x, canvasFence.x + canvasFence.width);
+              var xMin = Math.min(canvasFence.x, canvasFence.x + canvasFence.width);
+              var yMax = Math.max(canvasFence.y, canvasFence.y + canvasFence.height);
+              var yMin = Math.min(canvasFence.y, canvasFence.y + canvasFence.height);
+              if (canvasFence.enable && xAct > xMin && xAct < xMax && yAct > yMin && yAct < yMax) {
                 c1.drawArc({
                   fillStyle: "red",
                   x: 0, y: 0,
@@ -674,11 +674,11 @@ window.onload = function () {
   });
   $("#fenceStart").click(function () {
     displayBlock("#myCanvas4");
-    CanvasExt.enble = true;
+    canvasFence.enable = true;
   });
   $("#fenceClose").click(function () {
     displayNone("#myCanvas4");
-    CanvasExt.enble = false;
+    canvasFence.enable = false;
   });
   $("#trackB").click(function () {
     jumpC("#myCanvas2", "#myCanvas1", "#myCanvas3");

@@ -1,5 +1,5 @@
 
-var CanvasExt = {
+var canvasFence = {
   drawRect: function(canvasId,penColor,strokeWidth) {
     var that = this;
     var width = 0;
@@ -69,7 +69,7 @@ var CanvasExt = {
         });
 
         $("#"+canvasId).drawLayers();
-        that.enble = true;
+        that.enable = true;
 
       }
     };
@@ -105,5 +105,5 @@ drawPen();
 function drawPen() {
   var color = "blue";
   var width = 3;
-  CanvasExt.drawRect("myCanvas4",color,width);
+  canvasFence.drawRect("myCanvas4",color,width);
 }
